@@ -31,3 +31,51 @@
 h1, p {
   margin: 10px 0;
 }
+.Services {
+  display: flex; /* لجعل العناصر بجانب بعضها */
+  flex-wrap: wrap; /* يسمح للعناصر بالانتقال إلى السطر التالي إذا كانت لا تتسع في السطر الحالي */
+  justify-content:baseline; /* توسيط العناصر أفقيًا */
+  padding: 20px; /* إضافة تباعد داخلي */
+  width: 100%; /* اجعل العرض 100% من الحاوية */
+}
+
+.servicesCards {
+  display: flex; /* جعل عناصر القائمة في صف */
+  list-style-type: none; /* إزالة النقاط */
+  padding: 0; /* إزالة التباعد الافتراضي */
+  margin: 0; /* إزالة التباعد الافتراضي */
+}
+
+.servicesCards li {
+  margin: 20px; /* تباعد بين العناصر */
+  text-align: center; /* توسيط النص */
+  width: 200px; /* تعيين عرض ثابت للعناصر */
+  height: 250px; /* تعيين ارتفاع ثابت للعناصر */
+  border: 1px solid #ccc; /* إضافة حدود لتحسين المظهر */
+  border-radius: 10px; /* زوايا مدورة */
+  background-color: rgba(255, 255, 255, 0.8); /* لون خلفية مع شفاف */
+  display: flex; /* لتوسيع العناصر داخل li */
+  flex-direction: column; /* لجعل الصورة والعنوان عموديًا */
+  align-items: center; /* توسيط العناصر داخل li */
+  justify-content: center; /* توسيط العناصر داخل li */
+}
+
+.servicesCards img {
+  width: 120px; /* تعيين عرض ثابت للصورة */
+  height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+  margin-bottom: 10px; /* تباعد بين الصورة والعنوان */
+}
+.p-under-welcomeboard {
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+   /* لجعل النص في المنتصف */
+  margin: 0 auto; /* يسمح بزيادة المساحة الجانبية للعنصر */
+padding-top: 40px;
+padding-left: 40px;
+}
+
+
+
+
+
