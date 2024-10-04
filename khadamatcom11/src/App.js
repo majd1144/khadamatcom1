@@ -19,6 +19,7 @@ function App() {
           {servicesCards.map((service, index) => (
             <Services key={index} {...service} />
           ))}
+       <button className="button-more">More</button>
         </div>
       </div>
     </div>

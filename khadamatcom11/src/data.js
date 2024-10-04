@@ -20,4 +20,17 @@ import pic3 from "./asset/Physical Therapist.jfif";
         image:pic3,
         title: 'Physical Therapist',
       },
+      {
+        image:pic3,
+        title: 'Physical Therapist',
+      },
+      {
+        image:pic3,
+        title: 'Physical Therapist',
+      },
+      {
+        image:pic3,
+        title: 'Physical Therapist',
+      },
+   
 ];
