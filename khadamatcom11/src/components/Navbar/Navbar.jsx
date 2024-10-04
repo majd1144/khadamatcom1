@@ -36,7 +36,7 @@ const Navbar = () => {
     <div className='navbar'>
       <img src={logo_m} alt="" className='logo1'/>
       
-      <div className="topnav">
+      <div className="midnav">
         <a className={theme === 'light' ? "active" : ""} href="#home">Home</a>
         <a href="#about">Services</a>
         <a href="#contact">Sign in</a>
@@ -45,14 +45,14 @@ const Navbar = () => {
 
       <div className='search-box'>
         <input type="text" placeholder='Search' />
-        <img src={theme === 'light' ? search_icon_light : search_icon_dark} alt="" className='logo'/>
+        <img src={theme === 'light' ? search_icon_light : search_icon_dark} alt="" className='searchlogo'/>
       </div>
 
       <img 
         onClick={toggle_mode} 
         src={theme === 'light' ? logo_light : logo_dark} 
         alt="toggle theme" 
-        className='logo'
+        className='modelogo'
         style={{ cursor: 'pointer' }} // إضافة مؤشر ليوضح أن الصورة قابلة للنقر
       />
     </div>
