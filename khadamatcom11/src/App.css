@@ -53,21 +53,31 @@ h1, p {
 
 
 .servicesCards li {
-  margin: 20px; /* تباعد بين العناصر */
-  text-align: center; /* توسيط النص */
-  width: 200px; /* تعيين عرض ثابت للعناصر */
-  height: 250px; /* تعيين ارتفاع ثابت للعناصر */
-  border: 1px solid #ccc; /* إضافة حدود لتحسين المظهر */
-  border-radius: 10px; /* زوايا مدورة */
-  background: none;
-  display: flex; /* لتوسيع العناصر داخل li */
-  flex-direction: column; /* لجعل الصورة والعنوان عموديًا */
-  align-items: center; /* توسيط العناصر داخل li */
-  justify-content: center; /* توسيط العناصر داخل li */
-  /* background-color: rgba(109, 166, 234, 0.73); */
-  box-shadow: 0px 0px 10px black;
-
-
+  margin: 20px;
+  /*تباعدبينالعناصر*/text-align: center;
+  /*توسيطالنص*/width: 200px;
+  /*تعيينعرضثابتللعناصر*/height: 250px;
+  /*تعيينارتفاعثابتللعناصر*/border: 1px solid #ccc;
+  /*إضافةحدودلتحسينالمظهر*/border-radius: 10px;
+  /*زوايامدورة*/background: none;
+  display: flex;
+  /*لتوسيعالعناصرداخلli*/flex-direction: column;
+  /*لجعلالصورةوالعنوانعموديًا*/align-items: center;
+  /*توسيطالعناصرداخلli*/justify-content: center;
+  /*توسيطالعناصرداخلli*//*background-color: rgba(109, 166, 234, 0.73);
+  */box-shadow: 0px 0px 10px black;
+  transition:all 0.2s ease-in-out ;
+  -webkit-transition:all 0.2s ease-in-out ;
+  -moz-transition:all 0.2s ease-in-out ;
+  -ms-transition:all 0.2s ease-in-out ;
+  -o-transition:all 0.2s ease-in-out ;
+}
+.servicesCards li:hover,.servicesCards li:focus{
+  transform: translateY(-10px);
+  -webkit-transform: translateY(-10px);
+  -moz-transform: translateY(-10px);
+  -ms-transform: translateY(-10px);
+  -o-transform: translateY(-10px);
 }
 .servicesCards li h3{
   background: none;
