@@ -8,6 +8,10 @@ import pic3 from "./asset/Physical Therapist.jfif";
         image: pic1,
         title: 'Teacher',       
       },
+    {
+        image: pic1,
+        title: 'Teacher',       
+      },
       {
         image: pic2,
         title: 'plumber',

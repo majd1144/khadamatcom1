@@ -6,6 +6,7 @@
   margin: 0 auto; /* Centers the box horizontally */
   overflow: hidden;
   border-radius: 10px; /* Optional: rounded corners */
+  margin-top: 20px;
 }
 
 .background-video {
@@ -16,6 +17,7 @@
   height: 100%;
   object-fit: cover;
   transform: translate(-50%, -50%);
+  
 }
 
 .content {
@@ -30,6 +32,7 @@
 
 h1, p {
   margin: 10px 0;
+  background: none; 
 }
 .Services {
   display: flex; /* لجعل العناصر بجانب بعضها */
@@ -37,6 +40,7 @@ h1, p {
   justify-content:baseline; /* توسيط العناصر أفقيًا */
   padding: 20px; /* إضافة تباعد داخلي */
   width: 100%; /* اجعل العرض 100% من الحاوية */
+  
 }
 
 .servicesCards {
@@ -44,7 +48,9 @@ h1, p {
   list-style-type: none; /* إزالة النقاط */
   padding: 0; /* إزالة التباعد الافتراضي */
   margin: 0; /* إزالة التباعد الافتراضي */
+  background: none;
 }
+
 
 .servicesCards li {
   margin: 20px; /* تباعد بين العناصر */
@@ -53,11 +59,23 @@ h1, p {
   height: 250px; /* تعيين ارتفاع ثابت للعناصر */
   border: 1px solid #ccc; /* إضافة حدود لتحسين المظهر */
   border-radius: 10px; /* زوايا مدورة */
-  background-color: rgba(255, 255, 255, 0.8); /* لون خلفية مع شفاف */
+  background: none;
   display: flex; /* لتوسيع العناصر داخل li */
   flex-direction: column; /* لجعل الصورة والعنوان عموديًا */
   align-items: center; /* توسيط العناصر داخل li */
   justify-content: center; /* توسيط العناصر داخل li */
+  /* background-color: rgba(109, 166, 234, 0.73); */
+  box-shadow: 0px 0px 10px black;
+
+
+}
+.servicesCards li h3{
+  background: none;
+}
+.container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .servicesCards img {
@@ -65,14 +83,29 @@ h1, p {
   height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
   margin-bottom: 10px; /* تباعد بين الصورة والعنوان */
 }
+
 .p-under-welcomeboard {
   font-size: 30px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
    /* لجعل النص في المنتصف */
-  margin: 0 auto; /* يسمح بزيادة المساحة الجانبية للعنصر */
-padding-top: 40px;
-padding-left: 40px;
+    margin-left: 150px; /* يسمح بزيادة المساحة الجانبية للعنصر */
+    margin-top: 50px;
+    background: #fefefed2;
+    padding: 10px 20px;
+    border-radius: 50px;
+    max-width: 300px;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+body {
+  /* background-color: rgba(109, 166, 234, 0.73);  */
+  transition: background-color 0.5s ease; /* إضافة تأثير سلس عند تغيير اللون */
 }
 
 
