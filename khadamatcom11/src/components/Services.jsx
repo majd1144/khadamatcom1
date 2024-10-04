@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Services(props) {
     return (
-        <div>
+        <div id="services-section">
             <ul className="servicesCards"> 
                 <li id='services'>
                     <img src={props.image} alt='service' />
