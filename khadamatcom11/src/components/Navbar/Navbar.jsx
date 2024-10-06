@@ -55,7 +55,7 @@ const Navbar = ({ theme, setTheme }) => {
         onClick={toggle_mode} 
         src={theme === 'light' ? logo_light : logo_dark} 
         alt="toggle theme" 
-        className='logo'
+        className='modelogo'
         style={{ cursor: 'pointer' }} // إضافة مؤشر ليوضح أن الصورة قابلة للنقر
       />
     </div>
