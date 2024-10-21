@@ -83,7 +83,7 @@ h1, p {
   background: none;
 }
 .container {
-  position: sticky;
+  position: static;
   top: 0;
   z-index: 1000;
 }
@@ -145,4 +145,8 @@ body {
 
 .button-more:hover::before {
   border-left-color: #7ec5e3; /* تغيير لون السهم عند التمرير */
+}
+.nav{
+  position:sticky;
+  top:0;
 }
