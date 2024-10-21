@@ -70,23 +70,7 @@ margin: 0;
 font-family: Arial, Helvetica, sans-serif;
 }
 
-.midnav {
-    margin-left: -100px;
-    overflow: hidden; 
-    background-color: #ffffff;
-    
-}
 
- .midnav a {
-    margin:10px;
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
   
   /* .topnav a:hover {
     background-color: #ddd;
@@ -100,5 +84,24 @@ font-family: Arial, Helvetica, sans-serif;
 
 
 
+  .midnav ul {
+    display: flex;               /* استخدام flexbox لعرض العناصر بجانب بعضها */
+    list-style-type: none;      /* إزالة النقاط من القائمة */
+    margin: 0;                  /* إزالة الهوامش */
+    padding: 0;                 /* إزالة الحشوات */
+}
+
+.midnav li {
+    margin: 0 15px;            /* إضافة فراغ بين العناصر */
+}
+
+.midnav a {
+    text-decoration: none;      /* إزالة الخط تحت الروابط */
+    color: black;               /* يمكنك تغيير اللون حسب الثيم */
+}
+
+.active {
+    font-weight: bold;          /* تمييز الرابط النشط */
+}
   
 

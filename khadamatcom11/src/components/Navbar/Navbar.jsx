@@ -5,7 +5,7 @@ import logo_dark from '../../asset/light.png';
 import search_icon_dark from '../../asset/darks.png';
 import search_icon_light from '../../asset/lights.png';
 import { useEffect } from 'react'; // استيراد useEffect من React
-import Services from '../Services';
+import { Link } from 'react-router-dom';
 
 const Navbar = ({ theme, setTheme }) => {
 
@@ -40,10 +40,21 @@ const Navbar = ({ theme, setTheme }) => {
       <img src={logo_m} alt="" className='logo1'/>
       
       <div className="midnav">
-        <a className={theme === 'light' ? "active" : ""} href="#home">Home</a>
-        <a href="#about">Services</a>
-        <a href="#contact">Sign in</a>
-        <a href="#contact">Join</a>
+        <ul>
+          <li>
+          <Link to ="/"className={theme === 'light' ? "active" : ""} >Home</Link>
+          </li>
+          <li>
+          <Link to="ServicesCard">Services</Link>
+          </li>
+          <li>
+          <Link to="Signin">Sign in</Link>
+          </li>
+          <li>
+          <Link to="Join">Join</Link>
+          </li>
+        
+        </ul>
       </div>
 
       <div className='search-box'>

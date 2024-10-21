@@ -1,0 +1,25 @@
+import WelcomeBoard from '../components/WelcomeBoard';
+import Services from '../components/Services';
+import NavBar from '../components/Navbar/Navbar.jsx';
+import { servicesCards } from '../data.js'; // تأكد من عدم الحاجة لاستيراد "./data.js" مجددًا
+import React ,{useState} from "react"
+import ServicesCards from './ServicesCards.jsx';
+import "C:/Users/lenovo/Desktop/khadamatcom1/khadamatcom11/src/App.css";
+export default function HomePage(){
+    const [theme, setTheme] = useState('light');
+
+    return(
+        <div className='component'>
+        <div className='container'>
+          <NavBar theme={theme} setTheme={setTheme} />
+          <WelcomeBoard />
+        </div>
+        
+        <p className='p-under-welcomeboard'>Popular services</p>
+        <div>
+        <ServicesCards/> </div>
+          <button className="button-more"></button>
+       
+      </div>
+    );
+}    

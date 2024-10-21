@@ -1,33 +1,23 @@
-import {createBrowserRouter,RouterProvider} from "react-router-dom";
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React ,{useState} from "react"
 import './App.css';
-import WelcomeBoard from './components/WelcomeBoard';
-import Services from './components/Services';
-import NavBar from './components/Navbar/Navbar.jsx';
-import { servicesCards } from './data.js'; // تأكد من عدم الحاجة لاستيراد "./data.js" مجددًا
-import  { useState } from "react"
+import HomePage from './components/HomePage.jsx';
+import Services from "./components/Services.jsx"
+import Join from "./components/Join.jsx";
+import Signin from "./components/Signin.jsx";
 
-function App() { 
-  const [theme, setTheme]= useState('light');
-
-  
+export default function App() {
+   const [theme, setTheme] = useState('light');
   return (
+    <Router>
     <div className="App">
-      <div className='component'>
-        <div className='container'>
-        <NavBar  theme={theme} setTheme={setTheme}/>
-          </div>
-        <WelcomeBoard />
-        <p className='p-under-welcomeboard'>Popular services</p>
-        <div id='servicescard'  className='Services'>
-          {servicesCards.map((service, index) => (
-            <Services key={index} {...service} />
-          ))}
-       <button  className="button-more"></button>
-        </div>
-      </div>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/ServicesCard" element={<Services />} />
+          <Route path="/Signin" element={<Signin />} />
+          <Route path="/Join" element={<Join />} />
+        </Routes>
     </div>
+    </Router>
   );
 }
-
-export default App;
