@@ -2,6 +2,7 @@ import './Navbar.css';
 import logo_m from '../../asset/majd.jpg';
 import logo_light from '../../asset/dark.png';
 import logo_dark from '../../asset/light.png';
+import logo_dark_for from '../../asset/logodark.png';
 import search_icon_dark from '../../asset/darks.png';
 import search_icon_light from '../../asset/lights.png';
 import { useEffect } from 'react'; // استيراد useEffect من React
@@ -28,7 +29,22 @@ const Navbar = ({ theme, setTheme }) => {
     document.querySelector('.search-box').style.backgroundColor = isLight 
       ? 'rgba(109, 166, 234, 0.73)' 
       : '#808080'; // خلفية مربع البحث
+      const buttonMore = document.querySelector('.button-more');
 
+     buttonMore.style.color = isLight 
+    ? 'rgba(109, 166, 234, 0.73)'  // لون إذا كان isLight = true
+    : '#3c3838';  // لون إذا كان isLight = false
+      // عشان يغير اللون حسب المود للعنصر لما اتفاعل معه 
+      const elements = document.querySelectorAll('.midnav a');
+      elements.forEach((element) => {
+        element.addEventListener('mouseenter', () => {
+          element.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#808080';
+        });
+      
+        element.addEventListener('mouseleave', () => {
+          element.style.backgroundColor = '';
+        });
+      });
     const services = document.querySelectorAll('.servicesCards li'); // خلفية عناصر الخدمات
     services.forEach(service => {
       service.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#ffff';
@@ -37,8 +53,8 @@ const Navbar = ({ theme, setTheme }) => {
 
   return (
     <div className='navbar'>
-      <img src={logo_m} alt="" className='logo1'/>
-      
+      <img src={theme === 'light' ? logo_m : logo_dark_for} alt="" className='logo1'/>
+
       <div className="midnav">
         <ul>
           <li>

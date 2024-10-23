@@ -20,8 +20,7 @@ export default function HomePage(){
         <p className='p-under-welcomeboard'>Popular services</p>
         <div>
         <ServicesCards/> </div>
-          <button className="button-more"></button>
-       
+        <button className="button-more"></button>
       </div>
     );
 }    
