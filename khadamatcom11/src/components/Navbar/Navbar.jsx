@@ -25,7 +25,7 @@ const Navbar = ({ theme, setTheme }) => {
     const isLight = theme === 'light';
 
     document.body.style.backgroundColor = isLight ? '#ffff' : '#808080'; // خلفية الصفحة
-    document.querySelector('.navbar').style.backgroundColor = isLight ? '#ffff' : '#3c3838'; // خلفية شريط التنقل
+    document.querySelector('.navbarx').style.backgroundColor = isLight ? '#ffff' : '#3c3838'; // خلفية شريط التنقل
     document.querySelector('.search-box').style.backgroundColor = isLight 
       ? 'rgba(109, 166, 234, 0.73)' 
       : '#808080'; // خلفية مربع البحث
@@ -52,7 +52,7 @@ const Navbar = ({ theme, setTheme }) => {
   }, [theme]); // إعادة تشغيل useEffect عند تغيير theme
 
   return (
-    <div className='navbar'>
+    <div className='navbarx'>
       <img src={theme === 'light' ? logo_m : logo_dark_for} alt="" className='logo1'/>
 
       <div className="midnav">
