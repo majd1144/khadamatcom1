@@ -83,7 +83,7 @@ h1, p {
   background: none;
 }
 .container {
-  position: sticky;
+  position: static;
   top: 0;
   z-index: 1000;
 }
@@ -124,25 +124,25 @@ body {
   padding: 20px 50px; /* زيادة الحشو لجعل الزر أكبر */
   font-size: 18px; /* تكبير حجم الخط */
   cursor: pointer; /* تغيير شكل المؤشر */
-  position: relative; /* لتحديد مكان السهم */
   display: inline-block;
   text-transform: uppercase; /* تكبير الحروف */
   margin-left: -50px; /* مسافة من اليسار لجعل الزر بعيد عن البوكس */
-
+  position: absolute;
+  top: 120%;
+  right: 31px;
 }
 
 .button-more::before {
   content: ''; /* محتوى فارغ لرسم السهم */
   position: absolute;
-  top: 100px;
   right: -30px; /* مسافة من اليمين، أكبر للسهم الأكبر */
   border-top: 35px solid transparent; /* جزء علوي من السهم */
   border-bottom: 35px solid transparent; /* جزء سفلي من السهم */
-  border-left: 60px solid #4CAF50; /* لون السهم */
-
-  
+  border-left: 60px solid ; /* لون السهم */
 }
 
-.button-more:hover::before {
-  border-left-color: #7ec5e3; /* تغيير لون السهم عند التمرير */
+
+.nav{
+  position:sticky;
+  top:0;
 }
