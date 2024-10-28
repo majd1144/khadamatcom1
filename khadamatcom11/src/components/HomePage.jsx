@@ -5,6 +5,7 @@ import NavBar from '../components/Navbar/Navbar.jsx';
 import React ,{useState} from "react"
 import ServicesCards from './ServicesCards.jsx';
 import InforMations from './informations/informations.jsx';
+import CustomSlider from "./testSlaider"
 import "../App.css";
 
 
@@ -28,6 +29,9 @@ export default function HomePage(){
         <div className='majd'>
           <InforMations className='majd'/>
         </div>
+        {/* <div>
+          <CustomSlider/>
+        </div> */}
       </div>
     );
 }    
