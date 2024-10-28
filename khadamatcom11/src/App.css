@@ -36,9 +36,9 @@ h1, p {
 }
 .Services {
   display: flex; /* لجعل العناصر بجانب بعضها */
-  flex-wrap:nowrap; /* يسمح للعناصر بالانتقال إلى السطر التالي إذا كانت لا تتسع في السطر الحالي */
+  flex-wrap:wrap; /* يسمح للعناصر بالانتقال إلى السطر التالي إذا كانت لا تتسع في السطر الحالي */
   justify-content:baseline; /* توسيط العناصر أفقيًا */
-  padding: 20px; /* إضافة تباعد داخلي */
+  padding: 10px; /* إضافة تباعد داخلي */
   width: 100%; /* اجعل العرض 100% من الحاوية */
   
 }
@@ -121,15 +121,15 @@ body {
   background-color: transparent; /* إزالة خلفية الزر */
   border: none; /* إزالة الإطار */
   color: white; /* لون النص */
-  padding: 20px 50px; /* زيادة الحشو لجعل الزر أكبر */
+  padding: 10px 10px; /* زيادة الحشو لجعل الزر أكبر */
   font-size: 18px; /* تكبير حجم الخط */
   cursor: pointer; /* تغيير شكل المؤشر */
   display: inline-block;
   text-transform: uppercase; /* تكبير الحروف */
   margin-left: -50px; /* مسافة من اليسار لجعل الزر بعيد عن البوكس */
   position: absolute;
-  top: 120%;
-  right: 31px;
+  top: 100%;
+  right: 100px;
 }
 
 .button-more::before {

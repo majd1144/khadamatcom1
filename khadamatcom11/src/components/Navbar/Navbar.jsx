@@ -33,11 +33,11 @@ const Navbar = ({ theme, setTheme }) => {
       });
     });
 
-    const services = document.querySelectorAll('.servicesCards li');
-    services.forEach((service) => {
-      service.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#ffff';
-    });
-  }, [theme]);
+          const services = document.querySelectorAll('.servicesCards li');
+          services.forEach((service) => {
+            service.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#ffff';
+          });
+        }, [theme]);
 
   return (
     <nav className="navbar navbar-expand-lg navbarx wd-100">
@@ -66,7 +66,7 @@ const Navbar = ({ theme, setTheme }) => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/ServicesCard" className="nav-link">
+              <Link to="/ServicesIn" className="nav-link">
                 Services
               </Link>
             </li>
