@@ -7,8 +7,5 @@ export default function ServicesCards(){
         {servicesCards.map((service, index) => (
             <Services key={index} {...service} />
           ))}</div>
-          
-
-
     );
 }
