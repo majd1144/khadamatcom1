@@ -1,10 +1,15 @@
 import WelcomeBoard from '../components/WelcomeBoard';
-// import Services from '../components/Services';
 import NavBar from '../components/Navbar/Navbar.jsx';
-// import { servicesCards } from '../data.js'; // تأكد من عدم الحاجة لاستيراد "./data.js" مجددًا
-import React ,{useState} from "react"
+import { servicesCards } from '../data.js';
+import React ,{useState} from "react";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import { Link } from 'react-router-dom';
+import FooteRr from "./Footerr.jsx";
+import InforMation from "./informations/informations.jsx";
 import ServicesCards from './ServicesCards.jsx';
-import "C:/Users/lenovo/Desktop/khadamatcom1/khadamatcom11/src/App.css";
+import ServicesIn from './ServicesIn.jsx';
+
+
 export default function HomePage(){
   const [showAll, setShowAll] = useState(false);
     const [theme, setTheme] = useState('light');

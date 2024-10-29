@@ -1,6 +1,5 @@
 import ServicesCards from './ServicesCards';
 import { servicesCards } from '../data.js'; // استيراد بيانات الخدمات
-import "C:/Users/lenovo/Desktop/khadamatcom1/khadamatcom11/src/App.css";
 
 export default function ServicesIn() {
     return (

@@ -38,6 +38,9 @@ const Navbar = ({ theme, setTheme }) => {
     services.forEach((service) => {
       service.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#ffff';
     });
+    const footer = document.querySelector('.footer'); // تأكد أن الفوتر يحمل هذه الفئة
+footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
+
   }, [theme]);
 
   return (
