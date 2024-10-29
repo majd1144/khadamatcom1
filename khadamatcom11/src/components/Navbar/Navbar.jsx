@@ -9,6 +9,7 @@ import logo_dark from '../../asset/light.png';
 import logo_dark_for from '../../asset/logodark.png';
 import search_icon_dark from '../../asset/darks.png';
 import search_icon_light from '../../asset/lights.png';
+import logoFoter from '../../asset/footerrr.png'
 
 const Navbar = ({ theme, setTheme }) => {
   const toggle_mode = () => {
@@ -37,6 +38,9 @@ const Navbar = ({ theme, setTheme }) => {
     services.forEach((service) => {
       service.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#ffff';
     });
+    const footer = document.querySelector('.footer'); // تأكد أن الفوتر يحمل هذه الفئة
+footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
+
   }, [theme]);
 
   return (

@@ -4,7 +4,9 @@ import NavBar from '../components/Navbar/Navbar.jsx';
 // import { servicesCards } from '../data.js'; // تأكد من عدم الحاجة لاستيراد "./data.js" مجددًا
 import React ,{useState} from "react"
 import ServicesCards from './ServicesCards.jsx';
-import "C:/Users/lenovo/Desktop/khadamatcom1/khadamatcom11/src/App.css";
+import InforMations from '../components/informations/informations.jsx'
+import FooteRr from './footerr.jsx';
+// import "C:/Users/lenovo/Desktop/khadamatcom1/khadamatcom11/components/App.css";
 export default function HomePage(){
     const [theme, setTheme] = useState('light');
 
@@ -24,9 +26,9 @@ export default function HomePage(){
         <div className='majd'>
           <InforMations className='majd'/>
         </div>
-        {/* <div>
-          <CustomSlider/>
-        </div> */}
+       <div>
+        <FooteRr/>
+       </div>
       </div>
     );
 }    
