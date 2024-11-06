@@ -87,7 +87,7 @@ footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838'
           </ul>
 
           <div className="d-flex align-items-center search-box">
-            <input type="text" placeholder="Search" className="form-control" />
+            <input type="text" placeholder="Search"  />
             <img
               src={theme === 'light' ? search_icon_light : search_icon_dark}
               alt="search icon"
