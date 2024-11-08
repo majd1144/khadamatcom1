@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import light from "../../src/asset/L_S_light.png";
 import { Link } from "react-router-dom"; // استيراد Link من react-router-dom
 import "./Logins.css";
-// import dark from '../../src/asset/L_S_dark.png';
-
 
 export default function Join({ theme }) {
   const [formData, setFormData] = useState({
@@ -35,7 +32,6 @@ export default function Join({ theme }) {
 
   return (
     <div>
-      {/* <img src={light} alt="" className="full-width-image" /> */}
       <div className="container">
         <div className="row">
           <div className="col-md-4 col-sm-12 col-xs-12">
@@ -136,7 +132,7 @@ export default function Join({ theme }) {
                 </label>
 
                 <div className="label-group">
-  <label>Gender:</label>
+  <label>Gender   :</label>
   <div className="radio-group">
     <label className="radio-label">
       <input
