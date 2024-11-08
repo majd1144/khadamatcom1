@@ -3,6 +3,7 @@ import { servicesCards } from '../data.js';
 import React ,{useState} from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Link } from 'react-router-dom';
+import FooteRr from "./Footerr.jsx";
 import InforMation from "./informations/informations.jsx";
 import ServicesCards from './ServicesCards.jsx';
 // import ServicesIn from './ServicesIn.jsx';

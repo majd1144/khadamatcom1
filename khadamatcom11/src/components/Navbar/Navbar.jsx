@@ -96,7 +96,7 @@ const Navbar = ({ theme, setTheme }) => {
           </ul>
 
           <div className="d-flex align-items-center search-box">
-            <input type="text" placeholder="Search" className="form-control" />
+            <input type="text" placeholder="Search"  />
             <img
               src={theme === 'light' ? search_icon_light : search_icon_dark}
               alt="search icon"
