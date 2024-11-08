@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './Navbar.css';
-import logo_m from '../../asset/majd.jpg';
+import logo_m from '../../asset/majd.png';
 import logo_light from '../../asset/dark.png';
 import logo_dark from '../../asset/light.png';
 import logo_dark_for from '../../asset/logodark.png';
 import search_icon_dark from '../../asset/darks.png';
 import search_icon_light from '../../asset/lights.png';
-import logoFoter from '../../asset/footerrr.png'
 
 const Navbar = ({ theme, setTheme }) => {
   const toggle_mode = () => {
@@ -19,11 +18,20 @@ const Navbar = ({ theme, setTheme }) => {
   useEffect(() => {
     const isLight = theme === 'light';
     document.body.style.backgroundColor = isLight ? '#ffff' : '#808080';
-    document.querySelector('.navbar').style.backgroundColor = isLight ? '#ffff' : '#3c3838';
-    document.querySelector('.search-box').style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#808080';
-    const buttonMore = document.querySelector('.button-more');
-    buttonMore.style.color = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
 
+    // تحديث خلفية الـ navbar
+    const navbar = document.querySelector('.navbar');
+    if (navbar) navbar.style.backgroundColor = isLight ? '#ffff' : '#3c3838';
+
+    // تحديث خلفية مربع البحث
+    const searchBox = document.querySelector('.search-box');
+    if (searchBox) searchBox.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#808080';
+
+    // تحديث لون الزر الإضافي (button-more) إن وجد
+    const buttonMore = document.querySelector('.button-more');
+    if (buttonMore) buttonMore.style.color = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
+
+    // تحديث الروابط في الـ midnav
     const elements = document.querySelectorAll('.midnav a');
     elements.forEach((element) => {
       element.addEventListener('mouseenter', () => {
@@ -34,21 +42,22 @@ const Navbar = ({ theme, setTheme }) => {
       });
     });
 
+    // تحديث خلفية عناصر الخدمات في servicesCards
     const services = document.querySelectorAll('.servicesCards li');
     services.forEach((service) => {
       service.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#ffff';
     });
-    const footer = document.querySelector('.footer'); // تأكد أن الفوتر يحمل هذه الفئة
-footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
+
+    // تحديث خلفية الفوتر
+    const footer = document.querySelector('.footer');
+    if (footer) footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
 
   }, [theme]);
 
   return (
     <nav className="navbar navbar-expand-lg navbarx wd-100">
-      <div className="container-fluid px-4"> {/* Full-width container with padding */}
-       
-          <img src={theme === 'light' ? logo_m : logo_dark_for} alt="logo" className="logo1" />
-        
+      <div className="container-fluid px-4">
+        <img src={theme === 'light' ? logo_m : logo_dark_for} alt="logo" className="logo1" />
 
         <button
           className="navbar-toggler"
@@ -63,7 +72,7 @@ footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838'
         </button>
 
         <div className="collapse navbar-collapse midnav" id="navbarNav">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link to="/" className={`nav-link ${theme === 'light' ? 'active' : ''}`}>
                 Home

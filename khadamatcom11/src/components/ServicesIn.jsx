@@ -4,7 +4,7 @@ import { servicesCards } from '../data.js'; // استيراد بيانات ال�
 export default function ServicesIn() {
     return (
         <div>
-            <h1 className='p-under-welcomeboard'>The services!</h1> {/* يمكنك إضافة عنوان إذا أردت */}
+            <h1 className='p-under-welcomeboard'>The services!</h1> 
             <ServicesCards services={servicesCards} /> {/* تمرير خاصية `services` */}
         </div>
     );
