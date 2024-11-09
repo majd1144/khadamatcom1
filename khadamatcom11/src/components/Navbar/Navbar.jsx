@@ -9,6 +9,7 @@ import logo_dark from '../../asset/light.png';
 import logo_dark_for from '../../asset/logodark.png';
 import search_icon_dark from '../../asset/darks.png';
 import search_icon_light from '../../asset/lights.png';
+ import logoFoter from '../../asset/footerrr.png'
 
 const Navbar = ({ theme, setTheme }) => {
   const toggle_mode = () => {
@@ -45,7 +46,11 @@ const Navbar = ({ theme, setTheme }) => {
     // تحديث خلفية عناصر الخدمات في servicesCards
     const services = document.querySelectorAll('.servicesCards li');
     services.forEach((service) => {
-      service.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#ffff';
+     service.style.backgroundColor = isLight ? '#ffff' : '#ffff';
+      const footer = document.querySelector('.footer'); // اختيار العنصر بواسطة الكلاس
+footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
+ <img src={theme === 'light' ? logoFoter : logo_dark_for} alt="logo" className="footer " /> 
+
     });
 
     // تحديث خلفية الفوتر
@@ -60,8 +65,10 @@ const Navbar = ({ theme, setTheme }) => {
 
   return (
     <nav className="navbar navbar-expand-lg navbarx wd-100">
-      <div className="container-fluid px-4">
-        <img src={theme === 'light' ? logo_m : logo_dark_for} alt="logo" className="logo1" />
+      <div className="container-fluid px-4"> {/* Full-width container with padding */}
+       
+          <img src={theme === 'light' ? logo_m : logo_dark_for} alt="logo" className="logo1" />
+        
 
         <button
           className="navbar-toggler"
@@ -118,6 +125,7 @@ const Navbar = ({ theme, setTheme }) => {
         </div>
       </div>
     </nav>
+    
   );
 };
 

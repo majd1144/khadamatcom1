@@ -58,15 +58,17 @@ h1, p {
 }
 
 .servicesCards img {
-  width: 100%; /* لضبط حجم الصورة وفقًا للعنصر */
+  width: 95%; /* لضبط حجم الصورة وفقًا للعنصر */
   height: auto;
   margin-bottom: 10px;
+  border-radius: 5%;
+  transform: scaleX(1.051);
 }
 
 .servicesCards li h3 {
   font-size: 18px;
   font-weight: bold;
-  color: #0528ec; /* لون مميز للنص */
+  color: #0c0c0c; /* لون مميز للنص */
   font-family: "Arial", sans-serif;
   text-align: center;
   padding: 10px;

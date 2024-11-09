@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 //import FooteRr from "./Footerr.jsx";
 import InforMation from "./informations/informations.jsx";
 import ServicesCards from './ServicesCards.jsx';
-// import ServicesIn from './ServicesIn.jsx';
+// import InforMations from './informations/informations.jsx';
+//import CustomSlider from "./testSlaider"
+import "../App.css";
 
 
 export default function HomePage(){
@@ -40,6 +42,9 @@ export default function HomePage(){
         <div className='majd'>
           <InforMation className='majd'/>
         </div>
-        </div>
+        {/* <div>
+          <CustomSlider/>
+        </div> */}
+      </div>
     );
 }    
