@@ -6,11 +6,10 @@
     margin-top: 50px;
 }
   
-.footer .logoF {
-    width: 100px;
+.footer-logo{
+     width: 100px;
     margin-bottom: 15px;
 }
-
 .footer p {
     margin: 5px 0;
 }

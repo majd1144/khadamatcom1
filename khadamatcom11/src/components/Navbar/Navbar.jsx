@@ -49,10 +49,14 @@ const Navbar = ({ theme, setTheme }) => {
     });
 
     // تحديث خلفية الفوتر
+   const footerLogo = document.querySelector('.footer-logo');
+    if (footerLogo) {
+      footerLogo.src = isLight ? logo_m : logo_dark_for;
+    }
     const footer = document.querySelector('.footer');
     if (footer) footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
-
-  }, [theme]);
+},
+   [theme]);
 
   return (
     <nav className="navbar navbar-expand-lg navbarx wd-100">

@@ -1,7 +1,7 @@
 // تأكد من أنك قمت بتثبيت Font Awesome عبر npm
 // npm install @fortawesome/fontawesome-free
 
-import logoF from '../asset/footerrr.png';
+// import logoF from '../asset/footerrr.png';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // استيراد Font Awesome
 import './Footer.css'; 
 
@@ -9,7 +9,9 @@ export default function FooteRr() {
     return (
         <div className="footer">
             <div className="container text-center">
-                <img src={logoF} alt="Logo" className="logoF" />
+            <footer>
+  <img class="footer-logo" alt="Footer Logo" />
+</footer>
                 <p>We Are Social</p>
                 <div className="social-icons d-flex justify-content-center">
                     <a href="#" className="btn btn-primary btn-circle mx-2">
