@@ -12,7 +12,7 @@ import ServicesCards from './ServicesCards.jsx';
 export default function HomePage(){
   const [showAll, setShowAll] = useState(false);
     // const [theme, setTheme] = useState('light');
-    const displayedServices = showAll ? servicesCards : servicesCards.slice(0, 7); 
+    const displayedServices = showAll ? servicesCards : servicesCards.slice(0, 6); 
     return(
         <div className='component'>
           {/* <NavBar className='nav' theme={theme} setTheme={setTheme} /> */}
