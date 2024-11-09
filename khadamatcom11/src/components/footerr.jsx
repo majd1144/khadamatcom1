@@ -1,5 +1,3 @@
-// تأكد من أنك قمت بتثبيت Font Awesome عبر npm
-// npm install @fortawesome/fontawesome-free
 
 import logoF from '../asset/footerrr.png';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // استيراد Font Awesome
