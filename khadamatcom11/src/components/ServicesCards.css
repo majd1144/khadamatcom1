@@ -1,0 +1,45 @@
+.services-card-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .scroll-btn {
+    background-color: #9ec6f4; /* Light blue */
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+  
+  .left-btn {
+    left: 10px;
+  }
+  
+  .right-btn {
+    right: 10px;
+  }
+  
+  .services-cards-wrapper {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: calc(100% - 80px); /* Leaves space for the buttons */
+    margin: 0 auto;
+    padding: 10px;
+  }
+  
+  .services-cards-wrapper::-webkit-scrollbar {
+    display: none; /* Hides scrollbar for cleaner UI */
+  }
+  
+  .services-cards-wrapper > div {
+    flex: 0 0 200px; /* Each card has a fixed width */
+    margin: 0 10px; /* Space between cards */
+  }
+  
