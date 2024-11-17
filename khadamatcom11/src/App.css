@@ -55,6 +55,7 @@ h1, p {
   justify-content: center;
   box-shadow: 0px 0px 10px black;
   transition: all 0.2s ease-in-out;
+  background-color: #ffff;
 }
 
 .servicesCards img {
@@ -74,7 +75,7 @@ h1, p {
   padding: 10px;
 }
 .servicesCards li:hover h3 {
-  color: #5a16d8; /* تغيير لون الجملة عند مرور المؤشر */
+  color: #1f8fea; /* تغيير لون الجملة عند مرور المؤشر */
 }
 
 

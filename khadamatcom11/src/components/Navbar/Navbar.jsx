@@ -9,7 +9,6 @@ import logo_dark from '../../asset/light.png';
 import logo_dark_for from '../../asset/logodark.png';
 import search_icon_dark from '../../asset/darks.png';
 import search_icon_light from '../../asset/lights.png';
- import logoFoter from '../../asset/footerrr.png'
 
 const Navbar = ({ theme, setTheme }) => {
   const toggle_mode = () => {
@@ -20,19 +19,15 @@ const Navbar = ({ theme, setTheme }) => {
     const isLight = theme === 'light';
     document.body.style.backgroundColor = isLight ? '#ffff' : '#808080';
 
-    // تحديث خلفية الـ navbar
     const navbar = document.querySelector('.navbar');
     if (navbar) navbar.style.backgroundColor = isLight ? '#ffff' : '#3c3838';
 
-    // تحديث خلفية مربع البحث
     const searchBox = document.querySelector('.search-box');
     if (searchBox) searchBox.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#808080';
 
-    // تحديث لون الزر الإضافي (button-more) إن وجد
     const buttonMore = document.querySelector('.button-more');
     if (buttonMore) buttonMore.style.color = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
 
-    // تحديث الروابط في الـ midnav
     const elements = document.querySelectorAll('.midnav a');
     elements.forEach((element) => {
       element.addEventListener('mouseenter', () => {
@@ -44,31 +39,20 @@ const Navbar = ({ theme, setTheme }) => {
     });
 
     // تحديث خلفية عناصر الخدمات في servicesCards
-    const services = document.querySelectorAll('.servicesCards li');
-    services.forEach((service) => {
-     service.style.backgroundColor = isLight ? '#ffff' : '#ffff';
-      const footer = document.querySelector('.footer'); // اختيار العنصر بواسطة الكلاس
-footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
- <img src={theme === 'light' ? logoFoter : logo_dark_for} alt="logo" className="footer " /> 
-
-    });
-
-    // تحديث خلفية الفوتر
-   const footerLogo = document.querySelector('.footer-logo');
-    if (footerLogo) {
-      footerLogo.src = isLight ? logo_m : logo_dark_for;
-    }
+    // const services = document.querySelectorAll('.servicesCards li');
+    // services.forEach((service) => {
+    //   service.style.backgroundColor = isLight ? '#ffff' : '#ffff';
+    // });
     const footer = document.querySelector('.footer');
     if (footer) footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
-},
-   [theme]);
+
+  }, [theme]);
 
   return (
     <nav className="navbar navbar-expand-lg navbarx wd-100">
       <div className="container-fluid px-4"> {/* Full-width container with padding */}
        
           <img src={theme === 'light' ? logo_m : logo_dark_for} alt="logo" className="logo1" />
-        
 
         <button
           className="navbar-toggler"

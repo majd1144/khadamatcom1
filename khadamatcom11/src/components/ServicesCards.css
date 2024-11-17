@@ -32,10 +32,12 @@
     width: calc(100% - 80px); /* Leaves space for the buttons */
     margin: 0 auto;
     padding: 10px;
+    
   }
   
   .services-cards-wrapper::-webkit-scrollbar {
     display: none; /* Hides scrollbar for cleaner UI */
+    
   }
   
   .services-cards-wrapper > div {

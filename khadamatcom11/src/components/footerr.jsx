@@ -1,14 +1,16 @@
 
-// import logoF from '../asset/footerrr.png';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // استيراد Font Awesome
 import './Footer.css'; 
+import logo_m from '../asset/majd.png';
+import logo_dark_for from '../asset/logodark.png';
 
-export default function FooteRr() {
+export default function FooteRr({theme}) {
     return (
         <div className="footer">
             <div className="container text-center">
             <footer>
-  <img class="footer-logo" alt="Footer Logo" />
+  <img src={theme === 'light' ? logo_m : logo_dark_for} alt="Footer Logo" className="footer-logo" />
+
 </footer>
                 <p>We Are Social</p>
                 <div className="social-icons d-flex justify-content-center">

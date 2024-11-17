@@ -3,21 +3,15 @@ import { servicesCards } from '../data.js';
 import React ,{useState} from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Link } from 'react-router-dom';
-//import FooteRr from "./Footerr.jsx";
 import InforMation from "./informations/informations.jsx";
 import ServicesCards from './ServicesCards.jsx';
-// import InforMations from './informations/informations.jsx';
-//import CustomSlider from "./testSlaider"
 import "../App.css";
-
 
 export default function HomePage(){
   const [showAll, setShowAll] = useState(false);
-    // const [theme, setTheme] = useState('light');
     const displayedServices = showAll ? servicesCards : servicesCards.slice(0, 10); 
     return(
         <div className='component'>
-          {/* <NavBar className='nav' theme={theme} setTheme={setTheme} /> */}
         <div className='container'>
        
           <WelcomeBoard />
@@ -42,9 +36,7 @@ export default function HomePage(){
         <div className='majd'>
           <InforMation className='majd'/>
         </div>
-        {/* <div>
-          <CustomSlider/>
-        </div> */}
+        
       </div>
     );
 }    
