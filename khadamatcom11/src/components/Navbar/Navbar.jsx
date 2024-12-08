@@ -37,12 +37,7 @@ const Navbar = ({ theme, setTheme }) => {
         element.style.backgroundColor = '';
       });
     });
-
-    // تحديث خلفية عناصر الخدمات في servicesCards
-    // const services = document.querySelectorAll('.servicesCards li');
-    // services.forEach((service) => {
-    //   service.style.backgroundColor = isLight ? '#ffff' : '#ffff';
-    // });
+    
     const footer = document.querySelector('.footer');
     if (footer) footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
 

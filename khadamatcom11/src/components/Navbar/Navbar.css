@@ -74,25 +74,23 @@ font-family: Arial, Helvetica, sans-serif;
 }
 
 .midnav ul {
-    display: flex;               /* استخدام flexbox لعرض العناصر بجانب بعضها */
-    list-style-type: none;      /* إزالة النقاط من القائمة */
-                    /* إزالة الهوامش */
+    display: flex;               /*To display items next to each other */
+    list-style-type: none;      
     margin:0px;        
-    margin-left: 100px;         /* إزالة الحشوات */
+    margin-left: 100px;         
 }
 
 .midnav li {
     margin: 0 10px; 
-               /* إضافة فراغ بين العناصر */
 }
 
 .midnav a {
-    text-decoration: none;      /* إزالة الخط تحت الروابط */
+    text-decoration: none;     
     color: black; 
     padding: 15px 25px; 
     margin-left: 20px;  
     margin-right: 20px;    
-    margin-bottom: 10px;       /* يمكنك تغيير اللون حسب الثيم */
+    margin-bottom: 10px;       
 }
 
 @media(max-width:992px){

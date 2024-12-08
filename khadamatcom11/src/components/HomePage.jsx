@@ -19,11 +19,10 @@ export default function HomePage(){
         
         <p className='p-under-welcomeboard'>Popular services</p>
         <div>
-                {/* تمرير العناصر المحددة إلى ServicesCards */}
                 <ServicesCards services={displayedServices} />
             </div>
 
-            {/* زر لتحميل كل الخدمات */}
+            {/* Button to download all services*/}
             {!showAll && (<li className="nav-item">
               <Link to="/ServicesIn" className="nav-link">
                 <button onClick={() => setShowAll(true)} className="button-more">

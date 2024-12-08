@@ -2,7 +2,7 @@
     font-size: 30px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
-      margin-left: 30px; /* يسمح بزيادة المساحة الجانبية للعنصر */
+      margin-left: 30px; 
       margin-top: 50px;
       background: #fefefed2;
       padding: 10px 20px;
@@ -11,16 +11,15 @@
       
 }
 .image-container {
-    display: flex;           /* يجعل الصور بجانب بعضها */
-    gap: 100px;               /* المسافة بين الصور */
+    display: flex;           /* Pictures next to each other*/
+    gap: 100px;               /* The distance between images*/
 }
 
 .pic img {
-    width: 40px;           /* يمكنك ضبط حجم الصورة */
-    height: auto;           /* للحفاظ على نسبة العرض إلى الارتفاع */
-    object-fit: cover;      /* لضبط طريقة عرض الصورة داخل الإطار */
-    /* gap: 100px; 
-    margin-left: 180px; */
+    width: 40px;          
+    height: auto;           
+    object-fit: cover;      
+    
 }
 .title1 {
     height: auto;
@@ -38,8 +37,6 @@
     display: flex; 
     color: rgb(47, 47, 47);
     gap: 100px;
-    /* margin-top: 20px;
-    max-width: 1200px; */
 }
 
 p {

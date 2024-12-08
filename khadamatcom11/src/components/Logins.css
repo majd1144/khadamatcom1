@@ -74,12 +74,12 @@
   .label-group {
     display: flex;
     align-items: center;
-    gap: 10px; /* لتوفير مسافة بين "User Type" والخيارات */
+    gap: 10px; 
   }
   
   .radio-group {
     display: flex;
-    gap: 20px; /* لضبط المسافة بين الخيارات */
+    gap: 20px; 
   }
   .radio-label span {
     margin-left: 5px;

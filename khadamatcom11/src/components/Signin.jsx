@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // استيراد Link من react-router-dom
+import { Link } from "react-router-dom"; 
 import "./Logins.css";
 
 export default function Signin({ theme }) {

@@ -36,16 +36,16 @@ h1, p {
 }
 .Services {
   display: flex;
-  flex-wrap: wrap; /* للسماح بالانتقال للصف التالي */
-  justify-content: flex-start; /* لضبط العناصر على اليسار */
-  padding: 10px;
-  gap: 20px; /* إضافة تباعد بين العناصر */
-  width: 100%;
+  flex-wrap: wrap; 
+  justify-content: flex-start;
+   padding: 10px;
+  gap: 20px; 
+    width: 100%;
 }
 
 .servicesCards li {
-  margin: 0; /* إزالة المسافة حول العناصر */
-  width: 200px; /* ضبط عرض ثابت للعنصر */
+  margin: 0; 
+  width: 200px;
   height: 250px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -59,7 +59,7 @@ h1, p {
 }
 
 .servicesCards img {
-  width: 95%; /* لضبط حجم الصورة وفقًا للعنصر */
+  width: 95%; 
   height: auto;
   margin-bottom: 10px;
   border-radius: 5%;
@@ -69,13 +69,13 @@ h1, p {
 .servicesCards li h3 {
   font-size: 18px;
   font-weight: bold;
-  color: #0c0c0c; /* لون مميز للنص */
+  color: #0c0c0c; 
   font-family: "Arial", sans-serif;
   text-align: center;
   padding: 10px;
 }
 .servicesCards li:hover h3 {
-  color: #1f8fea; /* تغيير لون الجملة عند مرور المؤشر */
+  color: #1f8fea;
 }
 
 
@@ -84,8 +84,7 @@ h1, p {
   font-size: 30px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
-   /* لجعل النص في المنتصف */
-    margin-left: 150px; /* يسمح بزيادة المساحة الجانبية للعنصر */
+    margin-left: 150px; 
     margin-top: 50px;
     background: #fefefed2;
     padding: 10px 20px;
@@ -100,18 +99,14 @@ h1, p {
   font-family: sans-serif;
 }
 body {
-  /* background-color: rgba(109, 166, 234, 0.73);  */
-  transition: background-color 0.5s ease; /* إضافة تأثير سلس عند تغيير اللون */
+  transition: background-color 0.5s ease; 
 }
-/**/
+
 .servicesCards li:hover,
 .servicesCards li:focus {
   transform: translateY(-8px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
-
-/**/
-
 .nav{
   position:sticky;
   top:0;

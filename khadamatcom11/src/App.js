@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
  import React ,{useState} from "react"
 import './App.css';
 import HomePage from './components/HomePage.jsx';
-// import Services from "./components/Services.jsx"
 import Join from "./components/Join.jsx";
 import Signin from "./components/Signin.jsx";
 import ServicesIn from './components/ServicesIn.jsx';
