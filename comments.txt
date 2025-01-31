@@ -1,0 +1,23 @@
+.button-more {
+  background-color: transparent; /* إزالة خلفية الزر */
+  border: none; /* إزالة الإطار */
+  color: rgb(10, 50, 144); /* لون النص */
+  padding: -10px  50px; /* زيادة الحشو لجعل الزر أكبر */
+  font-size: 18px; /* تكبير حجم الخط */
+  cursor: pointer; /* تغيير شكل المؤشر */
+  display: inline-block;
+  text-transform: uppercase; /* تكبير الحروف */
+  margin-left: 80px; /* مسافة من اليسار لجعل الزر بعيد عن البوكس */
+  position: absolute;
+  top: 100%;
+  right: 100px;
+}
+//////////
+.button-more::before {
+  content: ''; /* محتوى فارغ لرسم السهم */
+  position: absolute;
+  right: 100px; /* مسافة من اليمين، أكبر للسهم الأكبر */
+  border-top: 35px solid transparent; /* جزء علوي من السهم */
+  border-bottom: 35px solid transparent; /* جزء سفلي من السهم */
+  border-left: 60px solid ; /* لون السهم */
+}
