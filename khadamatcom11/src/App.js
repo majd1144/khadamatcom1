@@ -6,7 +6,7 @@ import Join from "./components/Join.jsx";
 import Signin from "./components/Signin.jsx";
 import ServicesIn from './components/ServicesIn.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
-import Footerr from './components/footerr.jsx'
+import Footerr from './components/Footerr.jsx'
 
 export default function App() {
     const [theme, setTheme] = useState('light');
