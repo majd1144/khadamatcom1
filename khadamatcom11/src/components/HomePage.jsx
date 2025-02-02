@@ -14,12 +14,11 @@ export default function HomePage(){
         <div className='component'>
         <div className='container'>
        
-          <WelcomeBoard />
+          <WelcomeBoard  />
         </div>
-        
-        <p className='p-under-welcomeboard'>Popular services</p>
-        <div>
-                <ServicesCards services={displayedServices} />
+        <p  className='p-under-welcomeboard'>Popular services</p>
+        <div >
+                <ServicesCards  services={displayedServices} />
             </div>
 
             {/* Button to download all services*/}

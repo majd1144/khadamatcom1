@@ -1,14 +1,12 @@
 export default function WelcomeBoard() {
-  return (
-      <div className="welcome-board">
-          <video className="background-video" autoPlay loop muted>
-              <source src="your Services.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-          </video>
-          <div className="content">
-              <h1>Welcome to Our Website!</h1>
-              <p>We are glad to have you here.</p>
-          </div>
-      </div>
-  );
+    return (
+        <div className="container_welcome">
+            <h1>Scale your professional <br />workforce with{" "}<span style={{ fontFamily: "'Playwrite IN', serif" }}>Freelancers</span></h1>
+            <br /><br /><br />
+            <div className="search-bar_wel">
+                <input type="text" placeholder="Search for any service..." />
+                <button className="fa fa-search" type="submit"></button>
+            </div>
+        </div>
+    );
 }

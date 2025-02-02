@@ -40,11 +40,16 @@ const Navbar = ({ theme, setTheme }) => {
     
     const footer = document.querySelector('.footer');
     if (footer) footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
-    
-   
-    
-  }, [theme]); 
- 
+
+  }, [theme]);
+// دالة التمرير إلى قسم الخدمات
+const scrollToServices = () => {
+  const servicesSection = document.getElementById("services-section");
+  if (servicesSection) {
+    servicesSection.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
   return (
     <nav className="navbar navbar-expand-lg navbarx wd-100">
       <div className="container-fluid px-4"> {/* Full-width container with padding */}
@@ -67,22 +72,37 @@ const Navbar = ({ theme, setTheme }) => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link to="/" className={`nav-link ${theme === 'light' ? 'active' : ''}`}>
-                Home
+              <button  className="nav-link" >
+               Home
+              </button>
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/ServicesIn" className="nav-link">
-                Services
+            { <li className="nav-item">
+              <Link to="#" className="nav-link">
+              <button onClick={scrollToServices} className="nav-link" >
+              Services
+              </button>
+                
               </Link>
-            </li>
+            </li> }
+            {/* /<li className="nav-item">
+  <button onClick={scrollToServices} className="nav-link">
+    Services
+  </button>
+</li> */}
+
             <li className="nav-item">
               <Link to="/Signin" className="nav-link">
-                Sign in
+              <button  className="nav-link" >
+              Sign in
+              </button>
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/Join" className="nav-link">
-                Join
+              <button  className="nav-link" >
+              Join
+              </button>
               </Link>
             </li>
           </ul>
