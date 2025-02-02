@@ -8,16 +8,55 @@
   border-radius: 10px; /* Optional: rounded corners */
   margin-top: 20px;
 }
+.container_welcome {
+  background-color: blue; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to bottom right, #2673d0 , #cddef2);
+  color: white;
+  padding: 50px;
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+  margin: 40px;
+}
+.container_welcome h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-family:  Macan, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
 
-.background-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+.search-bar_wel {
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.search-bar_wel input {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: translate(-50%, -50%);
-  
+  padding: 12px 40px 12px 20px;
+  border: 2px solid #000;
+  border-radius: 25px;
+  font-size: 1rem;
+}
+
+.search-bar_wel button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #000;
+  cursor: pointer;
+}
+
+.search-bar_wel button:focus {
+  outline: none;
+}
+
+.search-bar_wel input:focus + button {
+  color: #007bff; /* Change color when input is focused */
 }
 
 .content {
@@ -111,3 +150,4 @@ body {
   position:sticky;
   top:0;
 }
+
