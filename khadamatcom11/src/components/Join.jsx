@@ -92,16 +92,16 @@ function MultiStepForm() {
           {step === 1 && (
             <>
               <div className="form-group">
-                <input type="text" name="name" placeholder="First Name" value={formData.name} onChange={handleChange} required />
+                <input type="text" name="name" className="form-control" placeholder="First Name" value={formData.name} onChange={handleChange} required />
               </div>
               <div className="form-group">
-                <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} required />
+                <input type="text" name="lastName" placeholder="Last Name" className="form-control" value={formData.lastName} onChange={handleChange} required />
               </div>
               <div className="form-group">
-                <input type="text" name="nationalID" placeholder="National ID" value={formData.nationalID} onChange={handleChange} required />
+                <input type="text" name="nationalID" className="form-control" placeholder="National ID" value={formData.nationalID} onChange={handleChange} required />
               </div>
               <div className="form-group">
-                <input type="email" name="email" placeholder="email@example.com" value={formData.email} onChange={handleChange} required />
+                <input type="email" name="email" className="form-control" placeholder="email@example.com" value={formData.email} onChange={handleChange} required />
               </div>
               <div className="form-group1">
                 Location:
