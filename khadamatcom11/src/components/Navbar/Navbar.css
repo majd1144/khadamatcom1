@@ -12,15 +12,17 @@
 
 }
 .midnav a:hover,.midnav a:focus {
-background-color: rgb(5, 70, 149);
+background-color: none;
 border-radius:5px ;
 -webkit-border-radius:5px ;
 -moz-border-radius:5px ;
 -ms-border-radius:5px ;
 -o-border-radius:5px ;
-color:white;
+color:rgb(99, 98, 98);
 padding:15px 25px;
 }
+
+
 .searchlogo,.modelogo{
     width:50px;
     cursor: pointer;

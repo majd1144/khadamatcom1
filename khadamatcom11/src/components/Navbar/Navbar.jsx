@@ -40,9 +40,11 @@ const Navbar = ({ theme, setTheme }) => {
     
     const footer = document.querySelector('.footer');
     if (footer) footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
-
-  }, [theme]);
-
+    
+   
+    
+  }, [theme]); 
+ 
   return (
     <nav className="navbar navbar-expand-lg navbarx wd-100">
       <div className="container-fluid px-4"> {/* Full-width container with padding */}

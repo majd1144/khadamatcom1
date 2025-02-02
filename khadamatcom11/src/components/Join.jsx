@@ -1,232 +1,245 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; 
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import "./Logins.css";
 
-export default function Join({ theme }) {
+function MultiStepForm() {
+  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
+    lastName: "",
+    nationalID: "",
     email: "",
     phone: "",
-    nationalId: "",
-    birthDate: "",
-    gender: "",
-    user: "",
     location: "",
     password: "",
     confirmPassword: "",
+    birthDate: "",
+    gender: "",
+    userType: "",
   });
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name === "nationalID" && !/^[0-9]*$/.test(value)) return;
     setFormData({ ...formData, [name]: value });
+    if (name === "confirmPassword" || name === "password") {
+      if (name === "confirmPassword" && formData.password !== value) {
+        setError("Passwords do not match.");
+      } else {
+        setError("");
+      }
+    }
+  };
+
+  const validateStep = () => {
+    if (step === 1) {
+      return (
+        formData.name &&
+        formData.lastName &&
+        formData.nationalID &&
+        formData.email &&
+        formData.location &&
+        formData.phone
+      );
+    }
+    if (step === 2) {
+      return (
+        formData.password &&
+        formData.confirmPassword &&
+        formData.password === formData.confirmPassword
+      );
+    }
+    if (step === 3) {
+      return formData.birthDate && formData.gender && formData.userType;
+    }
+    return true;
+  };
+
+  const nextStep = () => {
+    if (validateStep()) {
+      setStep(step + 1);
+    } else {
+      setError("Please fill in all fields correctly before proceeding.");
+    }
+  };
+
+  const prevStep = () => {
+    if (step === 1) {
+      window.history.back(); 
+    } else {
+      setStep(step - 1);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("The password and confirmation password do not match.");
-      return;
+    if (validateStep()) {
+      console.log("Form submitted:", formData);
+    } else {
+      setError("Please fill in all fields correctly before submitting.");
     }
-    console.log("Submitted Data:", formData);
   };
 
   return (
-    <div>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-4 col-sm-12 col-xs-12">
-            <h1 className="h">Welcome to khadamatkom</h1>
-            <p className="para">
-            At Khidmatkom, we provide the solutions you need with reliability
-              and security, ensuring high-quality services that meet all your
-              needs. Our goal is to make it easy to access services that offer
-              peace of mind, affordable prices, and a swift, exceptional
-              experience.            </p>
-          </div>
-          <div className="col-md-4"></div>
-          <div className="col-md-4 col-sm-12 col-xs-12">
-            <div className="box">
-              <form onSubmit={handleSubmit} className="user-form mt-5">
-                <label>
-                  Name:
-                  <input
-                    type="text"
-                    name="username"
-                    className="form-control"
-                    value={formData.username}
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
+    <div className="form-container">
+      <h2 className="form-title">Registration - Step {step}</h2>
+      <div className="form-box">
+        <form onSubmit={handleSubmit}>
+          {error && <div className="error-message">{error}</div>}
 
-                <label>
-                  Email:
-                  <input
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
+          {step === 1 && (
+            <>
+              <div className="form-group">
+                <input type="text" name="name" placeholder="First Name" value={formData.name} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <input type="text" name="nationalID" placeholder="National ID" value={formData.nationalID} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <input type="email" name="email" placeholder="email@example.com" value={formData.email} onChange={handleChange} required />
+              </div>
+              <div className="form-group1">
+                Location:
+                <select
+                  name="location"
+                  value={formData.location}
+                  onChange={handleChange}
+                  className="form-select"
+                  required
+                  style={{ marginLeft: "10px", padding: "5px" }}
+                >
+                  <option value="" disabled>
+                    Select a governorate
+                  </option>
+                  <option value="Amman">Amman</option>
+                  <option value="Zarqa">Zarqa</option>
+                  <option value="Irbid">Irbid</option>
+                  <option value="Ajloun">Ajloun</option>
+                  <option value="Jerash">Jerash</option>
+                  <option value="Mafraq">Mafraq</option>
+                  <option value="Balqa">Balqa</option>
+                  <option value="Madaba">Madaba</option>
+                  <option value="Karak">Karak</option>
+                  <option value="Tafilah">Tafilah</option>
+                  <option value="Ma'an">Ma'an</option>
+                  <option value="Aqaba">Aqaba</option>
+                </select>
+              </div>
+              <div className="form-group1">
+                PhoneNumber:
+                <PhoneInput
+                  country={"jo"}
+                  className="custom-phone-input"
+                  value={formData.phone}
+                  onChange={(phone) => setFormData({ ...formData, phone })}
+                  onlyCountries={["ps", "sa", "eg", "ae", "jo", "qa", "bh", "kw", "om", "dz", "ma", "tn", "lb", "sy", "iq", "ye"]}
+                  localization={{ ps: "Palestine" }}
+                />
+              </div>
+              <div className="button-group">
+                <button className="next-btn" type="button" onClick={nextStep}>Next</button>
+              </div>
+            </>
+          )}
 
-                <label>
-                  Password:
-                  <input
-                    type="password"
-                    name="password"
-                    className="form-control"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
+          {step === 2 && (
+            <>
+              <div className="form-group">
+                <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} required />
+              </div>
+              <div className="button-group">
+                <button className="prev-btn" type="button" onClick={prevStep}>Previous</button>
+                <button className="next-btn" type="button" onClick={nextStep}>Next</button>
+              </div>
+            </>
+          )}
 
-                <label>
-                  Confirm Password:
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    className="form-control"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
-
-                <label>
-                  Phone Number:
-                  <input
-                    type="tel"
-                    name="phone"
-                    className="form-control"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
-
-                <label>
-                  National ID:
-                  <input
-                    type="text"
-                    name="nationalId"
-                    className="form-control"
-                    value={formData.nationalId}
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
-
-                <label>
-                  Birth Date:
-                  <input
-                    type="date"
-                    name="birthDate"
-                    className="form-control"
-                    value={formData.birthDate}
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
-
-                <div className="label-group">
-  <label>Gender   :</label>
-  <div className="radio-group">
-    <label className="radio-label">
+          {step === 3 && (
+  <>
+    <div className="form-group2">
+      <label>Birth Date:</label>
       <input
-        type="radio"
-        name="gender"
-        value="male"
-        checked={formData.gender === "male"}
+        type="date"
+        name="birthDate"
+        className="control-birth"
+        value={formData.birthDate}
         onChange={handleChange}
         required
       />
-      <span>Male</span>
-    </label>
-    <label className="radio-label">
-      <input
-        type="radio"
-        name="gender"
-        value="female"
-        checked={formData.gender === "female"}
-        onChange={handleChange}
-        required
-      />
-      <span>Female</span>
-    </label>
-  </div>
-</div>
+    </div>
+    <div className="form-group2">
+      <label>Gender    :</label>
+      <div className="radio-group">
+        <label className="radio-label">
+          <input
+            type="radio"
+            name="gender"
+            value="male"
+            checked={formData.gender === "male"}
+            onChange={handleChange}
+            required
+          />
+          <span>Male</span>
+        </label>
+        <label className="radio-label">
+          <input
+            type="radio"
+            name="gender"
+            value="female"
+            checked={formData.gender === "female"}
+            onChange={handleChange}
+            required
+          />
+          <span>Female</span>
+        </label>
+      </div>
+    </div>
+    <div className="form-group2">
+      <label>User Type:</label>
+      <div className="radio-group">
+        <label className="radio-label">
+          <input
+            type="radio"
+            name="userType"
+            value="User"
+            checked={formData.userType === "User"}
+            onChange={handleChange}
+            required
+          />
+          <span>User</span>
+        </label>
+        <label className="radio-label">
+          <input
+            type="radio"
+            name="userType"
+            value="Service provider"
+            checked={formData.userType === "Service provider"}
+            onChange={handleChange}
+            required
+          />
+          <span>Service provider</span>
+        </label>
+      </div>
+    </div>
+    <div className="button-group">
+      <button className="prev-btn" type="button" onClick={prevStep}>Previous</button>
+      <button className="submit-btn" type="submit">Submit</button>
+    </div>
+  </>
+)}
 
-
-                <div className="label-group">
-  <label>User Type:</label>
-  <div className="radio-group">
-    <label className="radio-label">
-      <input
-        type="radio"
-        name="user"
-        value="User"
-        checked={formData.user === "User"}
-        onChange={handleChange}
-        required
-      />
-      <span>User</span>
-    </label>
-    <label className="radio-label">
-      <input
-        type="radio"
-        name="user"
-        value="Service provider"
-        checked={formData.user === "Service provider"}
-        onChange={handleChange}
-        required
-      />
-      <span>Service provider</span>
-    </label>
-  </div>
-</div>
-
-
-                <label>
-                  Location:
-                  <select
-                    name="location"
-                    value={formData.location}
-                    onChange={handleChange}
-                    className="form-select"
-                    required
-                    style={{ marginLeft: "10px", padding: "5px" }}
-                  >
-                    <option value="" disabled>
-                      Select a governorate
-                    </option>
-                    <option value="Amman">Amman</option>
-                    <option value="Zarqa">Zarqa</option>
-                    <option value="Irbid">Irbid</option>
-                    <option value="Ajloun">Ajloun</option>
-                    <option value="Jerash">Jerash</option>
-                    <option value="Mafraq">Mafraq</option>
-                    <option value="Balqa">Balqa</option>
-                    <option value="Madaba">Madaba</option>
-                    <option value="Karak">Karak</option>
-                    <option value="Tafilah">Tafilah</option>
-                    <option value="Ma'an">Ma'an</option>
-                    <option value="Aqaba">Aqaba</option>
-                  </select>
-                </label>
-
-                <button type="submit">Submit</button>
-                <div className="Signin-link">
-                  <p>Do you have an account?<Link to="/Signin">sign in</Link></p>
-                  
-                  </div>
-              </form>
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   );
 }
+
+export default MultiStepForm;

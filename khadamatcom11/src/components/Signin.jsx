@@ -31,31 +31,34 @@ export default function Signin({ theme }) {
               <div className="signin-container">
               <form onSubmit={handleSubmit} className="signin-form mt-5">
               <h2>Login</h2>
-              <label>
-        Email        
+              <label>       
            <input
             type="email"
+            placeholder="Email@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
 
-                <label>
-            Password       
+                <label>       
            <input
             type="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
                 <button type="submit">Submit</button>
-
+                <p className="signup-link">
+                 Forgot your password? <Link to="/reset-password">Reset it here</Link>
+                </p>
                 <p className="signup-link">
                   Don't have an account?
                   <Link to="/Join">signup</Link>
                  </p>
+                 
               </form>
             </div>
           </div>
