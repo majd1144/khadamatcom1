@@ -7,7 +7,8 @@ import Signin from "./components/Signin.jsx";
 import ServicesIn from './components/ServicesIn.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
 import Footerr from './components/footerr.jsx'
-
+import ServiceDetails from './components/ServiceDetails.jsx';
+import Services from './components/Services.jsx';
 export default function App() {
     const [theme, setTheme] = useState('light');
   return (
@@ -17,6 +18,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/ServicesIn" element={<ServicesIn/>} />
+          <Route path="/services-in/:id" element={<ServiceDetails />} />  {/* تمرير الـ ID هنا */}
+          <Route path="/" element={<Services />} />
+
           <Route path="/Signin" element={<Signin />} />
           <Route path="/Join" element={<Join />} />
        

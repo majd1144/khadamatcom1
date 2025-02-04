@@ -11,40 +11,50 @@ import pic10 from "./asset/s10.jpeg";
 
  export const servicesCards=[
     {
+      id:1,
         image: pic1,
         title: 'Part time worker',       
       },
     {
+      id:2,
         image: pic2,
         title: 'Painter',       
       },
       {
+        id:3,
         image: pic3,
         title: 'Photographer',
       },
       {
+        id:4,
         image:pic4,
         title: 'Carpenter',
       },
       {
+        id:5,
         image:pic5,
         title: 'Graphic Designer',
       },
       {
+        id:6,
         image: pic6,
         title: 'Learning',       
       },
       {
+        id:7,
         image:pic7,
         title: 'Blacksmith',
       },
       {
+        id:8,
         image:pic8,
         title: 'Wall painter',
       },{
+        id:9,
         image:pic9,
         title: 'Babysitter',
       },{
+        id:10,
         image:pic10,
         title: 'House maid',
       }

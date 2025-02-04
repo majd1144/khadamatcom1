@@ -22,14 +22,14 @@ export default function HomePage(){
             </div>
 
             {/* Button to download all services*/}
-            {/* {!showAll && (<li className="nav-item">
+            {!showAll && (<li className="nav-item">
               <Link to="/ServicesIn" className="nav-link">
-                <button onClick={() => setShowAll(true)} className="button-more">
+                {/* <button onClick={() => setShowAll(true)} className="button-more">
                   
-                </button>
+                </button> */}
                 </Link>
                 </li>
-            )} */}
+            )}
 
         <div className='majd'>
           <InforMation className='majd'/>
