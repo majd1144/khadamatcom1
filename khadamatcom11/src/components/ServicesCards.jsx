@@ -1,37 +1,31 @@
 import React, { useRef } from 'react';
-import Services from '../components/Services';
-import '../components/ServicesCards.css';
-import ServiceDetails from './ServiceDetails';
+import { Link } from "react-router-dom";
+import './ServicesCards.css';
 
-export default function ServicesCards({ services }) {
-  const scrollRef = useRef(null);
+export default function Services({ services }) {
+    const scrollRef = useRef(null);
 
-  const scrollLeft = () => {
-    scrollRef.current.scrollBy({
-      left: -220, // Width of one card (200px) + margin (20px)
-      behavior: 'smooth',
-    });
-  };  
-           
-  const scrollRight = () => {
-    scrollRef.current.scrollBy({
-      left: 220, // Width of one card (200px) + margin (20px)
-      behavior: 'smooth',
-    });
-  };
+    const scroll = (direction) => {
+        if (scrollRef.current) {
+            const { current } = scrollRef;
+            current.scrollBy({ left: direction === 'left' ? -300 : 300, behavior: 'smooth' });
+        }
+    };
 
-  return (
-    <div className="services-card-container">
-      <button className="scroll-btn left-btn" onClick={scrollLeft}>&lt;</button>
-      <div ref={scrollRef} className="services-cards-wrapper">
-        {services.map((service, index) => (
-          //  <Services key={index} {...service} />
-          <div className="services-card" key={index}>
-    <Services {...service} />
-  </div> 
-        ))}       
-      </div> 
-      <button className="scroll-btn right-btn" onClick={scrollRight}>&gt;</button>
-    </div>
-  );
+    return (
+        <div className="services-card-container">
+            <button className="scroll-btn left-btn" onClick={() => scroll('left')}>&#10094;</button>
+            <div className="services-cards-wrapper" ref={scrollRef}>
+                <div className="services-cards">
+                    {services.map((service) => (
+                        <Link to={`/services-in/${service.id}`} key={service.id} className="service-card">
+                            <img src={service.image} alt='service' />
+                            <h3>{service.title}</h3>
+                        </Link>
+                    ))}
+                </div>
+            </div>
+            <button className="scroll-btn right-btn" onClick={() => scroll('right')}>&#10095;</button>
+        </div>
+    );
 }
