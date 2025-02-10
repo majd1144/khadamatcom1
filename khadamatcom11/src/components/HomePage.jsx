@@ -1,40 +1,34 @@
-import WelcomeBoard from '../components/WelcomeBoard';
-import { servicesCards } from '../data.js';
-import React ,{useState} from "react";
+import React, { useState } from "react";
+import WelcomeBoard from "../components/WelcomeBoard";  // استيراد مكون WelcomeBoard
+import { servicesCards } from "../data.js";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Link } from 'react-router-dom';
 import InforMation from "./informations/informations.jsx";
 import ServicesCards from './ServicesCards.jsx';
 import "../App.css";
 
-export default function HomePage(){
+export default function HomePage({ theme }) { // تمرير theme هنا
   const [showAll, setShowAll] = useState(false);
-    const displayedServices = showAll ? servicesCards : servicesCards.slice(0, 10); 
-    return(
-        <div className='component'>
-        <div className='container'>
-       
-          <WelcomeBoard  />
-        </div>
-        <p  className='p-under-welcomeboard'>Popular services</p>
-        <div >
-                <ServicesCards  services={displayedServices} />
-            </div>
+  const displayedServices = showAll ? servicesCards : servicesCards.slice(0, 10); 
 
-            {/* Button to download all services*/}
-            {!showAll && (<li className="nav-item">
-              <Link to="/ServicesIn" className="nav-link">
-                {/* <button onClick={() => setShowAll(true)} className="button-more">
-                  
-                </button> */}
-                </Link>
-                </li>
-            )}
-
-        <div className='majd'>
-          <InforMation className='majd'/>
-        </div>
-        
+  return (
+    <div className="component">
+      {/* إضافة WelcomeBoard في الصفحة */}
+      <WelcomeBoard theme={theme} /> {/* تمرير theme إلى WelcomeBoard */}
+      
+      <div className="container">
+        {/* يمكن وضع المزيد من المحتوى هنا */}
       </div>
-    );
-}    
+      
+      <p className="p-under-welcomeboard" id="services-section">Popular services</p>
+      
+      <div>
+        <ServicesCards services={displayedServices} />
+      </div>
+      
+      <div className="majd">
+        <InforMation className="majd"/>
+      </div>
+    </div>
+  );
+}
