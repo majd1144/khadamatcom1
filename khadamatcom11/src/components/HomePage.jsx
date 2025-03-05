@@ -6,10 +6,22 @@ import { Link } from 'react-router-dom';
 import InforMation from "./informations/informations.jsx";
 import ServicesCards from './ServicesCards.jsx';
 import "../App.css";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function HomePage({ theme }) { // تمرير theme هنا
-  const [showAll, setShowAll] = useState(false);
-  const displayedServices = showAll ? servicesCards : servicesCards.slice(0, 10); 
+  // const [showAll, setShowAll] = useState(false);
+  // const displayedServices = showAll ? servicesCards : servicesCards.slice(0, 10); 
+  const location = useLocation();
+  const [showAll, setShowAll] = useState(location.state?.showAllServices || false);
+
+  useEffect(() => {
+    if (location.state?.showAllServices) {
+      setShowAll(true);
+    }
+  }, [location.state]);
+
+  const displayedServices = showAll ? servicesCards : servicesCards.slice(0, 10);
 
   return (
     <div className="component">
@@ -21,10 +33,7 @@ export default function HomePage({ theme }) { // تمرير theme هنا
       </div>
       
       <p className="p-under-welcomeboard" id="services-section">Popular services</p>
-      
-      <div>
-        <ServicesCards services={displayedServices} />
-      </div>
+      <ServicesCards services={displayedServices} />
       
       <div className="majd">
         <InforMation className="majd"/>

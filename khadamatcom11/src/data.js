@@ -12,8 +12,8 @@ import pic10 from "./asset/s10.jpeg";
  export const servicesCards=[
     {
       id:1,
-        image: pic1,
-        title: 'Part time worker',       
+      image:pic10,
+      title: 'House maid',    
       },
     {
       id:2,
@@ -22,23 +22,26 @@ import pic10 from "./asset/s10.jpeg";
       },
       {
         id:3,
-        image: pic3,
-        title: 'Photographer',
+        image:pic9,
+        title: 'Babysitter',
+        
       },
       {
         id:4,
-        image:pic4,
-        title: 'Carpenter',
+        image:pic8,
+        title: 'Wall painter',
+        
       },
       {
         id:5,
-        image:pic5,
-        title: 'Graphic Designer',
+        image: pic6,
+        title: 'Teacher',
+        
       },
       {
         id:6,
-        image: pic6,
-        title: 'Learning',       
+        image:pic5,
+        title: 'Graphic Designer',     
       },
       {
         id:7,
@@ -47,15 +50,18 @@ import pic10 from "./asset/s10.jpeg";
       },
       {
         id:8,
-        image:pic8,
-        title: 'Wall painter',
+        image:pic4,
+        title: 'Carpenter',
+        
       },{
         id:9,
-        image:pic9,
-        title: 'Babysitter',
+        image: pic3,
+        title: 'Photographer',
+        
       },{
         id:10,
-        image:pic10,
-        title: 'House maid',
+        image: pic1,
+        title: 'Part time worker',
+        
       }
 ];

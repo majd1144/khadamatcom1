@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from "react-router-dom"; 
 import ServicesIn from './ServicesIn';
 import ServiceDetails from './ServiceDetails';
+
+import "C:/Users/lenovo/Desktop/khadamatcomN/khadamatcom1/khadamatcom11/src/components/ServicesDetalis.css"
 export default function Services(props) {
     return (
         <div >

@@ -29,7 +29,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { servicesCards } from '../data.js'; // استدعاء البيانات
-import "./ServicesDetalis.css";
+import "C:/Users/lenovo/Desktop/khadamatcomN/khadamatcom1/khadamatcom11/src/components/ServicesDetalis.css"
 
 export default function ServiceDetails() {
   const { id } = useParams(); // التقاط الـ ID من الرابط

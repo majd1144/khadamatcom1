@@ -22,7 +22,7 @@
   }
   
   .service-link {
-    text-decoration: none;  /* إزالة الخط تحت الرابط */
-    color: inherit;  /* جعل النص في الرابط بنفس اللون */
-  }
+    text-decoration: none; 
+     color: inherit; /* جعل النص في الرابط بنفس اللون */
+   }
   
