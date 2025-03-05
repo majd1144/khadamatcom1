@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import HomePage from './components/HomePage.jsx';
 import Join from "./components/Join.jsx";
-import Signin from "./components/Signin.jsx";
+import Login from "./components/Login.jsx";
 import ServicesIn from './components/ServicesIn.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
 import Footerr from './components/Footerr.jsx'
@@ -23,7 +23,7 @@ export default function App() {
           <Route path="/ServicesIn" element={<ServicesIn/>} />
           <Route path="/services-in/:id" element={<ServiceDetails />} />  {/* تمرير الـ ID هنا */}
           <Route path="/" element={<Services />} />
-          <Route path="/Signin" element={<Signin />} />
+          <Route path="/Login" element={<Login />} />
           <Route path="/Join" element={<Join />} />
        
         </Routes>

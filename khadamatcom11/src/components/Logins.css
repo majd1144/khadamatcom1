@@ -6,7 +6,16 @@
   border-radius: 40px;
   box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.1);
 }
-
+.signin-container {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 40px;
+  box-shadow: 0 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  height: 420px;
+  margin-top: 30px;
+}
 
 .form-box input {
   display: flex;
@@ -133,16 +142,6 @@ button:disabled {
 }
 
 
-.signin-container {
-  background-color: #fff;
-  padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  height: 420px;
-  /* margin-top: 30px; */
-}
 
 .signin-form h2 {
   text-align: center;
@@ -207,5 +206,5 @@ margin-top: 30px;
 }
 .h{
   font-size: 70px;
-
+  margin-top: 30px;
 }

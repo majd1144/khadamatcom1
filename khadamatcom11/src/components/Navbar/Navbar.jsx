@@ -7,8 +7,9 @@ import logo_m from '../../asset/majd.png';
 import logo_light from '../../asset/dark.png';
 import logo_dark from '../../asset/light.png';
 import logo_dark_for from '../../asset/logodark.png';
-import search_icon_dark from '../../asset/darks.png';
-import search_icon_light from '../../asset/lights.png';
+import translateLogo from '../../asset/translate.png'
+// import search_icon_dark from '../../asset/darks.png';
+// import search_icon_light from '../../asset/lights.png';
 import { useNavigate, useLocation } from "react-router-dom";
 
 
@@ -77,8 +78,9 @@ const Navbar = ({ theme, setTheme }) => {
   return (
     <nav className="navbar navbar-expand-lg navbarx wd-100">
       <div className="container-fluid px-4"> {/* Full-width container with padding */}
-       
+      <Link to="/">
           <img src={theme === 'light' ? logo_m : logo_dark_for} alt="logo" className="logo1" />
+          </Link>
 
         <button
           className="navbar-toggler"
@@ -92,8 +94,8 @@ const Navbar = ({ theme, setTheme }) => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse midnav" id="navbarNav">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <div className="collapse navbar-collapse " id="navbarNav">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 midnav">
             <li className="nav-item">
               <Link to="/" className="nav-link">Home</Link>
             </li>
@@ -105,16 +107,27 @@ const Navbar = ({ theme, setTheme }) => {
              Services
               </a> 
                </li>
-
-
-            <li className="nav-item">
-             <Link to="/Signin" className="nav-link"> Sign in</Link>
+               <li className="nav-item">
+              <Link to="/" className="nav-link">About us</Link>
             </li>
-
             <li className="nav-item">
-              <Link to="/Join" className="nav-link"> Join</Link>
+              <Link to="/" className="nav-link ">Help</Link>
             </li>
-          </ul>
+           </ul>
+
+           <div className="d-flex justify-content-end LoginAndJoin">
+  <ul className="list-unstyled d-flex">
+    <li className="me-4">
+      <Link to="/Login" className="nav-link ">Log in</Link>
+    </li>
+    <li className="me-3">
+      <Link to="/Join" className="nav-link">Join</Link>
+    </li>
+  </ul>
+</div>
+
+
+         
 
           {/* <div className="d-flex align-items-center search-box">
             <input type="text" placeholder="Search"  />
@@ -129,8 +142,14 @@ const Navbar = ({ theme, setTheme }) => {
             onClick={toggle_mode}
             src={theme === 'light' ? logo_light : logo_dark}
             alt="toggle theme"
-            className="modelogo ms-3"
+            className="modelogo  "
             style={{ cursor: 'pointer' }}
+          />
+
+          <img
+          src={translateLogo}
+          className="modelogo ms-3 "
+          alt="Translate"
           />
         </div>
       </div>

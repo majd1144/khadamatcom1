@@ -52,7 +52,7 @@ function MultiStepForm() {
       );
     }
     if (step === 3) {
-      return formData.birthDate && formData.gender && formData.userType;
+      return formData.birthDate && formData.gender && formData.userType && formData.services ;
     }
     return true;
   };
@@ -81,11 +81,53 @@ function MultiStepForm() {
       setError("Please fill in all fields correctly before submitting.");
     }
   };
-
+  const locations = [
+    { id: 1   , label: "Amman" },
+    { id: 2   , label: "Zarqa" },
+    { id: 3   , label: "Irbid" },
+    { id: 4   , label: "Ajloun" },
+    { id: 5   , label: "Jerash" },
+    { id: 6   , label: "Mafraq" },
+    { id: 7   , label: "Balqa" },
+    { id: 8   , label: "Madaba" },
+    { id: 9   , label: "Karak" },
+    { id: 10  , label: "Tafilah" },
+    { id: 11  , label: "Ma'an" },
+    { id: 12  , label: "Aqaba" },
+  ];
+  const services = [
+    { id: 1   , label: "Part Time Worker" },
+    { id: 2   , label: "Babysitter" },
+    { id: 3   , label: "Housemaid" },
+    { id: 4   , label: "Painter" },
+    { id: 5   , label: "Graphic Desinger" },
+    { id: 6   , label: "photographer" },
+    { id: 7   , label: "Teacher" },
+    { id: 8   , label: "Blacksmith" },
+    { id: 9   , label: "Wall Painter" },
+    { id: 10  , label: "Carpenter" },
+    { id: 11  , label: "electrician technician" },
+  ];
+  
   return (
-    <div className="form-container">
-      <h2 className="form-title">Registration - Step {step}</h2>
-      <div className="form-box">
+    <div>
+    <div className="container">
+      <div className="row">
+         <div className="col-md-4 col-sm-12 col-xs-12">
+         <h1 className="h">Welcome to khadamatkom</h1>
+                       <p className="para">
+                        At Khidmatkom, we provide the solutions you need with reliability
+                      and security, ensuring high-quality services that meet all your
+                       needs. Our goal is to make it easy to access services that offer
+                        peace of mind, affordable prices, and a swift, exceptional
+                            experience.            </p>
+            </div> 
+            <div className="col-md-4"></div>
+            <div className="col-md-4 col-sm-12 col-xs-12">
+            <div className="form-container">
+
+        <h2 className="form-title">Registration - Step {step}</h2>
+        <div className="form-box">
         <form onSubmit={handleSubmit}>
           {error && <div className="error-message">{error}</div>}
 
@@ -104,32 +146,25 @@ function MultiStepForm() {
                 <input type="email" name="email" className="form-control" placeholder="email@example.com" value={formData.email} onChange={handleChange} required />
               </div>
               <div className="form-group1">
-                Location:
-                <select
-                  name="location"
-                  value={formData.location}
-                  onChange={handleChange}
-                  className="form-select"
-                  required
-                  style={{ marginLeft: "10px", padding: "5px" }}
-                >
-                  <option value="" disabled>
-                    Select a governorate
-                  </option>
-                  <option value="Amman">Amman</option>
-                  <option value="Zarqa">Zarqa</option>
-                  <option value="Irbid">Irbid</option>
-                  <option value="Ajloun">Ajloun</option>
-                  <option value="Jerash">Jerash</option>
-                  <option value="Mafraq">Mafraq</option>
-                  <option value="Balqa">Balqa</option>
-                  <option value="Madaba">Madaba</option>
-                  <option value="Karak">Karak</option>
-                  <option value="Tafilah">Tafilah</option>
-                  <option value="Ma'an">Ma'an</option>
-                  <option value="Aqaba">Aqaba</option>
-                </select>
-              </div>
+  Location:
+  <select
+    name="location"
+    value={formData.location}
+    onChange={handleChange}
+    className="form-select"
+    required
+    style={{ marginLeft: "10px", padding: "5px" }}
+  >
+    <option value="" disabled>
+      Select a governorate
+    </option>
+    {locations.map((location) => (
+      <option key={location.id} value={location.id}>
+        {location.label}
+      </option>
+    ))}
+  </select>
+</div>
               <div className="form-group1">
                 PhoneNumber:
                 <PhoneInput
@@ -203,43 +238,94 @@ function MultiStepForm() {
       </div>
     </div>
     <div className="form-group2">
-      <label>User Type:</label>
-      <div className="radio-group">
-        <label className="radio-label">
-          <input
-            type="radio"
-            name="userType"
-            value="User"
-            checked={formData.userType === "User"}
-            onChange={handleChange}
-            required
-          />
-          <span>User</span>
-        </label>
-        <label className="radio-label">
-          <input
-            type="radio"
-            name="userType"
-            value="Service provider"
-            checked={formData.userType === "Service provider"}
-            onChange={handleChange}
-            required
-          />
-          <span>Service provider</span>
-        </label>
-      </div>
-    </div>
-    <div className="button-group">
-      <button className="prev-btn" type="button" onClick={prevStep}>Previous</button>
-      <button className="submit-btn" type="submit">Submit</button>
-    </div>
-  </>
-)}
+  <label>User Type:</label>
+  <div className="radio-group">
+    <label className="radio-label">
+      <input
+        type="radio"
+        name="userType"
+        value="User"
+        checked={formData.userType === "User"}
+        onChange={handleChange}
+        required
+      />
+      <span>User</span>
+    </label>
+    <label className="radio-label">
+      <input
+        type="radio"
+        name="userType"
+        value="Service provider"
+        checked={formData.userType === "Service provider"}
+        onChange={handleChange}
+        required
+      />
+      <span>Service provider</span>
+    </label>
+  </div>
+</div>
 
-        </form>
+{/* عرض حقول إضافية فقط إذا كان الاختيار "Service provider" */}
+{formData.userType === "Service provider" && (
+   <div className="worker-info">
+    <div className="form-group1">
+      Services:  
+      <select
+        name="services"
+        value={formData.services}
+        onChange={handleChange}
+        className="form-select"
+        required
+        style={{ marginLeft: "10px", padding: "5px" }}
+       >
+        <option value="" disabled>
+          Select a service
+        </option>
+        {services.map((service) => (
+          <option key={service.id} value={service.id}>
+        {service.label}
+       </option>
+
+          
+        ))}
+      </select>
       </div>
+      {/* <div className="form-group1">
+
+      <label>Experience:</label>
+       <input 
+      type="text" 
+      name="experience" 
+      value={formData.experience} 
+      onChange={handleChange} 
+      placeholder="Enter years of experience" 
+      required
+       />
+     </div>   */}
+     
+     </div> 
+     
+       )}
+
+
+    <div className="button-group">
+  <button className="prev-btn" type="button" onClick={prevStep}>Previous</button>
+  <button className="submit-btn" type="submit">Submit</button>
+   </div>
+
+  </>
+   )}
+
+    </form>
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    </div>
     </div>
   );
 }
+
 
 export default MultiStepForm;
