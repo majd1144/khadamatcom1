@@ -10,6 +10,10 @@ import Footerr from './components/Footerr.jsx'
 import ServiceDetails from './components/ServiceDetails.jsx';
 import Services from './components/Services.jsx';
 import ServBtn from './components/ServBtn';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 export default function App() {
     const [theme, setTheme] = useState('light');
   return (

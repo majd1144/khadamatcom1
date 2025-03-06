@@ -82,6 +82,7 @@ const Navbar = ({ theme, setTheme }) => {
 };
 
   return (
+    
     <nav className="navbar navbar-expand-lg navbarx wd-100">
       <div className="container-fluid px-4"> {/* Full-width container with padding */}
       <Link to="/">
@@ -107,7 +108,14 @@ const Navbar = ({ theme, setTheme }) => {
             </li>
             <li className="nav-item">
             <Link to="/ServBtn" state={{ services: servicesCards }} className="nav-link">
-  Services
+            <div class="dropdown">
+  services
+  <div class="dropdown-content">
+    <a href="#">Teacher</a>
+    <a href="#">Wall Painter</a>
+    <a href="#">Babysitter</a>
+  </div>
+</div>
 </Link>
 
             </li>

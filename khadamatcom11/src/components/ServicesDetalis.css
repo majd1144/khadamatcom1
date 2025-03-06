@@ -25,4 +25,13 @@
     text-decoration: none; 
      color: inherit; /* جعل النص في الرابط بنفس اللون */
    }
-  
+   .btn-group {
+    display: flex; /* ✅ جعل الأزرار في صف واحد */
+    align-items: center; /* ✅ توسيط العناصر عموديًا */
+    gap: 10px; /* ✅ تباعد بين الأزرار */
+}
+
+/* للتأكد من عدم وجود مسافات غير مرغوبة */
+.btn-group a {
+    text-decoration: none;
+}

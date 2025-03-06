@@ -27,6 +27,7 @@
 //   );
 // }
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { servicesCards } from '../data.js'; // استدعاء البيانات
 import "C:/Users/lenovo/Desktop/khadamatcomN/khadamatcom1/khadamatcom11/src/components/ServicesDetalis.css"
@@ -35,7 +36,6 @@ export default function ServiceDetails() {
   const { id } = useParams(); // التقاط الـ ID من الرابط
   // تصفية الخدمات التي تتطابق مع الـ id
   const services = servicesCards.filter((s) => s.id?.toString() === id?.toString());
-
   if (services.length === 0) {
     return <h2>Service Not Found</h2>;
   }
@@ -59,7 +59,14 @@ export default function ServiceDetails() {
             <div className="card-body">
               <h4 className="card-title">{service.title}</h4>
               <p className="card-text">{service.description}</p>
+              <div className="btn-group">
               <a href="#" className="btn btn-primary">See Profile</a>
+              
+               <span className="me-3">
+                    <Link to="/Join" className="nav-link"><a href="#" className="btn btn-primary">book now !</a></Link>
+                  </span>
+             </div>
+
             </div>
           </div>
         ))}
