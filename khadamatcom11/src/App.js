@@ -13,7 +13,7 @@ import ServBtn from './components/ServBtn';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import WorkerProfile from './components/WorkerProfile.jsx';
 export default function App() {
     const [theme, setTheme] = useState('light');
   return (
@@ -29,6 +29,7 @@ export default function App() {
           <Route path="/ServicesIn" element={<ServicesIn/>} />
           <Route path="/services-in/:id" element={<ServiceDetails />} />  {/* تمرير الـ ID هنا */}
           <Route path="/ServBtn" element={<ServBtn />} />
+          <Route path="/worker/:id" element={<WorkerProfile />} /> إضافة هذا المسار
 
           {/* <Route path="/" element={<Services />} /> */}
           <Route path="/Login" element={<Login />} />
