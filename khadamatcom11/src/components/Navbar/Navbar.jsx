@@ -4,29 +4,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './Navbar.css';
 import "../ServBtn.jsx";
-import logo_m from '../../asset/majd.png';
+import logo_m from '../../asset/MainLogoL.png';// main logo light
 import logo_light from '../../asset/dark.png';
 import logo_dark from '../../asset/light.png';
-import logo_dark_for from '../../asset/logodark.png';
+import logo_dark_for_main from '../../asset/mainLogoD.png'; // main logo Dark
 import translateLogo from '../../asset/translate.png'
-// import search_icon_dark from '../../asset/darks.png';
-// import search_icon_light from '../../asset/lights.png';
-import { useNavigate, useLocation } from "react-router-dom";
 import "../ServicesCards.jsx";
-import { servicesCards } from "C:/Users/lenovo/Desktop/khadamatcomN/khadamatcom1/khadamatcom11/src/data.js";
-import "C:/Users/lenovo/Desktop/khadamatcomN/khadamatcom1/khadamatcom11/src/components/ServicesDetalis.css"
-
-
+import { servicesCards } from "../../data.js";
+import '../ServicesDetalis.css'
 
 
 const Navbar = ({ theme, setTheme }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
- 
-  
-  const toggle_mode = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+
+  const toggle_mode = () => {setTheme(theme === 'light' ? 'dark' : 'light');};
 
   useEffect(() => {
     const isLight = theme === 'light';
@@ -35,147 +25,103 @@ const Navbar = ({ theme, setTheme }) => {
     const navbar = document.querySelector('.navbar');
     if (navbar) navbar.style.backgroundColor = isLight ? '#ffff' : '#3c3838';
 
-    // const searchBox = document.querySelector('.search-box');
-    // if (searchBox) searchBox.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#808080';
-
     const buttonMore = document.querySelector('.button-more');
     if (buttonMore) buttonMore.style.color = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
 
-    
     const elements = document.querySelectorAll('.midnav a');
-    elements.forEach((element) => {
+    elements.forEach((element) => 
+      {
       element.addEventListener('mouseenter', () => {
-        element.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#808080';
+      element.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#808080';});
+      element.addEventListener('mouseleave', () => { element.style.backgroundColor = ''; });
+      element.addEventListener('mouseleave', () => {element.style.backgroundColor = '';});
       });
-      element.addEventListener('mouseleave', () => {
-        element.style.backgroundColor = '';
-      });
-      element.addEventListener('mouseleave', () => {
-        element.style.backgroundColor = '';
-      });
-    });
    
-    elements.forEach((element) => {
-      element.style.color = isLight ? 'black' : 'white'; // تغيير اللون بناءً على الوضع
-    });
-    const footer = document.querySelector('.footer');
-    if (footer) footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838';
-
-  }, [theme]);
-
-  const scrollToServices = () => {
+    elements.forEach((element) => { element.style.color = isLight ? 'black' : 'white'; });
     
-    const handleScroll = () => {
-      setTimeout(() => {
-        const servicesSection = document.getElementById("services-section");
-        if (servicesSection) {
-          servicesSection.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100); // تأخير بسيط حتى يتم تحميل الصفحة
-    };
-  
-    if (location.pathname !== "/") {
-      navigate("/");
-      setTimeout(handleScroll, 500); // تأخير لضمان تحميل الصفحة بالكامل
-    } else {
-      handleScroll();
-    }
-};
+    const footer = document.querySelector('.footer');
+    if (footer) footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838'; }, [theme]);
 
+    
   return (
     
     <nav className="navbar navbar-expand-lg navbarx wd-100">
       <div className="container-fluid px-4"> {/* Full-width container with padding */}
-      <Link to="/">
-          <img src={theme === 'light' ? logo_m : logo_dark_for} alt="logo" className="logo1" />
-          </Link>
+                <Link to="/">
+                       <img src={theme === 'light' ? logo_m : logo_dark_for_main} alt="logo" className="logo1" />
+                </Link>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+           <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+               >
+               <span className="navbar-toggler-icon"></span>
+           </button>
 
         <div className="collapse navbar-collapse " id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 midnav">
-            <li className="nav-item">
-              <Link to="/" className="nav-link">Home</Link>
-            </li>
-            <li className="nav-item">
-            <Link to="/ServBtn" state={{ services: servicesCards }} className="nav-link">
-            <div class="dropdown">
-  services
-  <div class="dropdown-content">
-    <a href="#">Teacher</a>
-    <a href="#">Wall Painter</a>
-    <a href="#">Babysitter</a>
-  </div>
-</div>
-</Link>
+              <li className="nav-item">
+                 <Link to="/" className="nav-link">Home</Link>
+              </li>
 
-            </li>
-            {/* <li className="nav-item">
-                  <a href="#services-section" className="nav-link" onClick={(e) => {
-             e.preventDefault();
-              scrollToServices();
-                   }}>
-             Services
-              </a> 
-               </li> */}
+              <li className="nav-item dropdown">
+                <Link
+                    to="/ServBtn"
+                    state={{ services: servicesCards }}
+                     className="nav-link dropdown-toggle"
+                >
+                    Services
+  
+                   <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                   <li><a className="dropdown-item" href="/services-in/5">Teacher</a></li>
+                   <li><a className="dropdown-item" href="/services-in/4">Wall Painter</a></li>
+                    <li><a className="dropdown-item" href="/services-in/3">Babysitter</a></li>
+                    <li><hr className="dropdown-divider" /></li>
+                    <li><a className="dropdown-item" href="/ServBtn">More Services..</a></li>
+                    </ul>
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                 <a href="#about-us" className="nav-link">About us</a>
+              </li>
                <li className="nav-item">
-              <Link to="/" className="nav-link">About us</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/" className="nav-link ">Help</Link>
-            </li>
+                 <Link to="/" className="nav-link ">Help</Link>
+              </li>
            </ul>
 
-           <div className="d-flex justify-content-end LoginAndJoin">
-  <ul className="list-unstyled d-flex">
-    <li className="me-4">
-      <Link to="/Login" className="nav-link ">Log in</Link>
-    </li>
-    <li className="me-3">
-      <Link to="/Join" className="nav-link">Join</Link>
-    </li>
-  </ul>
-</div>
+              <div className="d-flex justify-content-end LoginAndJoin">
+                <ul className="list-unstyled d-flex">
+                    <li className="me-4">
+                       <Link to="/Login" className="nav-link ">Log in</Link>
+                     </li>
+                    <li className="me-3">
+                       <Link to="/Join" className="nav-link">Join</Link>
+                    </li>
+                </ul>
+              </div>
 
-
-         
-
-          {/* <div className="d-flex align-items-center search-box">
-            <input type="text" placeholder="Search"  />
             <img
-              src={theme === 'light' ? search_icon_light : search_icon_dark}
-              alt="search icon"
-              className="searchlogo"
+               onClick={toggle_mode}
+               src={theme === 'light' ? logo_light : logo_dark}
+               alt="toggle theme"
+               className="modelogo  "
+               style={{ cursor: 'pointer' }}
             />
-          </div> */}
 
-          <img
-            onClick={toggle_mode}
-            src={theme === 'light' ? logo_light : logo_dark}
-            alt="toggle theme"
-            className="modelogo  "
-            style={{ cursor: 'pointer' }}
-          />
-
-          <img
-          src={translateLogo}
-          className="modelogo ms-3 "
-          alt="Translate"
-          />
+            <img
+              src={translateLogo}
+              className="modelogo ms-3 "
+              alt="Translate"
+            />
         </div>
       </div>
     </nav>
-    
   );
 };
 

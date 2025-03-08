@@ -39,5 +39,7 @@ export default function HomePage({ theme }) { // تمرير theme هنا
         <InforMation className="majd"/>
       </div>
     </div>
+
+    
   );
 }

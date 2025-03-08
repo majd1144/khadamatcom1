@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import './ServicesCards.css';
-import "C:/Users/lenovo/Desktop/khadamatcomN/khadamatcom1/khadamatcom11/src/components/ServicesDetalis.css"
+import "./ServicesDetalis.css"
 import { Link, useLocation } from "react-router-dom"; // استخدام useLocation لالتقاط عنوان الصفحة
 import './ServicesCards.css';
-import "C:/Users/lenovo/Desktop/khadamatcomN/khadamatcom1/khadamatcom11/src/components/ServicesDetalis.css"
+// import "./ServicesDetalis.css"
 
 export default function ServicesCards({ services }) {
     const scrollRef = useRef(null);
@@ -33,7 +33,7 @@ export default function ServicesCards({ services }) {
                     {services.map((service) => (
                         <Link to={`/services-in/${service.id}`} key={service.id} className="service-card" >
                             <img src={service.image} alt='service' />
-                            <h3>{service.title}</h3>
+                            <p>{service.title}</p>
                         </Link>
                     ))}
                 </div>

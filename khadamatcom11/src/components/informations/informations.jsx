@@ -38,6 +38,37 @@ export default function InforMation(){
             <p className='paragraph1'>Chat with our team to get your questions answered or resolve any issues with your orders.</p>
             </div>
         </div>
+        
+
+    <section className="bg-light py-5 mt-5" id="about-us">
+      <div className="container text-center">
+        <h2 className="mb-3">About Us - Khadamatkom</h2>
+        <p className="lead">
+          Welcome to <strong>Khadamatkom</strong>, the platform that connects you with the best service providers across the kingdom!
+        </p>
+        <p>
+          We help you find trusted professionals to meet your needs, whether you need private tutors, babysitters, maintenance technicians, wall painters, or any other home service.
+        </p>
+
+        <h4 className="mt-4">Why Choose Khadamatkom?</h4>
+        <ul className="list-unstyled text-start mx-auto w-50 fs-5">
+          <li>✔ <strong>Easy Search:</strong> Browse available services and book the right one in minutes.</li>
+          <li>✔ <strong>Security & Reliability:</strong> We ensure that all service providers are verified and trustworthy.</li>
+          <li>✔ <strong>Affordable Prices:</strong> High-quality services at competitive rates.</li>
+          <li>✔ <strong>Continuous Support:</strong> Our team is always available to assist you and answer your inquiries.</li>
+        </ul>
+
+        <h4 className="mt-5">Our Vision</h4>
+        <p>
+          To be the leading platform providing reliable and convenient solutions for individuals and families seeking professional home services.
+        </p>
+
+        <h4 className="mt-4">Contact Us</h4>
+        <p>📧 Email: info@khadamatkom.com</p>
+        <p>📞 Phone: +962-7XXXXXXXX</p>
+        <p>📍 Location: Amman, Jordan</p>
+      </div>
+    </section>
         </div>
     );
 }

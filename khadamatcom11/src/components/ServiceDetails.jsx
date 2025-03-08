@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { servicesCards } from '../data.js'; // استدعاء البيانات
-import "C:/Users/lenovo/Desktop/khadamatcomN/khadamatcom1/khadamatcom11/src/components/ServicesDetalis.css"
+import "./ServicesDetalis.css"
 export default function ServiceDetails() {
   const { id } = useParams(); // التقاط الـ ID من الرابط
   // تصفية الخدمات التي تتطابق مع الـ id

@@ -1,7 +1,7 @@
 import ServicesCards from './ServicesCards';
 import { servicesCards } from '../data.js'; 
 import ServBtn from './ServBtn';
-import "C:/Users/lenovo/Desktop/khadamatcomN/khadamatcom1/khadamatcom11/src/components/ServicesDetalis.css"
+import "./ServicesDetalis.css"
 
 
 export default function ServicesIn() {
