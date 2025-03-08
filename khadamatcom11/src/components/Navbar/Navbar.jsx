@@ -15,7 +15,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = ({ theme, setTheme }) => {
   const navigate = useNavigate();
-    const location = useLocation();
+  const location = useLocation();
+ 
   
   const toggle_mode = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
