@@ -9,11 +9,17 @@ import Navbar from './components/Navbar/Navbar.jsx';
 import Footerr from './components/Footerr.jsx'
 import ServiceDetails from './components/ServiceDetails.jsx';
 import Services from './components/Services.jsx';
-
+import ServBtn from './components/ServBtn';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import WorkerProfile from './components/WorkerProfile.jsx';
 export default function App() {
     const [theme, setTheme] = useState('light');
   return (
+   
 
+    
     <Router>
       <Navbar  theme={theme} setTheme={setTheme}/>
     <div className="App">
@@ -22,7 +28,10 @@ export default function App() {
           <Route path="/" element={<HomePage theme={theme} />} />  {/* تم تمرير theme إلى HomePage */}
           <Route path="/ServicesIn" element={<ServicesIn/>} />
           <Route path="/services-in/:id" element={<ServiceDetails />} />  {/* تمرير الـ ID هنا */}
-          <Route path="/" element={<Services />} />
+          <Route path="/ServBtn" element={<ServBtn />} />
+          <Route path="/worker/:id" element={<WorkerProfile />} /> إضافة هذا المسار
+
+          {/* <Route path="/" element={<Services />} /> */}
           <Route path="/Login" element={<Login />} />
           <Route path="/Join" element={<Join />} />
        

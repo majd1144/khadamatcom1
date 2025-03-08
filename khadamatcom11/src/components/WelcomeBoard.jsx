@@ -27,4 +27,38 @@ export default function WelcomeBoard({ theme }) {
       </div>
     );
   }
-  
+// import React from "react";
+// import { useParams } from "react-router-dom";
+// import { servicesCards } from "../data"; // استيراد بيانات الخدمات
+
+// const WorkerProfile = () => {
+//   const { workerId } = useParams(); // جلب المعرف من الرابط
+//   const worker = servicesCards.find((w) => w.id === parseInt(workerId)); // البحث عن العامل
+
+//   if (!worker) {
+//     return <h2>العامل غير موجود</h2>;
+//   }
+
+//   return (
+//     <div style={{ padding: "20px", textAlign: "center" }}>
+//       <h2>{worker.title}</h2>
+//       <img
+//         src={worker.image}
+//         alt={worker.title}
+//         style={{ width: "150px", borderRadius: "50%" }}
+//       />
+//       <h3>الخدمة: {worker.title}</h3>
+//       <h4>التقييم: {worker.rating} ⭐</h4>
+//       <h4>السعر: {worker.price}</h4>
+//       <h4>المواعيد المتاحة: {worker.availability}</h4>
+//       <h4>التعليقات:</h4>
+//       <ul>
+//         {worker.reviews.map((review, index) => (
+//           <li key={index}>{review}</li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
+
+// export default WorkerProfile;

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './Navbar.css';
+import "../ServBtn.jsx";
 import logo_m from '../../asset/majd.png';
 import logo_light from '../../asset/dark.png';
 import logo_dark from '../../asset/light.png';
@@ -11,6 +12,11 @@ import translateLogo from '../../asset/translate.png'
 // import search_icon_dark from '../../asset/darks.png';
 // import search_icon_light from '../../asset/lights.png';
 import { useNavigate, useLocation } from "react-router-dom";
+import "../ServicesCards.jsx";
+import { servicesCards } from "C:/Users/lenovo/Desktop/khadamatcomN/khadamatcom1/khadamatcom11/src/data.js";
+import "C:/Users/lenovo/Desktop/khadamatcomN/khadamatcom1/khadamatcom11/src/components/ServicesDetalis.css"
+
+
 
 
 const Navbar = ({ theme, setTheme }) => {
@@ -77,6 +83,7 @@ const Navbar = ({ theme, setTheme }) => {
 };
 
   return (
+    
     <nav className="navbar navbar-expand-lg navbarx wd-100">
       <div className="container-fluid px-4"> {/* Full-width container with padding */}
       <Link to="/">
@@ -101,13 +108,26 @@ const Navbar = ({ theme, setTheme }) => {
               <Link to="/" className="nav-link">Home</Link>
             </li>
             <li className="nav-item">
+            <Link to="/ServBtn" state={{ services: servicesCards }} className="nav-link">
+            <div class="dropdown">
+  services
+  <div class="dropdown-content">
+    <a href="#">Teacher</a>
+    <a href="#">Wall Painter</a>
+    <a href="#">Babysitter</a>
+  </div>
+</div>
+</Link>
+
+            </li>
+            {/* <li className="nav-item">
                   <a href="#services-section" className="nav-link" onClick={(e) => {
              e.preventDefault();
               scrollToServices();
                    }}>
              Services
               </a> 
-               </li>
+               </li> */}
                <li className="nav-item">
               <Link to="/" className="nav-link">About us</Link>
             </li>
