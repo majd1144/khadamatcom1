@@ -91,7 +91,7 @@ const Navbar = ({ theme, setTheme }) => {
                  <a href="#about-us" className="nav-link">About us</a>
               </li>
                <li className="nav-item">
-                 <Link to="/" className="nav-link ">Help</Link>
+                 <a href="#Help" className="nav-link ">Help</a>
               </li>
            </ul>
 

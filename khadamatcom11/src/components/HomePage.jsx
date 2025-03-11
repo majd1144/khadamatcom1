@@ -8,6 +8,7 @@ import ServicesCards from './ServicesCards.jsx';
 import "../App.css";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import Help from "./Help.jsx";
 
 export default function HomePage({ theme }) { // تمرير theme هنا
   // const [showAll, setShowAll] = useState(false);
@@ -21,8 +22,8 @@ export default function HomePage({ theme }) { // تمرير theme هنا
     }
   }, [location.state]);
 
-  const displayedServices = showAll ? servicesCards : servicesCards.slice(0, 10);
-
+  const displayedServices = showAll ? servicesCards : servicesCards.slice(0, 11);
+  
   return (
     <div className="component">
       {/* إضافة WelcomeBoard في الصفحة */}
@@ -35,8 +36,14 @@ export default function HomePage({ theme }) { // تمرير theme هنا
       <p className="p-under-welcomeboard" id="services-section">Popular services</p>
       <ServicesCards services={displayedServices} />
       
+      <div>
+        <Help />
+      </div>
       <div className="majd">
         <InforMation className="majd"/>
+      </div>
+      <div>
+        <help/>
       </div>
     </div>
 
