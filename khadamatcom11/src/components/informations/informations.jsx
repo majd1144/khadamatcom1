@@ -39,7 +39,7 @@ export default function InforMation(){
             </div>
         </div>
         
-
+{/* about us  */}
     <section className="bg-light py-5 mt-5" id="about-us">
       <div className="container text-center">
         <h2 className="mb-3">About Us - Khadamatkom</h2>

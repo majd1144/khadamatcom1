@@ -8,7 +8,7 @@ import pic7 from "./asset/s7.jpeg";
 import pic8 from "./asset/s8.jpeg";
 import pic9 from "./asset/s9.jpeg";
 import pic10 from "./asset/s10.jpeg";
-
+import pic11 from "./asset/s11.webp";
 export const servicesCards = [
   {
     id: 1,
@@ -99,5 +99,14 @@ export const servicesCards = [
     price: '30$',
     availability: 'Anytime',
     reviews: ['مساعد جيد', 'مفيد جداً!'],
+  },
+  {
+    id: 11,
+    image: pic11,
+    title: 'Electrician',
+    rating: 4.4,
+    price: '350$',
+    availability: '10 AM - 7 PM',
+    reviews: ['أفضل كهربائي تعاملت معه،', 'خدمة ممتازة وسريعة، يعرف بالضبط ما يفعله!'],
   }
 ];
