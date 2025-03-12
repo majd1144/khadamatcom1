@@ -119,6 +119,8 @@ const Navbar = ({ theme, setTheme }) => {
               className="modelogo ms-3 "
               alt="Translate"
             />
+          
+           
         </div>
       </div>
     </nav>

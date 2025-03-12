@@ -161,7 +161,7 @@ function MultiStepForm() {
     {locations.map((location) => (
       <option key={location.id} value={location.id}>
         {location.label}
-      </option>
+      </option>   
     ))}
   </select>
 </div>
