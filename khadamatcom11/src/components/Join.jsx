@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { useNavigate } from "react-router-dom"; 
 import "./Logins.css";
+
 
 function MultiStepForm() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    name: "",
+    firstname: "",
     lastName: "",
     nationalID: "",
     email: "",
@@ -19,6 +21,8 @@ function MultiStepForm() {
     userType: "",
   });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+ 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,7 +40,7 @@ function MultiStepForm() {
   const validateStep = () => {
     if (step === 1) {
       return (
-        formData.name &&
+        formData.firstname &&
         formData.lastName &&
         formData.nationalID &&
         formData.email &&
@@ -73,13 +77,43 @@ function MultiStepForm() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    
     e.preventDefault();
+   
     if (validateStep()) {
       console.log("Form submitted:", formData);
     } else {
       setError("Please fill in all fields correctly before submitting.");
     }
+
+    if (!formData.firstname || !formData.email || !formData.password) {
+      alert("Please fill in all required fields!");
+      return;
+  }
+
+  try {
+      const response = await fetch("http://localhost:4000/Join", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+          alert(data.message); // Success message
+          navigate("/Login");
+      } else {
+          alert(data.error); // Error message from the backend
+      }
+      
+  } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong. Please try again.");
+  }
+  
   };
   const locations = [
     { id: 1   , label: "Amman" },
@@ -134,7 +168,7 @@ function MultiStepForm() {
           {step === 1 && (
             <>
               <div className="form-group">
-                <input type="text" name="name" className="form-control" placeholder="First Name" value={formData.name} onChange={handleChange} required />
+                <input type="text" name="firstname" className="form-control" placeholder="First Name" value={formData.firstname} onChange={handleChange} required />
               </div>
               <div className="form-group">
                 <input type="text" name="lastName" placeholder="Last Name" className="form-control" value={formData.lastName} onChange={handleChange} required />
