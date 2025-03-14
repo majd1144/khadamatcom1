@@ -13,7 +13,7 @@ const app = express();
 const port = 4000;
 const saltRounds = 10;
 app.use(express.json());
-app.use(cors());
+app.use(cors( {origin : "https://73e6-188-247-73-78.ngrok-free.app",}));
 /*app.use(
   session({
     secret: "TOPSECRETWORD",
