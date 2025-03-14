@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 //const passport = require("passport");
 //const { Strategy } = require("passport-local");
 //const session = require("express-session");
-//const dotenv = require("dotenv");
+const dotenv = require("dotenv");
 
 
 const app = express();

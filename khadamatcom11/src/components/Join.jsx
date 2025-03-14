@@ -93,7 +93,7 @@ function MultiStepForm() {
   }
 
   try {
-      const response = await fetch("http://localhost:4000/Join", {
+      const response = await fetch("https://73e6-188-247-73-78.ngrok-free.app/Join", {
           method: "POST",
           headers: {
               "Content-Type": "application/json",
