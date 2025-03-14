@@ -19,6 +19,7 @@ function MultiStepForm() {
     birthDate: "",
     gender: "",
     userType: "",
+   
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -93,13 +94,15 @@ function MultiStepForm() {
   }
 
   try {
-      const response = await fetch("https://73e6-188-247-73-78.ngrok-free.app/Join", {
+      const response = await fetch("https://a26d-188-247-73-78.ngrok-free.app/Join", {
           method: "POST",
           headers: {
               "Content-Type": "application/json",
+              Accept: 'application/json',
           },
           body: JSON.stringify(formData),
       });
+      
 
       const data = await response.json();
       if (response.ok) {

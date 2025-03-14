@@ -13,7 +13,11 @@ const app = express();
 const port = 4000;
 const saltRounds = 10;
 app.use(express.json());
-app.use(cors( {origin : "https://73e6-188-247-73-78.ngrok-free.app",}));
+app.use(cors( {
+  origin: '*',  // Allow requests from any origin for testing
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow these methods
+  allowedHeaders: ['Content-Type', 'Accept', 'Authorization'] // Ensure the proper headers are allowed
+}));
 /*app.use(
   session({
     secret: "TOPSECRETWORD",
@@ -184,6 +188,11 @@ if (lastName.length < 3) {
       res.status(500).json({ message: "Server error" });
     }
   });
+
+  app.post('/Join', (req, res) => {
+    console.log('Request received:', req.body);
+  });
+  
   
 
   app.listen(port, () => {
