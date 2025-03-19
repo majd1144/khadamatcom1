@@ -11,11 +11,11 @@ import ServiceDetails from './components/ServiceDetails.jsx';
 import ServBtn from './components/ServBtn.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-<<<<<<< HEAD
-=======
-import "bootstrap/dist/css/bootstrap.min.css";
+// <<<<<<< HEAD
+// =======
+// import "bootstrap/dist/css/bootstrap.min.css";
 
->>>>>>> 41456b6b58f39b0744a571e50e097fecaf9048c9
+// >>>>>>> 41456b6b58f39b0744a571e50e097fecaf9048c9
 import WorkerProfile from './components/WorkerProfile.jsx';
 import Booknow from './components/Booknow.jsx';
 export default function App() {

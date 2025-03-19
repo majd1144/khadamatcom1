@@ -9,11 +9,16 @@ export default function ServiceDetails() {
   const { id } = useParams();
   const services = servicesCards.filter((s) => s.id?.toString() === id?.toString());
 
-  const [showForm, setShowForm] = useState(false);  // الحالة للتحكم في عرض النموذج
+  const [showForm, setShowForm] = useState(false);
 
   // دالة لتغيير الحالة عند الضغط على زر Book Now
   const handleBookNowClick = () => {
     setShowForm(true); // عند الضغط على الزر، نعرض النموذج
+  };
+
+  // دالة لإخفاء النموذج عند الضغط على زر Close
+  const handleCloseForm = () => {
+    setShowForm(false); // إخفاء النموذج عند الضغط على زر "Close"
   };
 
   if (services.length === 0) {
@@ -32,7 +37,6 @@ export default function ServiceDetails() {
               <h4 className="card-subtitle">{service.title}</h4>
               <br />
               <h4 className="card-subtitle">{service.location}</h4>
-
               <p className="card-rating">⭐ {service.rating} / 5</p>
 
               <div className="btn-group">
@@ -40,7 +44,6 @@ export default function ServiceDetails() {
                   See Profile
                 </Link>
                 <span className="me-3">
-                  {/* زر Book Now الذي عند الضغط عليه يعرض الفورم */}
                   <button onClick={handleBookNowClick} className="btn btn-primary">
                     Book Now
                   </button>
@@ -54,7 +57,7 @@ export default function ServiceDetails() {
       {/* إظهار الفورم عند الضغط على Book Now */}
       {showForm && (
         <div className="form-container">
-          <Booknow />
+          <Booknow handleCloseForm={handleCloseForm} /> {/* تمرير الدالة هنا */}
         </div>
       )}
     </div>
