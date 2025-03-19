@@ -12,8 +12,8 @@ import Services from './components/Services.jsx';
 import ServBtn from './components/ServBtn.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
 import WorkerProfile from './components/WorkerProfile.jsx';
+import Booknow from './components/Booknow.jsx';
 export default function App() {
     const [theme, setTheme] = useState('light');
   return (
@@ -30,6 +30,7 @@ export default function App() {
           <Route path="/services-in/:id" element={<ServiceDetails />} />  {/* تمرير الـ ID هنا */}
           <Route path="/ServBtn" element={<ServBtn />} />
           <Route path="/worker/:id" element={<WorkerProfile />} /> إضافة هذا المسار
+          <Route path="/booknow" element={<Booknow />} />
 
           {/* <Route path="/" element={<Services />} /> */}
           <Route path="/Login" element={<Login />} />
