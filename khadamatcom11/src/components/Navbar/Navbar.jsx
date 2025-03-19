@@ -59,7 +59,10 @@ const Navbar = ({ theme, setTheme }) => {
     
     <nav className="navbar navbar-expand-lg navbarx wd-100">
       <div className="container-fluid px-4"> {/* Full-width container with padding */}
-                <Link to="/">
+                <Link onClick={(e) => {
+                                    e.preventDefault(); 
+                                    window.location.href = "/"; // إعادة تحميل الصفحة بالكامل
+                                 }}>
                        <img src={theme === 'light' ? logo_m : logo_dark_for_main} alt="logo" className="logo1" />
                 </Link>
 
@@ -78,8 +81,17 @@ const Navbar = ({ theme, setTheme }) => {
         <div className="collapse navbar-collapse " id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 midnav">
               <li className="nav-item">
-                 <Link to="/" className="nav-link">Home</Link>
+              <a href="/" 
+                 onClick={(e) => {
+                                    e.preventDefault(); 
+                                    window.location.href = "/"; // إعادة تحميل الصفحة بالكامل
+                                 }}
+                 className="nav-link"
+               >
+                Home
+              </a>
               </li>
+
 
               <li className="nav-item dropdown">
                 <Link
@@ -89,22 +101,46 @@ const Navbar = ({ theme, setTheme }) => {
                 >
                     Services
   
-                   <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                   <li><a className="dropdown-item" href="/services-in/5">Teacher</a></li>
-                   <li><a className="dropdown-item" href="/services-in/4">Wall Painter</a></li>
-                    <li><a className="dropdown-item" href="/services-in/3">Babysitter</a></li>
-                    <li><hr className="dropdown-divider" /></li>
-                    <li><a className="dropdown-item" href="/ServBtn">More Services..</a></li>
+                   <ul className="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
+                   <li><a className="dropdown-item text-dark" href="/services-in/5">Teacher</a></li>
+                   <li><a className="dropdown-item text-dark" href="/services-in/4">Wall Painter</a></li>
+                    <li><a className="dropdown-item text-dark" href="/services-in/3">Babysitter</a></li>
+                    <li><hr className="dropdown-divider text-dark" /></li>
+                    <li><a className="dropdown-item text-dark" href="/ServBtn">More Services..</a></li>
                     </ul>
                 </Link>
               </li>
 
-              <li className="nav-item">
+              {/* <li className="nav-item">
                  <a href="#about-us" className="nav-link">About us</a>
               </li>
                <li className="nav-item">
                  <a href="#Help" className="nav-link ">Help</a>
+              </li> */}
+              <li className="nav-item">
+              <a href="/" 
+                 onClick={(e) => {
+                                    e.preventDefault();
+                                    window.location.href = "/#about-us"; // go to the homepage then about us
+                                 }}
+                className="nav-link"
+               >
+                About us
+               </a>
               </li>
+
+              <li className="nav-item">
+                 <a href="/" 
+                    onClick={(e) => {
+                                       e.preventDefault();
+                                       window.location.href = "/#Help"; // // go to the homepage then Help
+                                    }}
+                                      className="nav-link"
+                  >
+                    Help
+                 </a>
+               </li>
+
            </ul>
 
               {/* <div className="d-flex justify-content-end LoginAndJoin">

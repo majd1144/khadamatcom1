@@ -8,10 +8,10 @@ import ServicesIn from './components/ServicesIn.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
 import Footerr from './components/Footerr.jsx'
 import ServiceDetails from './components/ServiceDetails.jsx';
-import Services from './components/Services.jsx';
 import ServBtn from './components/ServBtn.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import WorkerProfile from './components/WorkerProfile.jsx';
 export default function App() {
@@ -28,7 +28,8 @@ export default function App() {
           <Route path="/" element={<HomePage theme={theme} />} />  {/* تم تمرير theme إلى HomePage */}
           <Route path="/ServicesIn" element={<ServicesIn/>} />
           <Route path="/services-in/:id" element={<ServiceDetails />} />  {/* تمرير الـ ID هنا */}
-          <Route path="/ServBtn" element={<ServBtn />} />
+          <Route path="/ServBtn"  element={<ServBtn theme={theme} />} />
+
           <Route path="/worker/:id" element={<WorkerProfile />} /> إضافة هذا المسار
 
           {/* <Route path="/" element={<Services />} /> */}
@@ -37,7 +38,7 @@ export default function App() {
        
         </Routes>
     </div>
-  
+    
     <Footerr theme={theme} setTheme={setTheme}/>
     </Router>
   );        
