@@ -1,17 +1,50 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; 
+import { Link , useNavigate } from "react-router-dom"; 
 import "./Logins.css";
 
 export default function Signin({ theme }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // State to store error messages
+  const navigate = useNavigate(); // Hook to navigate after successful login
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     console.log("Email:", email);
     console.log("Password:", password);
+
+    try {
+      const response = await fetch("https://a26d-188-247-73-78.ngrok-free.app/Login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: email,
+          password: password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Login successful, redirect to homepage or dashboard
+        console.log("Login successful", data.message);
+        navigate("/"); // Adjust this based on your route
+      } else {
+        // Handle errors (incorrect password, user not found)
+        //setErrorMessage(data.message || "An error occurred. Please try again." );
+        console.log("Login failed:", data.message);
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error: Error during login", error);
+      setErrorMessage("An error occurred while logging in.");
+    }
   };
+
 
   return (
     <div>

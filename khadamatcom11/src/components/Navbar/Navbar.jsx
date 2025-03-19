@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState} from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './Navbar.css';
@@ -15,6 +16,8 @@ import '../ServicesDetalis.css'
 
 
 const Navbar = ({ theme, setTheme }) => {
+
+  const [user, setUser] = useState(null); // تخزين بيانات المستخدم
 
   const toggle_mode = () => {setTheme(theme === 'light' ? 'dark' : 'light');};
 
@@ -41,13 +44,25 @@ const Navbar = ({ theme, setTheme }) => {
     
     const footer = document.querySelector('.footer');
     if (footer) footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838'; }, [theme]);
-
     
+     // جلب بيانات المستخدم عند تحميل الصفحة
+  useEffect(() => {
+    axios.get('http://localhost:4000/api/user/1') // استبدل "1" بالـ ID الحقيقي
+      .then(response => {
+        setUser(response.data); // تخزين بيانات المستخدم
+      })
+      .catch(error => console.error('Error fetching user:', error));
+  }, []);
+
+
   return (
     
     <nav className="navbar navbar-expand-lg navbarx wd-100">
       <div className="container-fluid px-4"> {/* Full-width container with padding */}
-                <Link to="/">
+                <Link onClick={(e) => {
+                                    e.preventDefault(); 
+                                    window.location.href = "/"; // إعادة تحميل الصفحة بالكامل
+                                 }}>
                        <img src={theme === 'light' ? logo_m : logo_dark_for_main} alt="logo" className="logo1" />
                 </Link>
 
@@ -66,8 +81,17 @@ const Navbar = ({ theme, setTheme }) => {
         <div className="collapse navbar-collapse " id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 midnav">
               <li className="nav-item">
-                 <Link to="/" className="nav-link">Home</Link>
+              <a href="/" 
+                 onClick={(e) => {
+                                    e.preventDefault(); 
+                                    window.location.href = "/"; // إعادة تحميل الصفحة بالكامل
+                                 }}
+                 className="nav-link"
+               >
+                Home
+              </a>
               </li>
+
 
               <li className="nav-item dropdown">
                 <Link
@@ -77,25 +101,49 @@ const Navbar = ({ theme, setTheme }) => {
                 >
                     Services
   
-                   <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                   <li><a className="dropdown-item" href="/services-in/5">Teacher</a></li>
-                   <li><a className="dropdown-item" href="/services-in/4">Wall Painter</a></li>
-                    <li><a className="dropdown-item" href="/services-in/3">Babysitter</a></li>
-                    <li><hr className="dropdown-divider" /></li>
-                    <li><a className="dropdown-item" href="/ServBtn">More Services..</a></li>
+                   <ul className="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
+                   <li><a className="dropdown-item text-dark" href="/services-in/5">Teacher</a></li>
+                   <li><a className="dropdown-item text-dark" href="/services-in/4">Wall Painter</a></li>
+                    <li><a className="dropdown-item text-dark" href="/services-in/3">Babysitter</a></li>
+                    <li><hr className="dropdown-divider text-dark" /></li>
+                    <li><a className="dropdown-item text-dark" href="/ServBtn">More Services..</a></li>
                     </ul>
                 </Link>
               </li>
 
-              <li className="nav-item">
+              {/* <li className="nav-item">
                  <a href="#about-us" className="nav-link">About us</a>
               </li>
                <li className="nav-item">
                  <a href="#Help" className="nav-link ">Help</a>
+              </li> */}
+              <li className="nav-item">
+              <a href="/" 
+                 onClick={(e) => {
+                                    e.preventDefault();
+                                    window.location.href = "/#about-us"; // go to the homepage then about us
+                                 }}
+                className="nav-link"
+               >
+                About us
+               </a>
               </li>
+
+              <li className="nav-item">
+                 <a href="/" 
+                    onClick={(e) => {
+                                       e.preventDefault();
+                                       window.location.href = "/#Help"; // // go to the homepage then Help
+                                    }}
+                                      className="nav-link"
+                  >
+                    Help
+                 </a>
+               </li>
+
            </ul>
 
-              <div className="d-flex justify-content-end LoginAndJoin">
+              {/* <div className="d-flex justify-content-end LoginAndJoin">
                 <ul className="list-unstyled d-flex">
                     <li className="me-4">
                        <Link to="/Login" className="nav-link ">Log in</Link>
@@ -103,7 +151,32 @@ const Navbar = ({ theme, setTheme }) => {
                     <li className="me-3">
                        <Link to="/Join" className="nav-link">Join</Link>
                     </li>
-                </ul>
+                </ul> */}
+                 {/* ✅ عرض صورة واسم المستخدم إذا كان مسجل الدخول */}
+          {user ? (
+            <div className="d-flex align-items-center">
+              <span className="me-2">{user.name}</span>
+              <img
+                src={user.profile_image || "https://via.placeholder.com/40"}
+                alt="User"
+                className="rounded-circle"
+                width="40"
+                height="40"
+              />
+            </div>
+          ) : (
+            <div className="d-flex justify-content-end LoginAndJoin">
+              <ul className="list-unstyled d-flex">
+                <li className="me-4">
+                  <Link to="/Login" className="nav-link">Log in</Link>
+                </li>
+                <li className="me-3">
+                  <Link to="/Join" className="nav-link">Join</Link>
+                </li>
+              </ul>
+            </div>
+          )}
+
               </div>
 
             <img
@@ -119,8 +192,10 @@ const Navbar = ({ theme, setTheme }) => {
               className="modelogo ms-3 "
               alt="Translate"
             />
+          
+           
         </div>
-      </div>
+    
     </nav>
   );
 };

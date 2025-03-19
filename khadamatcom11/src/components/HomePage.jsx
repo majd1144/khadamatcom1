@@ -36,14 +36,13 @@ export default function HomePage({ theme }) { // تمرير theme هنا
       <p className="p-under-welcomeboard" id="services-section">Popular services</p>
       <ServicesCards services={displayedServices} />
       
-      <div>
-        <Help />
-      </div>
       <div className="majd">
         <InforMation className="majd"/>
       </div>
       <div>
-        <help/>
+        <br></br>
+        <br></br>
+        <Help/>
       </div>
     </div>
 

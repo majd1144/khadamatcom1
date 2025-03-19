@@ -112,7 +112,7 @@ font-family: Arial, Helvetica, sans-serif;
  /* تخصيص مظهر الـ dropdown */
 .nav-item .dropdown-menu {
   display: none;  /* القائمة مخفية بشكل افتراضي */
-  background-color: rgba(255, 255, 255, 0.308);
+  background-color: white;
 }
 .nav-item:hover .dropdown-menu {
   display: block; /* تظهر القائمة عند التمرير */
