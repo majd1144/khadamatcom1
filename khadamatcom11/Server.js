@@ -1,4 +1,9 @@
- const express = require("express");
+
+
+
+
+
+const express = require("express");
 const bodyParser = require("body-parser");
 const pg = require("pg");
 const cors = require('cors');
@@ -12,6 +17,15 @@ const dotenv = require("dotenv");
 const app = express();
 const port = 4000;
 const saltRounds = 10;
+
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 app.use(express.json());
 app.use(cors( {
   origin: '*',  // Allow requests from any origin for testing
@@ -36,6 +50,7 @@ const db = new pg.Client ({
     password: "Rasmiamacbook1",
     port: 5432
   });
+  
   db.connect();
 
   app.use(bodyParser.urlencoded({ extended: true }));
