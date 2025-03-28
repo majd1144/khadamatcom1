@@ -12,6 +12,8 @@ const bcrypt = require("bcryptjs");
 //const { Strategy } = require("passport-local");
 //const session = require("express-session");
 const dotenv = require("dotenv");
+require('dotenv').config();
+const getConnection = require('./db-config');
 
 
 const app = express();
@@ -43,15 +45,16 @@ app.use(passport.initialize());
 app.use(passport.session());*/
 
 
-const db = new pg.Client ({
-    user: "postgres",
-    host: "localhost",
-    database: "khadamatcom",
-    password: "Rasmiamacbook1",
-    port: 5432
-  });
-  
-  db.connect();
+//Test connection with DB
+const db = getConnection();
+db.connect((err) => {
+  if (err) {console.error('Error connecting to the database:', err.stack);}
+  else{console.log("Connected to DataBase!");}
+  db.query(`SELECT * FROM users`, (err, results) => {console.log(results.rows);});
+});
+
+
+
 
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(express.static("public"));
@@ -141,11 +144,9 @@ if (lastName.length < 3) {
     try {
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        const query = ( "INSERT INTO users (firstname, lastname, nationalID, email, location, phonenumber, password, birthday, gender, usertype, services) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *; "  ) ;
+        const query = ( "INSERT INTO users (firstname, lastname, nationalid, email, governorate, phone, password, birthdate, gender, role) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *; "  ) ;
 
-        const values = [ firstname, lastName, nationalID, email, location, phone, hashedPassword, birthDate, normalizedGender, normalizedUserType,
-            userType === "Service provider" ? services : null // Only send services if userType is "Service provider"
-        ];
+        const values = [ firstname, lastName, nationalID, email, location, phone, hashedPassword, birthDate, normalizedGender, normalizedUserType];
 
         
 
