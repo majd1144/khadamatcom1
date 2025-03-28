@@ -1,8 +1,3 @@
-
-
-
-
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const pg = require("pg");
@@ -14,6 +9,8 @@ const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
 require('dotenv').config();
 const getConnection = require('./db-config');
+
+
 
 
 const app = express();
@@ -131,7 +128,15 @@ if (lastName.length < 3) {
 
     const normalizedGender = gender ? gender.charAt(0).toUpperCase() + gender.slice(1).toLowerCase() : '';
 
-    const normalizedUserType = userType ? userType.charAt(0).toUpperCase() + userType.slice(1).toLowerCase() : '';
+    //const normalizedUserType = userType ? userType.charAt(0).toUpperCase() + userType.slice(1).toLowerCase() : '';
+
+    const validRoles = ["client", "worker", "admin"];
+    const normalizedUserType = userType ? userType.toLowerCase() : '';
+    
+    if (!validRoles.includes(normalizedUserType)) {
+        return res.status(400).json({ error: "Invalid role. Allowed roles: client, worker, admin." });
+    }
+
 
     if (!firstname || !lastName || !nationalID || !email || !phone || !location || !password || !confirmPassword || !birthDate || !gender || !userType) {
         return res.status(400).json({ error: "All fields are required." });
@@ -205,9 +210,9 @@ if (lastName.length < 3) {
     }
   });
 
-  app.post('/Join', (req, res) => {
+  /*app.post('/Join', (req, res) => {
     console.log('Request received:', req.body);
-  });
+  });*/
   
   
 
