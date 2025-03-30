@@ -5,7 +5,6 @@ require('dotenv').config();
 const db = require('./db-config');
 const path = require('path');
 const passport = require("passport");
-const { Strategy } = require("passport-local");
 const session = require("express-session");
 
 //Express APP
@@ -20,14 +19,15 @@ app.use(
     saveUninitialized: true,
   })
 );
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 //Encode or json any data comes from pages
 app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//session started
+app.use(passport.initialize());
+app.use(passport.session());
 
 //CORS for requests types
 app.use(cors( {
@@ -52,6 +52,15 @@ db.connect().catch(err => console.error("Connection error:", err,));
 
 //Any EJS paths must go here
 app.use("/test_db", testdbRt);  
+app.use("/secret",(req,res)=>{
+  if (req.isAuthenticated()) {
+    const name = req.user.firstname +" "+ req.user.lastname
+    const em = req.user.email
+    res.send(`Hi ${name} you are authenticated! and your email is : ${em}`);
+  } else {
+    res.redirect("/login");
+  }
+})
 
 
 //route path for React
@@ -63,29 +72,16 @@ app.use(express.static("public"));
 
 //Default routes for homepage
 app.get("/", (req, res) => {
-    res.render("HomePage.jsx");
+  if (req.isAuthenticated()) {
+    res.json({ authenticated: true, username: req.user.first_name });
+  } else {
+    res.json({ authenticated: false });
+  }
 });
 
 //Login and Join requests routes
 app.use("/", authRt);
 
-
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });
-
-
-
-
-    /*app.post(
-    "/Login",
-    passport.authenticate("local", {
-      successRedirect: "/",
-      failureRedirect: "/login",
-    })
-  );*/
-
-
-  /*app.post('/Join', (req, res) => {
-    console.log('Request received:', req.body);
-  });*/

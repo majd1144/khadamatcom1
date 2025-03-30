@@ -1,11 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
+const { Strategy } = require("passport-local");
 const db = require('../db-config');
 require('dotenv').config();
 const saltRounds = 10;
 
 
+passport.serializeUser((user, cb) => {cb(null, user);});
+passport.deserializeUser((user, cb) => {cb(null, user);});
 
 //Join requests
 router.get("/Join", (req, res) => {
@@ -122,39 +126,66 @@ router.get("/Login", (req, res) => {
     res.render("Login.jsx");
 });
 
-
-router.post("/Login", async (req, res) => {
-    const email = req.body.username;
-    const password = req.body.password;
-
+// Passport Strategy (Login Logic)
+passport.use(
+    new Strategy(async (username, password, done) => {
     try {
-        // Query the database to find user by email
-        const result = await db.query("SELECT * FROM users WHERE email = $1", [email]);
+        const result = await db.query("SELECT * FROM users WHERE email = $1", [username]);
+
         if (result.rows.length > 0) {
-            const user = result.rows[0];
-            const storedPassword = user.password;
+        const user = result.rows[0];
 
-
-            // Check if the password matches
-            const isPasswordCorrect = await bcrypt.compare(password, storedPassword);
-
-
-            if (isPasswordCorrect) {
-                // Respond with success and user data
-                res.status(200).json({ message: "Login successful", username: email });
-            } else {
-                // Incorrect password
-                res.status(400).json({ message: "Incorrect password" });
-            }
-
+          // Compare hashed password
+        bcrypt.compare(password, user.password, (err, valid) => {
+            if (err) return done(err);
+            if (valid) return done(null, user); // Login successful
+            return done(null, false, { message: "Incorrect password" }); // Wrong password
+        });
         } else {
-        // User not found
-        res.status(404).json({ message: "User not found" });
+          return done(null, false, { message: "User not found" }); // No user found
         }
-    } catch (error) {
-        console.error("Error during login:", error);
-        res.status(500).json({ message: "Server error" });
+    } catch (err) {
+        return done(err);
+    }
+    })
+);
+
+// Serialize & Deserialize User (for session handling)
+passport.serializeUser((user, done) => {
+    done(null, user.id); // Store user ID in session
+});
+passport.deserializeUser(async (id, done) => {
+    try {
+        const result = await db.query("SELECT * FROM users WHERE id = $1", [id]);
+        if (result.rows.length > 0) {
+        done(null, result.rows[0]);
+        } else {
+        done(null, false);
+        }
+    } catch (err) {
+        done(err);
     }
 });
+
+  // Login Route with Passport Callback
+router.post("/login", (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+    if (err) return res.status(500).json({ message: "Server error" });
+
+    if (!user) {
+        return res.status(400).json({ message: info.message || "Login failed" });
+    }
+
+    req.login(user, (err) => {
+        if (err) return res.status(500).json({ message: "Login error" });
+
+        res.status(200).json({ message: "Login successful", username: user.email });
+        req.session.cookie.maxAge = 1000 * 60 * 60 * 24;
+    });
+    })(req, res, next);
+});
+
+
+
 
 module.exports = router; // Export the router
