@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const db = require('../db-config');
-const saltRounds = process.env.SALTROUNDS;
+require('dotenv').config();
+const saltRounds = 10;
+
 
 
 //Join requests
@@ -88,17 +90,20 @@ router.post("/Join", async (req, res) => {
     }
 
     try {
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-
+        const hashedPassword = await bcrypt.hash(password,saltRounds);
         const query = ( "INSERT INTO users (firstname, lastname, nationalid, email, governorate, phone, password, birthdate, gender, role) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *; "  ) ;
 
         const values = [ firstname, lastName, nationalID, email, location, phone, hashedPassword, birthDate, normalizedGender, normalizedUserType];
 
-        const result = await db.query(query, values);
+
+        const result = await db.query(query, values,(err)=>{
+            if(err){
+                console.log("error in query");
+            }
+        });
 
         res.status(201).json({
             message: "Registration successful!",
-            user: result.rows[0],
         });
 
     } catch (err) {
@@ -110,7 +115,6 @@ router.post("/Join", async (req, res) => {
         }
     }
 });
-
 
 
 //Login requests

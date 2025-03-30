@@ -4,19 +4,30 @@ const cors = require('cors');
 require('dotenv').config();
 const db = require('./db-config');
 const path = require('path');
-//const passport = require("passport");
-//const { Strategy } = require("passport-local");
-//const session = require("express-session");
-
+const passport = require("passport");
+const { Strategy } = require("passport-local");
+const session = require("express-session");
 
 //Express APP
 const app = express();
+
+
+//Craete a Session and inisialize it
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 //Encode or json any data comes from pages
 app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 
 //CORS for requests types
 app.use(cors( {
@@ -29,7 +40,6 @@ app.use(cors( {
 const port = process.env.PORT_SERVER;
 const testdbRt = require("./routes/testdbRt");
 const authRt = require("./routes/authRt");
-
 
 //EJS using as engine
 app.set('view engine','ejs')
@@ -64,16 +74,6 @@ app.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });
 
-
-/*app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());*/
 
 
 
