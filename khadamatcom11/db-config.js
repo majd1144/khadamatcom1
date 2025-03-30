@@ -1,14 +1,15 @@
 const { Client } = require('pg');
 require('dotenv').config();
 
-const getConnection = () => {
-    return new Client({
-        connectionString: process.env.DATABASE_URL,  // Use connectionString with the URL
-        ssl: {
-          rejectUnauthorized: false // Necessary for some cloud providers (e.g., Heroku)
-        }
-    });
-};
+const db = new Client({
+    user: process.env.USER,
+    host: process.env.HOST, 
+    database: process.env.DB,
+    password: process.env.PASSWORD,
+    port: process.env.DB_PORT, 
+    ssl: {
+        rejectUnauthorized: false // Required if using self-signed SSL certificates
+    }
+});
 
-
-module.exports = getConnection;
+module.exports = db;
