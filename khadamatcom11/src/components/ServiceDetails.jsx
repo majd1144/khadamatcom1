@@ -30,18 +30,19 @@ export default function ServiceDetails() {
       <div className="services-list">
         {services.map((service) => (
           <div className="card" key={service.id} style={{ width: '400px' }}>
-            <img className="card" src={service.image} alt={service.name} style={{ width: '100%' }} />
-            <div className="card-body" style={{ textAlign: "center" }}>
+            <img className="card" src={service.image} alt={service.name}  />
+           <br/>
+            <div className="card-body" >
               <h3 className="card-title" style={{ fontFamily: "roman" }}>{service.name}</h3>
               <br />
-              <h4 className="card-subtitle">{service.title}</h4>
+              <h4 className="card-subtitle">The job : {service.title}</h4>
               <br />
-              <h4 className="card-subtitle">{service.location}</h4>
-              <p className="card-rating">⭐ {service.rating} / 5</p>
+              <h4 className="card-subtitle"> location : {service.location}</h4>
+              <p className="card-rating">⭐ {service.rating} </p>
 
               <div className="btn-group">
-                <Link to={`/worker/${service.id}`} className="btn btn-primary">
-                  See Profile
+              <Link to={`/worker/${service.id}`} className="btn btn-primary">
+                  See Profile 
                 </Link>
                 <span className="me-3">
                   <button onClick={handleBookNowClick} className="btn btn-primary">

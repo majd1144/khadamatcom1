@@ -78,6 +78,12 @@
 .btn:hover {
   background-color: #0056b3;
 }
+.card img {
+border-radius: 300px;
+width: 150px;
+margin-left: 120px;
+margin-top: 10px;
+}
 
 /* تحسين استجابة التصميم */
 @media (max-width: 600px) {
