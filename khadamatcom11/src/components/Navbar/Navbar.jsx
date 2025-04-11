@@ -55,7 +55,22 @@ const Navbar = ({ theme, setTheme }) => {
           console.error("Error fetching user:", err);
         });
     }, []);
-  
+    const handleLogout = async () => {
+      try {
+        const res = await fetch("http://localhost:4000/logout", {
+          method: "POST",
+          credentials: "include", 
+        });
+        if (res.ok) {
+          window.location.href = "/login";
+        } else {
+          console.error("Logout failed");
+        }
+      } catch (error) {
+        console.error("Logout error", error);
+      }
+    };
+    
 
   return (
     
@@ -154,6 +169,7 @@ const Navbar = ({ theme, setTheme }) => {
                 width="40"
                 height="40"
               />
+              <button onClick={handleLogout} className="btn btn-outline-danger">Logout</button>
             </div>
           ) : (
             <div className="d-flex justify-content-end LoginAndJoin">

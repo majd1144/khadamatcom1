@@ -54,22 +54,6 @@ db.connect().catch(err => console.error("Connection error:", err,));
 
 //Any EJS paths must go here
 app.use("/test_db", testdbRt);  
-app.use("/secret",(req,res)=>{
-  if (req.isAuthenticated() ) {
-    if(req.user.role === "client"){
-      const name = req.user.firstname +" "+ req.user.lastname
-      const em = req.user.email
-      res.send(`Welcome ${name}. This is a secret Page and you are authenticated to see it as CLIENT! and your email is : ${em}`);
-    }else if (req.user.role ==="worker"){
-      const name = req.user.firstname +" "+ req.user.lastname
-      const em = req.user.email
-      res.send(`Welcome ${name}. This is a secret Page and you are authenticated to see it as WORKER! and your email is : ${em}. <br> a secret for you is that you are my best worker!`);
-    }
-  } else {
-    res.redirect("/login");
-  }
-})
-
 
 //route path for React
 app.use(express.static("public"));
