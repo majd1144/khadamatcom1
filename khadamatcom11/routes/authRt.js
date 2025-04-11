@@ -152,21 +152,22 @@ passport.use(
 
 // Serialize & Deserialize User (for session handling)
 passport.serializeUser((user, done) => {
-    done(null, user.id); // Store user ID in session
-});
-passport.deserializeUser(async (id, done) => {
+    done(null, user.id);  // Store only the user ID in the session
+  });
+  
+  passport.deserializeUser(async (id, done) => {
     try {
-        const result = await db.query("SELECT * FROM users WHERE id = $1", [id]);
-        if (result.rows.length > 0) {
-        done(null, result.rows[0]);
-        } else {
+      const result = await db.query("SELECT * FROM users WHERE id = $1", [id]);
+      if (result.rows.length > 0) {
+        done(null, result.rows[0]);  // Retrieve full user data based on the ID
+      } else {
         done(null, false);
-        }
+      }
     } catch (err) {
-        done(err);
+      done(err);
     }
-});
-
+  });
+  
   // Login Route with Passport Callback
 router.post("/login", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
@@ -185,6 +186,34 @@ router.post("/login", (req, res, next) => {
     })(req, res, next);
 });
 
+//Data fetching for users in react app
+router.get("/user", (req, res) => {
+    console.log("User session:", req.user);  // Logs the user info stored in the session
+    if (req.isAuthenticated()) {
+      res.json({
+        authenticated: true,
+        name: req.user.firstname + " " + req.user.lastname,
+        email: req.user.email,
+        role: req.user.role,
+        userprofile: req.user.userprofile || null
+      });
+    } else {
+      res.status(401).json({ authenticated: false });
+    }
+  });
+//Loging out route
+router.post("/logout", (req, res) => {
+    req.logout(function(err) {
+        if (err) {
+            return res.status(500).json({ message: "Logout failed" });
+        }
+
+        req.session.destroy(() => {
+            res.clearCookie("connect.sid"); // optional: clear cookie on logout
+            res.status(200).json({ message: "Logged out successfully" });
+        });
+    });
+});
 
 
 

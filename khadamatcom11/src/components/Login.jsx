@@ -16,22 +16,25 @@ export default function Signin({ theme }) {
     console.log("Password:", password);
 
     try {
-      const response = await fetch("http://localhost:4000/Login", {
+      
+      const response = await fetch('http://localhost:4000/Login', {
         method: "POST",
+        credentials: "include", 
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           username: email,
           password: password,
         }),
       });
-
+      
       const data = await response.json();
 
       if (response.ok) {
         // Login successful, redirect to homepage or dashboard
         console.log("Login successful", data.message);
+        alert(data.message);
         navigate("/"); // Adjust this based on your route
       } else {
         // Handle errors (incorrect password, user not found)
@@ -104,4 +107,3 @@ export default function Signin({ theme }) {
 }
 
         
-      

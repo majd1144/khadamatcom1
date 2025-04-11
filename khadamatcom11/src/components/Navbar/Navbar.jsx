@@ -17,8 +17,6 @@ import '../ServicesDetalis.css'
 
 const Navbar = ({ theme, setTheme }) => {
 
-  const [user, setUser] = useState(null); // تخزين بيانات المستخدم
-
   const toggle_mode = () => {setTheme(theme === 'light' ? 'dark' : 'light');};
 
   useEffect(() => {
@@ -45,15 +43,19 @@ const Navbar = ({ theme, setTheme }) => {
     const footer = document.querySelector('.footer');
     if (footer) footer.style.backgroundColor = isLight ? 'rgba(109, 166, 234, 0.73)' : '#3c3838'; }, [theme]);
     
-     // جلب بيانات المستخدم عند تحميل الصفحة
-  useEffect(() => {
-    axios.get('http://localhost:4000/api/user/1') // استبدل "1" بالـ ID الحقيقي
-      .then(response => {
-        setUser(response.data); // تخزين بيانات المستخدم
-      })
-      .catch(error => console.error('Error fetching user:', error));
-  }, []);
 
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+      axios.get("http://localhost:4000/user", { withCredentials: true })
+        .then((res) => {
+          console.log("User data:", res.data);  // Log the response data
+          setUser(res.data);
+        })
+        .catch((err) => {
+          console.error("Error fetching user:", err);
+        });
+    }, []);
+  
 
   return (
     
@@ -130,29 +132,18 @@ const Navbar = ({ theme, setTheme }) => {
               </li>
 
               <li className="nav-item">
-                 <a href="/" 
+                <a href="/" 
                     onClick={(e) => {
-                                       e.preventDefault();
+                                      e.preventDefault();
                                        window.location.href = "/#Help"; // // go to the homepage then Help
                                     }}
                                       className="nav-link"
                   >
                     Help
-                 </a>
-               </li>
+                </a>
+              </li>
 
-           </ul>
-
-              {/* <div className="d-flex justify-content-end LoginAndJoin">
-                <ul className="list-unstyled d-flex">
-                    <li className="me-4">
-                       <Link to="/Login" className="nav-link ">Log in</Link>
-                     </li>
-                    <li className="me-3">
-                       <Link to="/Join" className="nav-link">Join</Link>
-                    </li>
-                </ul> */}
-                 {/* ✅ عرض صورة واسم المستخدم إذا كان مسجل الدخول */}
+          </ul>
           {user ? (
             <div className="d-flex align-items-center">
               <span className="me-2">{user.name}</span>
@@ -176,15 +167,13 @@ const Navbar = ({ theme, setTheme }) => {
               </ul>
             </div>
           )}
-
               </div>
-
             <img
-               onClick={toggle_mode}
-               src={theme === 'light' ? logo_light : logo_dark}
-               alt="toggle theme"
-               className="modelogo  "
-               style={{ cursor: 'pointer' }}
+                onClick={toggle_mode}
+                src={theme === 'light' ? logo_light : logo_dark}
+                alt="toggle theme"
+                className="modelogo  "
+                style={{ cursor: 'pointer' }}
             />
 
             <img
@@ -192,8 +181,6 @@ const Navbar = ({ theme, setTheme }) => {
               className="modelogo ms-3 "
               alt="Translate"
             />
-          
-           
         </div>
     
     </nav>
