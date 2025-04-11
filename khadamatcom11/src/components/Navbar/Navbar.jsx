@@ -148,7 +148,7 @@ const Navbar = ({ theme, setTheme }) => {
             <div className="d-flex align-items-center">
               <span className="me-2">{user.name}</span>
               <img
-                src={user.profile_image || "https://via.placeholder.com/40"}
+                src={`/Storage/userpicture/${user.picture}` || "https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg"}
                 alt="User"
                 className="rounded-circle"
                 width="40"

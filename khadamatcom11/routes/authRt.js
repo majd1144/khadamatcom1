@@ -159,7 +159,7 @@ passport.deserializeUser(async (id, done) => {
     try {
       const result = await db.query("SELECT * FROM users WHERE id = $1", [id]);
         if (result.rows.length > 0) {
-        done(null, result.rows[0]);  // Retrieve full user data based on the ID
+        done(null, result.rows[0]); 
         } else {
         done(null, false);
         }
@@ -188,14 +188,13 @@ router.post("/login", (req, res, next) => {
 
 //Data fetching for users in react app
 router.get("/user", (req, res) => {
-    console.log("User session:", req.user);  // Logs the user info stored in the session
     if (req.isAuthenticated()) {
         res.json({
             authenticated: true,
             name: req.user.firstname + " " + req.user.lastname,
             email: req.user.email,
             role: req.user.role,
-            userprofile: req.user.userprofile || null
+            picture: req.user.picture || null
         });
     } else {
         res.status(401).json({ authenticated: false });
