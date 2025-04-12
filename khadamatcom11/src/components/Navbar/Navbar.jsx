@@ -37,7 +37,7 @@ const Navbar = ({ theme, setTheme }) => {
       element.addEventListener('mouseleave', () => { element.style.backgroundColor = ''; });
       element.addEventListener('mouseleave', () => {element.style.backgroundColor = '';});
       });
-   
+
     elements.forEach((element) => { element.style.color = isLight ? 'black' : 'white'; });
     
     const footer = document.querySelector('.footer');
@@ -46,7 +46,7 @@ const Navbar = ({ theme, setTheme }) => {
 
     const [user, setUser] = useState(null);
     useEffect(() => {
-      axios.get("http://localhost:4000/user", { withCredentials: true })
+      axios.get("http://localhost:4000/users/loggedin_user", { withCredentials: true })
         .then((res) => {
           console.log("User data:", res.data);  // Log the response data
           setUser(res.data);
@@ -62,6 +62,7 @@ const Navbar = ({ theme, setTheme }) => {
           credentials: "include", 
         });
         if (res.ok) {
+          alert("You have Loged out Sucessfully!")
           window.location.href = "/login";
         } else {
           console.error("Logout failed");
@@ -157,7 +158,6 @@ const Navbar = ({ theme, setTheme }) => {
                     Help
                 </a>
               </li>
-
           </ul>
           {user ? (
             <div className="d-flex align-items-center">

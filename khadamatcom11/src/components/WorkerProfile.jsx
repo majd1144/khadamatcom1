@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect , useState} from 'react';
 import { useParams } from "react-router-dom";
 import { servicesCards } from "../data";
 import ReactStars from "react-rating-stars-component";
 import './WorkerProfile.css';
+import { Link } from 'react-router-dom';
 import person from "../asset/person.png";
+import axios from 'axios';
 
 const WorkerProfile = () => {
   const { id } = useParams();
@@ -12,10 +14,35 @@ const WorkerProfile = () => {
   const [review, setReview] = useState("");
   const [reviews, setReviews] = useState(worker?.reviews || []);
 
-  if (!worker) {
-    return <h2 className="text-center text-red-500 text-2xl">Worker not found</h2>;
-  }
+  
+  // Retreive user data from backend server
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    axios.get("http://localhost:4000/users/loggedin_user", { withCredentials: true })
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching user:", err);
+      });
+  }, []);
 
+// Retreive worker data from backend server
+const [workerr, setWorkerr] = useState(null);
+useEffect(() => {
+  axios.get(`http://localhost:4000/workers/${id}`)
+    .then((res) => {
+      setWorkerr(res.data);   // not setWorkerr
+    })
+    .catch((err) => {
+      console.error("Error fetching worker:", err);
+    });
+}, [id]);
+
+
+  if (!workerr) {
+    return <h2 className="text-center text-red-500 text-2xl">Loading Workers Data ...</h2>;
+  }
   const handleSubmit = () => {
     if (!review.trim() || rating === 0) {
       alert("Please provide a rating and a comment.");
@@ -34,16 +61,16 @@ const WorkerProfile = () => {
         {/* Worker Info */}
         <div className="col-md-6 text-left containerForJob">
           <img
-            src={worker.image || person}
-            alt={worker.title}
+            src={workerr.image || person}
+            alt={workerr.title}
             className="Img img-fluid rounded-circle"
           />
-          <h2 className="text-xl font-bold mt-2">{worker.name}</h2>
+          <h2 className="text-xl font-bold mt-2">{workerr.name}</h2>
           <div className="mt-4 text-gray-700 text-sm">
-            <p><span className="font-semibold">Service:</span> {worker.title}</p>
-            <p><span className="font-semibold">Rating:</span> {worker.rating} ⭐</p>
-            <p><span className="font-semibold">Price:</span> ${worker.price}</p>
-            <p><span className="font-semibold">Availability:</span> {worker.availability}</p>
+            <p><span className="font-semibold">Service:</span> {workerr.servicecategory}</p>
+            <p><span className="font-semibold">Rating:</span> {workerr.rating || 0} ⭐</p>
+            <p><span className="font-semibold">Price:</span> {workerr.fee} JD</p>
+            <p><span className="font-semibold">Availability:</span> {workerr.availability || "8 a.m - 4 p.m"}</p>
           </div>
         </div>
 
@@ -72,16 +99,26 @@ const WorkerProfile = () => {
       <div className="container">
         <div className="comment-section">
           <div className="mb-4">
-            <div className="d-flex gap-3">
-              <img src={person} alt="User Avatar" className="user-avatar" />
-              <div className="flex-grow-1">
-                <textarea className="form-control comment-input" rows="3" placeholder="Write a comment..." value={review} onChange={(e) => setReview(e.target.value)}></textarea>
-                <ReactStars count={5} value={rating} onChange={setRating} size={24} activeColor="#ffd700" />
-                <div className="mt-3 text-end">
-                  <button className="btn btn-comment text-white" onClick={handleSubmit}>Post Comment</button>
+          {user? (
+                <div className="d-flex gap-3">
+                  <img src={`/Storage/userpicture/${user.picture}` || person} alt="User Avatar" className="user-avatar" />
+                  <h4>{user.name}</h4>
+                  <div className="flex-grow-1">
+                    <textarea className="form-control comment-input" rows="3" placeholder="Write a comment..." value={review} onChange={(e) => setReview(e.target.value)}></textarea>
+                    <ReactStars count={5} value={rating} onChange={setRating} size={24} activeColor="#ffd700" />
+                    <div className="mt-3 text-end">
+                      <button className="btn btn-comment text-white" onClick={handleSubmit}>Post Comment</button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+          ):(
+            <h3 className="text-center">
+              you have to login to review this worker!! 
+              <Link to="/Login" className="text-center btn btn-outline-primary"> Log in</Link>
+              
+            </h3>
+          )}
+
           </div>
 
           <div className="comments-list">
@@ -98,8 +135,8 @@ const WorkerProfile = () => {
                     <p className="mb-2">Rating: {rev.stars} ⭐</p>
                     <div className="comment-actions">
                       <a href="#"><i className="bi bi-heart"></i> Like</a>
-                      <a href="#"><i className="bi bi-reply"></i> Reply</a>
-                      <a href="#"><i className="bi bi-share"></i> Share</a>
+                      {/*<a href="#"><i className="bi bi-reply"></i> Reply</a>
+                      <a href="#"><i className="bi bi-share"></i> Share</a>*/}
                     </div>
                   </div>
                 </div>

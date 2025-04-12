@@ -12,16 +12,8 @@ const app = express();
 
 //Craete a Session and inisialize it
 app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: false,               
-    httpOnly: true,
-    sameSite: 'lax',             
-    maxAge: 1000 * 60 * 60 * 24
-  }
-}));
+  secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false, cookie: {
+    secure: false, httpOnly: true, sameSite: 'lax', maxAge: 1000 * 60 * 60 * 24} }));
 
 //Encode or json any data comes from pages
 app.use(express.urlencoded({extended: true}))
@@ -42,15 +34,16 @@ app.use(cors({
 const port = process.env.PORT_SERVER;
 const testdbRt = require("./routes/testdbRt");
 const authRt = require("./routes/authRt");
+const usersRt = require("./routes/usersRt");
+const reviewsRt = require("./routes/reviewsRt");
+const workersRt = require("./routes/workersRt");
 
 //EJS using as engine
 app.set('view engine','ejs')
 app.set('views',path.join(__dirname,'views'));
 
-
 // Connect to the database
 db.connect().catch(err => console.error("Connection error:", err,));
-
 
 //Any EJS paths must go here
 app.use("/test_db", testdbRt);  
@@ -58,23 +51,22 @@ app.use("/test_db", testdbRt);
 //route path for React
 app.use(express.static("public"));
 
-//Default routes for homepage
-app.get("/", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.json({ authenticated: true, username: req.user.first_name });
-  } else {
-    res.json({ authenticated: false });
-  }
-});
-
 //Login and Join requests routes
 app.use("/", authRt);
 
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+//Users requests routes
+app.use("/users",usersRt);
 
+//Workers requests routes
+app.use("/workers",workersRt);
+
+//reviews requests routes
+app.use("/reviews", reviewsRt);
+
+app.use(express.static(path.join(__dirname, 'build')));
+/*app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});*/
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

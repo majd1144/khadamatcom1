@@ -30,12 +30,12 @@ export default function Signin({ theme }) {
       });
       
       const data = await response.json();
-
       if (response.ok) {
         // Login successful, redirect to homepage or dashboard
         console.log("Login successful", data.message);
         alert(data.message);
         navigate("/"); // Adjust this based on your route
+        window.location.reload();
       } else {
         // Handle errors (incorrect password, user not found)
         //setErrorMessage(data.message || "An error occurred. Please try again." );

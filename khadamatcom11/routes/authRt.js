@@ -100,7 +100,7 @@ router.post("/Join", async (req, res) => {
         const values = [ firstname, lastName, nationalID, email, location, phone, hashedPassword, birthDate, normalizedGender, normalizedUserType];
 
 
-        const result = await db.query(query, values,(err)=>{
+        await db.query(query, values,(err)=>{
             if(err){
                 console.log("error in query");
             }
@@ -186,27 +186,13 @@ router.post("/login", (req, res, next) => {
     })(req, res, next);
 });
 
-//Data fetching for users in react app
-router.get("/user", (req, res) => {
-    if (req.isAuthenticated()) {
-        res.json({
-            authenticated: true,
-            name: req.user.firstname + " " + req.user.lastname,
-            email: req.user.email,
-            role: req.user.role,
-            picture: req.user.picture || null
-        });
-    } else {
-        res.status(401).json({ authenticated: false });
-    }
-});
+
 //Loging out route
 router.post("/logout", (req, res) => {
     req.logout(function(err) {
         if (err) {
             return res.status(500).json({ message: "Logout failed" });
         }
-
         req.session.destroy(() => {
             res.clearCookie("connect.sid"); // optional: clear cookie on logout
             res.status(200).json({ message: "Logged out successfully" });
