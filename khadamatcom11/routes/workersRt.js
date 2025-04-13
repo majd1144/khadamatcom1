@@ -65,4 +65,28 @@ router.get("/:id", (req, res) => {
     });
 });
 
+
+//Data fetching for users in react app
+router.get("/service/:servicecategory", (req, res) => {
+    const {servicecategory} = req.params;
+    db.query(`SELECT workers.*,
+                users.*,
+                AVG(reviews.rating)::numeric(2,1) AS average_rating
+                FROM workers 
+                JOIN users ON workers.userid = users.id
+                LEFT JOIN reviews ON workers.id = reviews.workerid
+				WHERE  workers.servicecategory =$1
+                GROUP BY workers.id, users.id
+                ORDER BY average_rating ASC;`
+            ,[servicecategory], (err, results) => {
+        if (err) {
+            console.error("Error querying the database:", err.stack);
+            res.json(500,"Somthing went wrong. Try again later!")
+        }
+        if (results.rows && results.rows.length > 0) {
+            res.status(200).json(results.rows);}
+    });
+});
+
+
 module.exports = router;
