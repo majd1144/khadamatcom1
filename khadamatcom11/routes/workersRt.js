@@ -4,7 +4,16 @@ const db = require("../db-config");
 
 //Data fetching for users in react app
 router.get("/", (req, res) => {
-    db.query("SELECT * FROM workers JOIN users ON workers.userid = users.id", (err, results) => {
+
+    db.query(`SELECT workers.*,
+                users.*,
+                AVG(reviews.rating)::numeric(2,1) AS average_rating
+                FROM workers
+                JOIN users ON workers.userid = users.id
+                LEFT JOIN reviews ON workers.id = reviews.workerid
+                GROUP BY workers.id, users.id
+                ORDER BY average_rating ASC;`
+            , (err, results) => {
         if (err) {
             console.error("Error querying the database:", err.stack);
             res.json(500,"Somthing went wrong. Try again later!")
@@ -14,10 +23,17 @@ router.get("/", (req, res) => {
     });
 });
 
-
 //Data fetching for users in react app
 router.get("/:id", (req, res) => {
     const {id} = req.params;
+    var stars = 0.0;
+    const query = `SELECT AVG(rating)::numeric(2,1) AS average_rating
+    FROM reviews WHERE workerid = $1 AND rating IS NOT NULL`;
+
+    db.query(query, [id], (err, rslt) => {
+    if (err) return res.status(500).json({ error: 'Error fetching average' });
+        //stars rating calculation
+        stars =rslt.rows[0].average_rating
     db.query("SELECT * FROM workers JOIN users ON workers.userid = users.id AND workers.id = $1", [id], (err, results) => {
         if (err) {
             console.error("Error querying the database:", err.stack);
@@ -32,7 +48,7 @@ router.get("/:id", (req, res) => {
                 experience: results.rows[0].experience,
                 createdat: results.rows[0].createdat,
                 fee: results.rows[0].fee,
-                rating: (results.rows[0].rating || null),
+                rating: stars,
                 nationalid: results.rows[0].nationalid,
                 email: results.rows[0].email,
                 role: results.rows[0].role,
@@ -45,6 +61,7 @@ router.get("/:id", (req, res) => {
         } else {
             res.json({ message: `There is no worker with id : ${id} `});
         }
+        });
     });
 });
 

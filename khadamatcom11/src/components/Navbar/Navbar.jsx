@@ -48,7 +48,6 @@ const Navbar = ({ theme, setTheme }) => {
     useEffect(() => {
       axios.get("http://localhost:4000/users/loggedin_user", { withCredentials: true })
         .then((res) => {
-          console.log("User data:", res.data);  // Log the response data
           setUser(res.data);
         })
         .catch((err) => {
