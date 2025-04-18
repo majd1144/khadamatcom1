@@ -100,7 +100,7 @@ router.post("/Join", async (req, res) => {
         const values = [ firstname, lastName, nationalID, email, location, phone, hashedPassword, birthDate, normalizedGender, normalizedUserType];
 
 
-        const result = await db.query(query, values,(err)=>{
+        await db.query(query, values,(err)=>{
             if(err){
                 console.log("error in query");
             }
@@ -152,13 +152,14 @@ passport.use(
 
 // Serialize & Deserialize User (for session handling)
 passport.serializeUser((user, done) => {
-    done(null, user.id); // Store user ID in session
+    done(null, user.id);  // Store only the user ID in the session
 });
+
 passport.deserializeUser(async (id, done) => {
     try {
-        const result = await db.query("SELECT * FROM users WHERE id = $1", [id]);
+      const result = await db.query("SELECT * FROM users WHERE id = $1", [id]);
         if (result.rows.length > 0) {
-        done(null, result.rows[0]);
+        done(null, result.rows[0]); 
         } else {
         done(null, false);
         }
@@ -185,6 +186,19 @@ router.post("/login", (req, res, next) => {
     })(req, res, next);
 });
 
+
+//Loging out route
+router.post("/logout", (req, res) => {
+    req.logout(function(err) {
+        if (err) {
+            return res.status(500).json({ message: "Logout failed" });
+        }
+        req.session.destroy(() => {
+            res.clearCookie("connect.sid"); // optional: clear cookie on logout
+            res.status(200).json({ message: "Logged out successfully" });
+        });
+    });
+});
 
 
 

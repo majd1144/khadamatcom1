@@ -9,6 +9,8 @@ import "../App.css";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Help from "./Help.jsx";
+import Testcom from "./Testcom.jsx"
+
 
 export default function HomePage({ theme }) { // تمرير theme هنا
   // const [showAll, setShowAll] = useState(false);
@@ -26,6 +28,7 @@ export default function HomePage({ theme }) { // تمرير theme هنا
   
   return (
     <div className="component">
+      <Testcom/>
       {/* إضافة WelcomeBoard في الصفحة */}
       <WelcomeBoard theme={theme} /> {/* تمرير theme إلى WelcomeBoard */}
       
