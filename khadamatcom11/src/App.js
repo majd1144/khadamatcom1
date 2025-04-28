@@ -9,6 +9,8 @@ import Navbar from './components/Navbar/Navbar.jsx';
 import Footerr from './components/Footerr.jsx'
 import ServiceDetails from './components/ServiceDetails.jsx';
 import ServBtn from './components/ServBtn.jsx';
+import Profile from './components/Profile.jsx'; 
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 // <<<<<<< HEAD
@@ -36,6 +38,7 @@ export default function App() {
 
           <Route path="/worker/:id" element={<WorkerProfile />} /> إضافة هذا المسار
           <Route path="/booknow" element={<Booknow />} />
+          <Route path="/profile" element={<Profile />} /> 
 
           {/* <Route path="/" element={<Services />} /> */}
           <Route path="/Login" element={<Login />} />
