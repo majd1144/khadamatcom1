@@ -10,7 +10,7 @@ import Footerr from './components/Footerr.jsx'
 import ServiceDetails from './components/ServiceDetails.jsx';
 import ServBtn from './components/ServBtn.jsx';
 import Profile from './components/Profile.jsx'; 
-
+import ServicesWorkers from './components/ServicesWorkers.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 // <<<<<<< HEAD
@@ -43,7 +43,9 @@ export default function App() {
           {/* <Route path="/" element={<Services />} /> */}
           <Route path="/Login" element={<Login />} />
           <Route path="/Join" element={<Join />} />
-       
+          <Route path="/services-in/:servicecategory" element={<ServicesWorkers />} />
+          <Route path="/worker/:id" element={<WorkerProfile />} />
+
         </Routes>
     </div>
     

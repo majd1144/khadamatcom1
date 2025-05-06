@@ -7,7 +7,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.8.3",
+    "axios": "^1.9.0",
     "bcryptjs": "^3.0.2",
     "body-parser": "^1.20.3",
     "bootstrap": "^5.3.3",
@@ -38,8 +38,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "react-scripts start",
-    "server":"node Server.js"
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "server": "node Server.js"
   },
   "eslintConfig": {
     "extends": [
