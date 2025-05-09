@@ -10,6 +10,8 @@ import logo_light from '../../asset/dark.png';
 import logo_dark from '../../asset/light.png';
 import logo_dark_for_main from '../../asset/mainLogoD.png'; // main logo Dark
 import translateLogo from '../../asset/translate.png'
+import defaultphoto from '../../asset/person.png'
+import ProfileU from '../WorkerProfile.jsx'
 import "../ServicesCards.jsx";
 import { servicesCards } from "../../data.js";
 import '../ServicesDetalis.css'
@@ -101,7 +103,7 @@ const Navbar = ({ theme, setTheme }) => {
               <a href="/" 
                  onClick={(e) => {
                                     e.preventDefault(); 
-                                    window.location.href = "/"; // إعادة تحميل الصفحة بالكامل
+                                    window.location.href = "/";   
                                  }}
                  className="nav-link"
                >
@@ -111,22 +113,33 @@ const Navbar = ({ theme, setTheme }) => {
 
 
               <li className="nav-item dropdown">
-                <Link
-                    to="/ServBtn"
-                    state={{ services: servicesCards }}
-                     className="nav-link dropdown-toggle"
-                >
-                    Services
-  
-                   <ul className="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
-                   <li><a className="dropdown-item text-dark" href="/services-in/5">Teacher</a></li>
-                   <li><a className="dropdown-item text-dark" href="/services-in/4">Wall Painter</a></li>
-                    <li><a className="dropdown-item text-dark" href="/services-in/3">Babysitter</a></li>
-                    <li><hr className="dropdown-divider text-dark" /></li>
-                    <li><a className="dropdown-item text-dark" href="/ServBtn">More Services..</a></li>
-                    </ul>
-                </Link>
-              </li>
+  <Link
+    to="/ServBtn"
+    state={{ services: servicesCards }}
+    className="nav-link dropdown-toggle"
+    role="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Services
+  </Link>
+
+  <ul className="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
+    <li>
+      <Link className="dropdown-item text-dark" to="/services-in/5">Teacher</Link>
+    </li>
+    <li>
+      <Link className="dropdown-item text-dark" to="/services-in/4">Wall Painter</Link>
+    </li>
+    <li>
+      <Link className="dropdown-item text-dark" to="/services-in/3">Babysitter</Link>
+    </li>
+    <li><hr className="dropdown-divider text-dark" /></li>
+    <li>
+      <Link className="dropdown-item text-dark" to="/ServBtn">More Services..</Link>
+    </li>
+  </ul>
+</li>
 
               {/* <li className="nav-item">
                  <a href="#about-us" className="nav-link">About us</a>
@@ -159,17 +172,30 @@ const Navbar = ({ theme, setTheme }) => {
               </li>
           </ul>
           {user ? (
+          <div className="dropdown">
+          <button className="btn btn-outline-secondary userButton" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             <div className="d-flex align-items-center">
               <span className="me-2">{user.name}</span>
               <img
-                src={`/Storage/userpicture/${user.picture}` || "https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg"}
+                src={user.picture ? `/Storage/userpicture/${user.picture}` : defaultphoto}
                 alt="User"
                 className="rounded-circle"
                 width="40"
                 height="40"
               />
-              <button onClick={handleLogout} className="btn btn-outline-danger">Logout</button>
             </div>
+          </button>
+          <ul className="dropdown-menu " aria-labelledby="dropdownMenuButton">
+          <li><Link to="/profile" className="dropdown-item">Profile</Link></li>    
+          <li><Link to="/accountsetting" className="dropdown-item">Account Setting</Link></li>
+            <li><button className="dropdown-item">My Services</button></li>
+            <li><button className="dropdown-item">My Requests</button></li>
+            <li><button className="dropdown-item">Notifications</button></li>
+            <li><button onClick={handleLogout} className="dropdown-item">Logout</button></li>
+
+          </ul>
+        </div>
+        
           ) : (
             <div className="d-flex justify-content-end LoginAndJoin">
               <ul className="list-unstyled d-flex">

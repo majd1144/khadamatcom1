@@ -3,9 +3,6 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { useNavigate } from "react-router-dom"; 
 import "./Logins.css";
-import HomePage from "./HomePage";
-import { LogIn as LogInIcon } from "lucide-react";
-
 
 function MultiStepForm() {
   const [step, setStep] = useState(1);
@@ -153,7 +150,7 @@ function MultiStepForm() {
           <div className="col-md-4 col-sm-12 col-xs-12">
             <h1 className="h">Welcome to Khadamatkom</h1>
             <p className="para">
-              At Khidmatkom, we provide the solutions you need with reliability
+              At Khadmatkom, we provide the solutions you need with reliability
               and security, ensuring high-quality services that meet all your
               needs. Our goal is to make it easy to access services that offer
               peace of mind, affordable prices, and a swift, exceptional
@@ -362,10 +359,9 @@ function MultiStepForm() {
                         </div>
                       )}
 
-
                       <div className="button-group">
                         <button className="prev-btn" type="button" onClick={prevStep}>Previous</button>
-                        <button type="button">Submit</button>
+                        <button className="submit-btn" type="submit">Submit</button>
                       </div>
                     </>
                   )}

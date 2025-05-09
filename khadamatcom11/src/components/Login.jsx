@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link , useNavigate } from "react-router-dom"; 
 import "./Logins.css";
-import HomePage from "./HomePage";
 
 export default function Signin({ theme }) {
   const [email, setEmail] = useState("");
@@ -50,57 +49,6 @@ export default function Signin({ theme }) {
   };
 
 
-  //********************* */
-
-function MultiStepForm() {
-  const [formData, setFormData] = useState({
-    firstname: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [error, setError] = useState("");
-  const navigate = useNavigate(); // إنشاء المتغير navigate للتوجيه
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    
-    if (!formData.firstname || !formData.email || !formData.password) {
-      setError("Please fill in all required fields!");
-      return;
-    }
-
-    try {
-      const response = await fetch("http://localhost:4000/Join", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        alert(data.message); // الرسالة الناجحة من الخادم
-        navigate("/"); // التوجيه إلى الصفحة الرئيسية بعد النجاح
-      } else {
-        alert(data.error); // رسالة الخطأ من الخادم
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Something went wrong. Please try again.");
-    }
-  };
-
-  
-}
-
-
-
-
-
   return (
     <div>
       <div className="container">
@@ -108,7 +56,7 @@ function MultiStepForm() {
           <div className="col-md-4 col-sm-12 col-xs-12">
                    <h1 className="h">Welcome to khadamatkom</h1>
                     <p className="para">
-                        At Khidmatkom, we provide the solutions you need with reliability
+                        At Khadmatkom, we provide the solutions you need with reliability
                        and security, ensuring high-quality services that meet all your
                        needs. Our goal is to make it easy to access services that offer
                        peace of mind, affordable prices, and a swift, exceptional
@@ -140,11 +88,7 @@ function MultiStepForm() {
             required
            />
            </label>
-           <Link to="/HomePage">
-                <button type="submit">
-                 Submit
-                  </button>
-                  </Link>
+                <button type="submit">Submit</button>
                 <p className="signup-link">
                  Forgot your password? <Link to="/reset-password">Reset it here</Link>
                 </p>
@@ -160,4 +104,6 @@ function MultiStepForm() {
       </div>
     </div>
   );
-  }
+}
+
+        

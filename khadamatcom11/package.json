@@ -16,6 +16,7 @@
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
+    "formik": "^2.4.6",
     "lucide-react": "^0.479.0",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
@@ -39,7 +40,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start": "react-scripts start",
-    "server":"node Server.js"
+    "server": "node Server.js"
   },
   "eslintConfig": {
     "extends": [
