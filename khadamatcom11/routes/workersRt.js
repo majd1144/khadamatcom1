@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db-config");
 
-//Data fetching for users in react app
+//Data fetching for all workers in react app
 router.get("/", (req, res) => {
 
     db.query(`SELECT workers.*,
@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
     });
 });
 
-//Data fetching for users in react app
+//Data fetching for one worker in react app
 router.get("/:id", (req, res) => {
     const {id} = req.params;
     var stars = 0.0;
@@ -34,13 +34,15 @@ router.get("/:id", (req, res) => {
     if (err) return res.status(500).json({ error: 'Error fetching average' });
         //stars rating calculation
         stars =rslt.rows[0].average_rating
-    db.query("SELECT * FROM workers JOIN users ON workers.userid = users.id AND workers.id = $1", [id], (err, results) => {
+    db.query(`SELECT workers.id AS worker_id, workers.userid, users.id AS user_id, users.firstname, users.lastname, users.role, users.governorate, users.picture,
+        workers.servicecategory, workers.createdat, workers.experience, workers.bio, users.email, workers.fee, users.nationalid, users.birthdate, users.gender,
+        users.phone FROM workers JOIN users ON workers.userid = users.id  WHERE workers.id = $1`, [id], (err, results) => {
         if (err) {
             console.error("Error querying the database:", err.stack);
         }
         if (results.rows && results.rows.length > 0) {
             res.status(200).json({
-                id: results.rows[0].id,
+                id: results.rows[0].worker_id,
                 userid: results.rows[0].userid,
                 name: results.rows[0].firstname + " " + results.rows[0].lastname,
                 servicecategory: results.rows[0].servicecategory,
@@ -66,9 +68,61 @@ router.get("/:id", (req, res) => {
 });
 
 
-//Data fetching for users in react app
+//Data fetching for worker data from db where the id of user is provided
+router.get("/users/:id", (req, res) => {
+    const { id } = req.params;
+    const detailsQuery = `SELECT workers.id AS worker_id, workers.userid, users.id AS user_id, users.firstname, users.lastname,
+        users.role, users.governorate, users.picture, workers.servicecategory, workers.createdat, workers.experience, workers.bio,
+        users.email, workers.fee, users.nationalid, users.birthdate, users.gender, users.phone FROM workers JOIN users ON workers.userid = users.id
+        WHERE users.id = $1`;
+
+    db.query(detailsQuery, [id], (err, results) => {
+        if (err) {
+            console.error("Error querying the database:", err.stack);
+            return res.status(500).json({ error: "Database error" });
+        }
+
+        if (!results.rows || results.rows.length === 0) {
+            return res.status(404).json({ message: `There is no worker with user ID: ${id}` });
+        }
+
+        const workerData = results.rows[0];
+        const workerId = workerData.worker_id;
+        const avgQuery = `SELECT AVG(rating)::numeric(2,1) AS average_rating FROM reviews WHERE workerid = $1 AND rating IS NOT NULL`;
+        db.query(avgQuery, [workerId], (err, rslt) => {
+            if (err) {
+            console.error("Error fetching rating:", err.stack);
+            return res.status(500).json({ error: "Error fetching rating" });
+            }   
+        const stars = rslt.rows[0].average_rating || 0.0;
+        res.status(200).json({
+            id: workerData.worker_id,
+            userid: workerData.userid,
+            name: `${workerData.firstname} ${workerData.lastname}`,
+            servicecategory: workerData.servicecategory,
+            bio: workerData.bio,
+            experience: workerData.experience,
+            createdat: workerData.createdat,
+            fee: workerData.fee,
+            rating: stars,
+            nationalid: workerData.nationalid,
+            email: workerData.email,
+            role: workerData.role,
+            governorate: workerData.governorate,
+            phone: workerData.phone,
+            birthdate: workerData.birthdate,
+            gender: workerData.gender,
+            picture: workerData.picture || null});
+        });
+    });
+});
+
+
+
+//Data fetching for all workers by service category in react app
 router.get("/service/:servicecategory", (req, res) => {
-    const {servicecategory} = req.params;
+    var {servicecategory} = req.params;
+    servicecategory = servicecategory[0].toUpperCase() + servicecategory.slice(1);
     db.query(`SELECT workers.*,
                 users.*,
                 AVG(reviews.rating)::numeric(2,1) AS average_rating
