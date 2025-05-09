@@ -25,7 +25,7 @@ const WorkerProfile = () => {
       setUser(loggedUser);
 
       if (loggedUser.role === "worker") {
-        const workerResponse = await axios.get(`http://localhost:4000/workers/user/${loggedUser.id}`);
+        const workerResponse = await axios.get(`http://localhost:4000/workers/users/${loggedUser.id}`);
         const workerData = workerResponse.data;
         setWorker(workerData);
 
@@ -119,6 +119,11 @@ const WorkerProfile = () => {
     return <h2 className="text-center text-red-500 text-2xl">Loading User Data ...</h2>;
   }
 
+  // Show loading if the user is a worker and the worker data hasn't been fetched yet
+  if (user.role === "worker" && !worker) {
+    return <h2 className="text-center text-yellow-500 text-2xl">Loading Worker Data ...</h2>;
+  }
+
   return (
   <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10 text-center">
       <div className="row">
@@ -141,12 +146,11 @@ const WorkerProfile = () => {
             <p><strong>Username:</strong> {user.name}</p>
             <p><strong>Email:</strong> {user.email}</p>
             <p><strong>Phone:</strong> {user.phone || "N/A"}</p>
-            {user.role === "worker" &&  (
+            {user.role === "worker" && worker && (
               <>
-                <p><strong>Service:</strong> {user.servicecategory || "N/A"}</p>
-                <p><strong>Availability:</strong> {user.availability || "N/A"}</p>
-                <p><strong>Rating:</strong> {user.rating || 0} ⭐</p>
-                {/* worker dont use */}
+                <p><strong>Service:</strong> {worker.servicecategory || "N/A"}</p>
+                <p><strong>Availability:</strong> 8:00 A.M- 3:00 P.M</p>
+                <p><strong>Rating:</strong> {worker.rating || 0} ⭐</p>
               </>
             )}
           </div>

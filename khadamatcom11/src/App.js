@@ -6,7 +6,7 @@ import Join from "./components/Join.jsx";
 import Login from "./components/Login.jsx";
 import ServicesIn from './components/ServicesIn.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
-import Footerr from './components/Footerr.jsx'
+import Footerr from './components/footerr.jsx'
 import ServiceDetails from './components/ServiceDetails.jsx';
 import ServBtn from './components/ServBtn.jsx';
 import Profile from './components/Profile.jsx';
