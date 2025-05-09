@@ -212,7 +212,7 @@ const WorkerProfile = () => {
           
 
       <div className="container">
-          <hr/>
+          <hr/> 
         <div className="comment-section">
           <div className="mb-4">
             {user ? (
