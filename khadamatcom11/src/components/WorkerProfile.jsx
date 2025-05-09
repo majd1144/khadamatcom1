@@ -13,7 +13,7 @@ const WorkerProfile = () => {
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
-
+  const [location,setLocation]=useState("");
   const workers = servicesCards.find((w) => w.id === parseInt(id));
 
   // Helper function to get user image or default
@@ -23,6 +23,8 @@ const WorkerProfile = () => {
 
   // Get logged-in user
   useEffect(() => {
+    console.log("user");
+    
     axios.get("http://localhost:4000/users/loggedin_user", { withCredentials: true })
       .then((res) => setUser(res.data))
       .catch((err) => console.error("Error fetching user:", err));
@@ -30,6 +32,9 @@ const WorkerProfile = () => {
 
   // Get worker data
   useEffect(() => {
+    console.log("worker");
+    
+
     axios.get(`http://localhost:4000/workers/${id}`)
       .then((res) => setWorker(res.data))
       .catch((err) => console.error("Error fetching worker:", err));
@@ -37,11 +42,20 @@ const WorkerProfile = () => {
 
   // Get worker reviews
   useEffect(() => {
+    console.log("reviews");
+    
     axios.get(`http://localhost:4000/reviews/${id}`)
       .then((res) => setReviews(res.data))
       .catch((err) => console.error("Error fetching reviews:", err));
   }, [id]);
-
+  useEffect(() => {
+    console.log("location");
+    
+    axios.get(`http://localhost:4000/location/${id}`)
+      .then((res) => setLocation(res.data))
+      .catch((err) => console.error("Error fetching location:", err));
+  }, [id]);
+  
   if (!worker) {
     return <h2 className="text-center text-red-500 text-2xl">Loading Worker Data...</h2>;
   }
@@ -88,6 +102,7 @@ const WorkerProfile = () => {
           <h2 className="text-xl font-bold mt-2">{worker.name}</h2>
           <div className="mt-4 text-gray-700 text-sm">
             <p><span className="font-semibold">Service:</span> {worker.servicecategory}</p>
+            <p><span className="font-semibold">Location:</span> {worker.location || "Not specified"}</p>
             <p><span className="font-semibold">Rating:</span> {worker.rating || 0} ⭐</p>
             <p><span className="font-semibold">Price:</span> {worker.fee} JD</p>
             <p><span className="font-semibold">Availability:</span> {worker.availability || "8 a.m - 4 p.m"}</p>
@@ -171,7 +186,13 @@ const WorkerProfile = () => {
                       <span className="comment-time">{rev.createdat}</span>
                     </div>
                     <p className="mb-2">{rev.comment}</p>
-                    <p className="mb-2">Rating: {rev.rating} ⭐</p>
+                    <p>
+  <span className="font-semibold">Rating:</span>{" "}
+  {rev.rating
+    ? "⭐".repeat(Math.round(rev.rating))
+    : "No rating"}
+</p>
+
                     <div className="comment-actions">
                       <a href="#like"><i className="bi bi-heart"></i> Like</a>
                     </div>

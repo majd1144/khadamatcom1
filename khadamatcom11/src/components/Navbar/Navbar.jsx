@@ -113,22 +113,33 @@ const Navbar = ({ theme, setTheme }) => {
 
 
               <li className="nav-item dropdown">
-                <Link
-                    to="/ServBtn"
-                    state={{ services: servicesCards }}
-                     className="nav-link dropdown-toggle"
-                >
-                    Services
-  
-                   <ul className="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
-                   <li><a className="dropdown-item text-dark" href="/services-in/5">Teacher</a></li>
-                   <li><a className="dropdown-item text-dark" href="/services-in/4">Wall Painter</a></li>
-                    <li><a className="dropdown-item text-dark" href="/services-in/3">Babysitter</a></li>
-                    <li><hr className="dropdown-divider text-dark" /></li>
-                    <li><a className="dropdown-item text-dark" href="/ServBtn">More Services..</a></li>
-                    </ul>
-                </Link>
-              </li>
+  <Link
+    to="/ServBtn"
+    state={{ services: servicesCards }}
+    className="nav-link dropdown-toggle"
+    role="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Services
+  </Link>
+
+  <ul className="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
+    <li>
+      <Link className="dropdown-item text-dark" to="/services-in/5">Teacher</Link>
+    </li>
+    <li>
+      <Link className="dropdown-item text-dark" to="/services-in/4">Wall Painter</Link>
+    </li>
+    <li>
+      <Link className="dropdown-item text-dark" to="/services-in/3">Babysitter</Link>
+    </li>
+    <li><hr className="dropdown-divider text-dark" /></li>
+    <li>
+      <Link className="dropdown-item text-dark" to="/ServBtn">More Services..</Link>
+    </li>
+  </ul>
+</li>
 
               {/* <li className="nav-item">
                  <a href="#about-us" className="nav-link">About us</a>

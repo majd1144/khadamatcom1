@@ -19,19 +19,34 @@
 //         </div>
 //     );
 // }
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { servicesCards } from '../data.js';
 import "./ServicesDetalis.css";
 import Booknow from './Booknow.jsx';
+import axios from 'axios';
+
+
+
 
 export default function ServiceDetails() {
   const { id } = useParams();
+  
+  useEffect(() => {
+    console.log("user");
+    
+    axios.get("http://localhost:4000/workers/service/"+ id, { withCredentials: true })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.error("Error fetching user:", err));
+  }, []);
+   
   const services = servicesCards.filter((s) => s.id?.toString() === id?.toString());
 
-  const [showForm, setShowForm] = useState(false);
+  console.log(services);
+  
 
+  const [showForm, setShowForm] = useState(false);
   // دالة لتغيير الحالة عند الضغط على زر Book Now
   const handleBookNowClick = () => {
     setShowForm(true);
