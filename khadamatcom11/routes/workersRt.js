@@ -123,15 +123,11 @@ router.get("/users/:id", (req, res) => {
 router.get("/service/:servicecategory", (req, res) => {
     var {servicecategory} = req.params;
     servicecategory = servicecategory[0].toUpperCase() + servicecategory.slice(1);
-    db.query(`SELECT workers.*,
-                users.*,
-                AVG(reviews.rating)::numeric(2,1) AS average_rating
-                FROM workers 
-                JOIN users ON workers.userid = users.id
-                LEFT JOIN reviews ON workers.id = reviews.workerid
-				WHERE  workers.servicecategory =$1
-                GROUP BY workers.id, users.id
-                ORDER BY average_rating ASC;`
+    db.query(`SELECT  workers.id AS worker_id, workers.userid, workers.servicecategory, workers.bio, workers.experience,
+    workers.fee, workers.createdat, users.id AS user_id, users.firstname, users.lastname, users.email, users.password, users.nationalid, users.phone, 
+    users.birthdate, users.governorate, users.gender, users.role, users.picture, AVG(reviews.rating)::numeric(2,1) AS average_rating
+    FROM workers  JOIN users ON workers.userid = users.id LEFT JOIN reviews ON workers.id = reviews.workerid
+WHERE workers.servicecategory = $1 GROUP BY  workers.id, workers.userid, workers.servicecategory, workers.bio, workers.experience, workers.fee, workers.createdat, users.id, users.firstname, users.lastname, users.email, users.password, users.nationalid, users.phone, users.birthdate, users.governorate, users.gender, users.role, users.picture ORDER BY average_rating ASC;`
             ,[servicecategory], (err, results) => {
         if (err) {
             console.error("Error querying the database:", err.stack);
