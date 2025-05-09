@@ -103,7 +103,7 @@ const Navbar = ({ theme, setTheme }) => {
               <a href="/" 
                  onClick={(e) => {
                                     e.preventDefault(); 
-                                    window.location.href = "/"; // إعادة تحميل الصفحة بالكامل
+                                    window.location.href = "/";   
                                  }}
                  className="nav-link"
                >
@@ -186,10 +186,8 @@ const Navbar = ({ theme, setTheme }) => {
             </div>
           </button>
           <ul className="dropdown-menu " aria-labelledby="dropdownMenuButton">
-          <li>
-              <Link to="/profile" className="dropdown-item">Profile</Link>
-            </li>    
-                    <li><button className="dropdown-item">Account Settings</button></li>
+          <li><Link to="/profile" className="dropdown-item">Profile</Link></li>    
+          <li><Link to="/accountsetting" className="dropdown-item">Account Setting</Link></li>
             <li><button className="dropdown-item">My Services</button></li>
             <li><button className="dropdown-item">My Requests</button></li>
             <li><button className="dropdown-item">Notifications</button></li>

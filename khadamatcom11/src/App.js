@@ -10,14 +10,9 @@ import Footerr from './components/Footerr.jsx'
 import ServiceDetails from './components/ServiceDetails.jsx';
 import ServBtn from './components/ServBtn.jsx';
 import Profile from './components/Profile.jsx'; 
-
+import AccountSetting from './components/dropdownProfile/AccountSetting.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-// <<<<<<< HEAD
-// =======
-// import "bootstrap/dist/css/bootstrap.min.css";
-
-// >>>>>>> 41456b6b58f39b0744a571e50e097fecaf9048c9
 import WorkerProfile from './components/WorkerProfile.jsx';
 import Booknow from './components/Booknow.jsx';
 export default function App() {
@@ -39,6 +34,7 @@ export default function App() {
           <Route path="/worker/:id" element={<WorkerProfile />} /> إضافة هذا المسار
           <Route path="/booknow" element={<Booknow />} />
           <Route path="/profile" element={<Profile />} /> 
+          <Route path="/accountSetting" element={<AccountSetting />} /> 
 
           {/* <Route path="/" element={<Services />} /> */}
           <Route path="/Login" element={<Login />} />
