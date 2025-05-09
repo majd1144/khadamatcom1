@@ -31,7 +31,7 @@ export default function ServicesCards({ services }) {
             <div className="services-cards-wrapper" ref={scrollRef}>
                 <div className="services-cards">
                     {services.map((service) => (
-                        <Link to={`/services-in/${service.id}`} key={service.id} className="service-card" >
+                        <Link to={`/services-in/${service.title}`} key={service.title} className="service-card" >
                             <img src={service.image} alt='service' />
                             <p>{service.title}</p>
                         </Link>
