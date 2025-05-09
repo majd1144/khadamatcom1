@@ -121,7 +121,8 @@ router.get("/users/:id", (req, res) => {
 
 //Data fetching for all workers by service category in react app
 router.get("/service/:servicecategory", (req, res) => {
-    const {servicecategory} = req.params;
+    var {servicecategory} = req.params;
+    servicecategory = servicecategory[0].toUpperCase() + servicecategory.slice(1);
     db.query(`SELECT workers.*,
                 users.*,
                 AVG(reviews.rating)::numeric(2,1) AS average_rating

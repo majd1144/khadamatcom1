@@ -6,7 +6,7 @@ import Join from "./components/Join.jsx";
 import Login from "./components/Login.jsx";
 import ServicesIn from './components/ServicesIn.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
-import Footerr from './components/Footerr.jsx'
+import Footerr from './components/footerr.jsx'
 import ServiceDetails from './components/ServiceDetails.jsx';
 import ServBtn from './components/ServBtn.jsx';
 import Profile from './components/Profile.jsx'; 
@@ -23,8 +23,6 @@ import Booknow from './components/Booknow.jsx';
 export default function App() {
     const [theme, setTheme] = useState('light');
   return (
-   
-
     
     <Router>
       <Navbar  theme={theme} setTheme={setTheme}/>
@@ -33,7 +31,7 @@ export default function App() {
           {/* <Route path="/" element={<HomePage />} /> */}
           <Route path="/" element={<HomePage theme={theme} />} />  {/* تم تمرير theme إلى HomePage */}
           <Route path="/ServicesIn" element={<ServicesIn/>} />
-          <Route path="/services-in/:id" element={<ServiceDetails />} />  {/* تمرير الـ ID هنا */}
+          <Route path="/services-in/:servicecategory" element={<ServiceDetails />} />  {/* تمرير الـ ID هنا */}
           <Route path="/ServBtn"  element={<ServBtn theme={theme} />} />
 
           <Route path="/worker/:id" element={<WorkerProfile />} /> إضافة هذا المسار
