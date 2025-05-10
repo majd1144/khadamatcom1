@@ -1,0 +1,153 @@
+.welcome-board {
+  position: relative;
+  height: 500px; /* Set to a similar height as Fiverr’s box */
+  width: 100%;
+  max-width: 1200px; /* This keeps the box from getting too wide */
+  margin: 0 auto; /* Centers the box horizontally */
+  overflow: hidden;
+  border-radius: 10px; /* Optional: rounded corners */
+  margin-top: 20px;
+}
+.container_welcome {
+  background-color: blue; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to bottom right, #2673d0 , #cddef2);
+  color: white;
+  padding: 50px;
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+  margin: 40px;
+}
+.container_welcome h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-family:  Macan, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.search-bar_wel {
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.search-bar_wel input {
+  width: 100%;
+  padding: 12px 40px 12px 20px;
+  border: 2px solid #000;
+  border-radius: 25px;
+  font-size: 1rem;
+}
+
+.search-bar_wel button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #000;
+  cursor: pointer;
+}
+
+.search-bar_wel button:focus {
+  outline: none;
+}
+
+.search-bar_wel input:focus + button {
+  color: #007bff; /* Change color when input is focused */
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
+  border-radius: 10px;
+}
+
+h1, p {
+  margin: 10px 0;
+  background: none; 
+}
+.Services {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: flex-start;
+   padding: 10px;
+  gap: 20px; 
+    width: 100%;
+}
+
+.servicesCards li {
+  margin: 0; 
+  width: 200px;
+  height: 250px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 10px black;
+  transition: all 0.2s ease-in-out;
+  background-color: #ffff;
+}
+
+.servicesCards img {
+  width: 95%; 
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5%;
+  transform: scaleX(1.051);
+}
+
+.servicesCards li h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0c0c0c; 
+  font-family: "Arial", sans-serif;
+  text-align: center;
+  padding: 10px;
+}
+.servicesCards li:hover h3 {
+  color: #1f8fea;
+}
+
+
+
+.p-under-welcomeboard {
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+    margin-left: 150px; 
+    margin-top: 50px;
+    background: #fefefed2;
+    padding: 10px 20px;
+    border-radius: 50px;
+    max-width: 300px;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+body {
+  transition: background-color 0.5s ease; 
+}
+
+.servicesCards li:hover,
+.servicesCards li:focus {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.nav{
+  position:sticky;
+  top:0;
+}
+

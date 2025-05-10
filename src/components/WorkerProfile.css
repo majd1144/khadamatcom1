@@ -1,0 +1,173 @@
+.containerForJob{
+    max-width: 400px;
+    background-color: rgba(208, 205, 226, 0.244);
+    margin-top: 20px;
+    margin-left: 50px;
+    border-radius: 20px;
+
+}
+
+.Img{
+    margin-top: 50px;
+    max-width: 200px;
+    border-radius: 200px;
+}
+
+.WorkPictures{
+    margin-top: 20px;
+}
+
+.con-comment{
+    /* max-width: 1000px; */
+    width: 700px;
+    background-color: rgba(250, 245, 245, 0.507);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+.comment{
+    gap: 8px;
+}
+.ImgUser img{
+border-radius: 50%;
+height: 50px;
+width: 50px;
+margin-left: 0px;
+object-fit: cover;
+
+}
+
+
+
+.comment-section {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.comment-box {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+    border: 1px solid #e9ecef;
+}
+
+.comment-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment-input {
+    border-radius: 20px;
+    padding: 15px 20px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s;
+}
+
+.comment-input:focus {
+    box-shadow: none;
+    border-color: #86b7fe;
+}
+
+.btn-comment {
+    border-radius: 20px;
+    padding: 8px 25px;
+    background: #0d6efd;
+    border: none;
+    transition: all 0.3s;
+}
+
+.btn-comment:hover {
+    background: #0b5ed7;
+    transform: translateY(-1px);
+}
+
+.comment-actions {
+    font-size: 0.9rem;
+}
+
+.comment-actions a {
+    color: #6c757d;
+    text-decoration: none;
+    margin-right: 15px;
+    transition: color 0.2s;
+}
+
+.comment-actions a:hover {
+    color: #0d6efd;
+}
+
+.comment-time {
+    color: #adb5bd;
+    font-size: 0.85rem;
+}
+
+.reply-section {
+    margin-left: 60px;
+    border-left: 2px solid #e9ecef;
+    padding-left: 20px;
+}
+/* تنسيق المعرض والصور */
+.gallery-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .gallery-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+  }
+  
+  .navigation-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+  }
+  
+  .nav-btn {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  .thumbnail-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .thumbnail-image:hover {
+    opacity: 0.7;
+  }
+  
+
+
+
+
+  
