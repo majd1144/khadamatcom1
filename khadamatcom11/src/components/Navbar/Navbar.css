@@ -123,5 +123,10 @@ font-family: Arial, Helvetica, sans-serif;
   text-decoration:solid black !important;
 }
 
+.navbarRes{
+  margin-left: 1rem;
+  padding: 10px;
+  overflow: auto !important;
+}
 
 

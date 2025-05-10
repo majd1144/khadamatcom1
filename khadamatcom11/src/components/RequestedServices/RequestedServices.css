@@ -1,0 +1,48 @@
+.requested-services {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+.services-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.service-card {
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  border-left: 6px solid #ccc;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.service-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.status-pending {
+  border-left-color: #ffc107;
+}
+
+.status-accepted {
+  border-left-color: #28a745;
+}
+
+.status-rejected {
+  border-left-color: #dc3545;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.cancel-button:hover {
+  background-color: #c82333;
+}

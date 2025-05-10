@@ -111,9 +111,9 @@ const AccountSettings = () => {
   return (
     <div className="account-settings">
       <h2>Account Settings</h2>
-
-      <p><strong>Account Type:</strong> {user.role}</p>
-
+<br/>
+      <p style={{ fontSize: '25px' }}><strong>Account Type:</strong> {user.role}</p>
+<hr/>
       <div className="field-row">
         <strong>Name :</strong>
         {isEditing.name ? (
@@ -168,7 +168,7 @@ const AccountSettings = () => {
           </>
         ) : (
           <>
-            <span>{user.location}</span>
+            <span>{user.governorate}</span>
             <button onClick={() => handleEditClick("location")}>Edit</button>
           </>
         )}
@@ -176,7 +176,7 @@ const AccountSettings = () => {
 
       {user.role === "worker" ? (
         <><div className="field-row">
-  <label>Job Type:</label>
+  <label>Job Type : {formValues.servicecategory || ""}</label>
   <div className="field-content">
     {isEditing.jobType ? (
       <>
@@ -203,7 +203,7 @@ const AccountSettings = () => {
   </div>
 </div>
 
-          <div>
+          <div className="field-row">
             <strong>Price:</strong>
             {isEditing.price ? (
               <>
@@ -223,13 +223,13 @@ const AccountSettings = () => {
           <button onClick={handleBecomeProvider}>Become a Worker?</button>
         ) : (
           <div>
-            <h4>Became a Worker </h4>
+            <h4>Became a Worker</h4>
             <div className="field-row">
-  <label>Job Type:</label>
+  <label>Job Type: </label>
   <div className="field-content">
     <select
       name="jobType"
-      value={formValues.jobType || ""}
+      value={formValues.jobType || "KKnjnj"}
       onChange={handleInputChange}
     >
       <option value="">Select Job Type</option>

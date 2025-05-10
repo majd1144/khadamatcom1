@@ -88,15 +88,15 @@ const Navbar = ({ theme, setTheme }) => {
                 </Link>
 
            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
+                className="navbar-toggler ms-auto "
+                   type="button"
+                   data-bs-toggle="collapse"
+                  data-bs-target="#navbarNav"
+                  aria-controls="navbarNav"
+                 aria-expanded="false"
+                 aria-label="Toggle navigation"
                >
-               <span className="navbar-toggler-icon"></span>
+               <span className="navbar-toggler-icon "></span>
            </button>
 
         <div className="collapse navbar-collapse " id="navbarNav">
@@ -131,13 +131,6 @@ const Navbar = ({ theme, setTheme }) => {
                     </ul>
                 </Link>
               </li>
-
-              {/* <li className="nav-item">
-                 <a href="#about-us" className="nav-link">About us</a>
-              </li>
-               <li className="nav-item">
-                 <a href="#Help" className="nav-link ">Help</a>
-              </li> */}
               <li className="nav-item">
               <a href="/" 
                  onClick={(e) => {
@@ -176,12 +169,12 @@ const Navbar = ({ theme, setTheme }) => {
               />
             </div>
           </button>
+          {/* RequestedServices */}
           <ul className="dropdown-menu " aria-labelledby="dropdownMenuButton">
           <li><Link to="/profile" className="dropdown-item">Profile</Link></li>    
           <li><Link to="/accountsetting" className="dropdown-item">Account Setting</Link></li>
-            <li><button className="dropdown-item">My Services</button></li>
-            <li><button className="dropdown-item">My Requests</button></li>
-            <li><button className="dropdown-item">Notifications</button></li>
+            <li><Link to="/MyServices" className="dropdown-item">My Services</Link></li>
+            <li><Link to ="/RequestedServices" className="dropdown-item">My Requests</Link></li>
             <li><button onClick={handleLogout} className="dropdown-item">Logout</button></li>
 
           </ul>
@@ -200,11 +193,12 @@ const Navbar = ({ theme, setTheme }) => {
             </div>
           )}
               </div>
+              <div className='navbarRes'></div>
             <img
                 onClick={toggle_mode}
                 src={theme === 'light' ? logo_light : logo_dark}
                 alt="toggle theme"
-                className="modelogo  "
+                className="modelogo navbarRes "
                 style={{ cursor: 'pointer' }}
             />
 

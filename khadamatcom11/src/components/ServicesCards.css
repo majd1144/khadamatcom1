@@ -47,10 +47,8 @@
   display:none;
 }
 
-/* حاوية البطاقة */
 .services-cards {
   display: flex;
-  
 }
 
 /* تصميم البطاقة */
@@ -63,7 +61,7 @@
    background:rgb(255, 254, 254);
   justify-content: center; 
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
   text-decoration:none;
   color: inherit; /* ابقاء النص من الروابط بنفس اللون */
   font-size: 20px !important;

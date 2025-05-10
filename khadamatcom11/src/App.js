@@ -12,6 +12,8 @@ import ServBtn from './components/ServBtn.jsx';
 import Profile from './components/Profile.jsx';
 import ServicesWorkers from "./components/ServicesWorkers.jsx" 
 import AccountSetting from './components/dropdownProfile/AccountSetting.jsx'
+import MyServices from './components/myServices/MyServices.jsx';
+import RequestedServices from './components/RequestedServices/RequestedServices.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import WorkerProfile from './components/WorkerProfile.jsx';
@@ -34,8 +36,8 @@ export default function App() {
           <Route path="/booknow" element={<Booknow />} />
           <Route path="/profile" element={<Profile />} /> 
           <Route path="/accountSetting" element={<AccountSetting />} /> 
-
-          {/* <Route path="/" element={<Services />} /> */}
+          <Route path="/MyServices" element={<MyServices/>}/>
+          <Route path="/RequestedServices" element={<RequestedServices />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Join" element={<Join />} />
           <Route path="/services-in/:servicecategory" element={<ServicesWorkers />} />

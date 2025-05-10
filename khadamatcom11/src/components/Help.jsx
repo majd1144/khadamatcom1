@@ -9,7 +9,7 @@ const Help = () => {
   }, []);
 
   return (
-    <div id="Help" className="help-container">
+    <div id="Help" className="help-container w-50">
       <h2 className="text-center help-title">Help & FAQ</h2>
       {/* FAQ; FREQUENTLEY ASKED OUESTION */}
       <div className="accordion" id="accordionExample">

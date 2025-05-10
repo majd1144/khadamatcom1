@@ -1,4 +1,5 @@
 import React from "react";
+
 const formStyle = {
   position: "fixed",
   top: "50%",
@@ -11,6 +12,15 @@ const formStyle = {
   boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
   zIndex: 9999,
   width: "80%",
+};
+
+const customInputStyle = {
+  width: "60%", // Adjust the width for the input field
+};
+
+const customSelectStyle = {
+  width: "30%", // Smaller width for the select dropdown
+  fontSize: "0.9rem", // Adjust the font size to make it look smaller
 };
 
 export default function Booknow({ handleCloseForm }) {
@@ -71,7 +81,7 @@ export default function Booknow({ handleCloseForm }) {
           <label htmlFor="price" className="form-label">
             Price
           </label>
-          <input type="number" className="form-control" id="price" required />
+          <input type="number" className="form-control" id="price" required min="0"/>
           <div className="invalid-tooltip">Please provide a valid price.</div>
         </div>
 
@@ -83,12 +93,31 @@ export default function Booknow({ handleCloseForm }) {
           <div className="invalid-tooltip">Please provide a valid phone number.</div>
         </div>
 
+        {/* Duration input */}
         <div className="col-md-6 position-relative">
-          <label htmlFor="contactNumber" className="form-label">
-            Contact Number
+          <label htmlFor="duration" className="form-label">
+            Duration
           </label>
-          <input type="tel" className="form-control" id="contactNumber" required />
-          <div className="invalid-tooltip">Please provide a contact number.</div>
+          <div className="d-flex">
+            <input
+              type="number"
+              className="form-control"
+              id="duration"
+              required
+              placeholder="Enter number"
+              style={customInputStyle} // Apply the custom input style
+              min="0" // Set the minimum value to 0
+            />
+            <select
+              className="form-control ms-2"
+              id="unit"
+              style={customSelectStyle} // Apply the custom select style
+            >
+              <option value="hours">Hours</option>
+              <option value="days">Days</option>
+            </select>
+          </div>
+          <div className="invalid-tooltip">Please provide a valid duration.</div>
         </div>
 
         <div className="col-12">
