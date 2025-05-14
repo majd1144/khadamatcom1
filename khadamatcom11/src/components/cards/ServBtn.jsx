@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 import ServicesCards from './ServicesCards';
 import "./ServicesDetalis.css";
 
-// شريط الفلترة
 const FilterBar = ({ onFilterChange }) => {
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("");
@@ -79,7 +78,6 @@ const FilterBar = ({ onFilterChange }) => {
 
 // مكون عرض الخدمات والفلترة
 export default function ServBtn({ theme }) {
-  const isLight = theme === 'light'; // تحديد ما إذا كان الثيم فاتحًا
   const location = useLocation();
   const services = location.state?.services || []; // تجنب الأخطاء إذا لم يتم تمرير بيانات
   const [filteredServices, setFilteredServices] = useState(services);
@@ -110,14 +108,10 @@ export default function ServBtn({ theme }) {
        <div
     className="container_welcome"
     style={{
-      background: isLight
-        ? 'linear-gradient(to bottom right, #2673d0 , #cddef2)' 
-        : 'linear-gradient(to bottom right, #3c3838, rgb(96, 88, 88))', 
-      width: '75%',
+      background: 'linear-gradient(to bottom right, #2673d0 , #cddef2)' ,
+      width: '80%',
       margin: '0 auto',
       marginTop: '50px',
-      transition: 'background 0.3s ease-in-out' // تأثير سلس عند التبديل
-    
     }}
     
   >

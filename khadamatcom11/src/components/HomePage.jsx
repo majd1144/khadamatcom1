@@ -4,11 +4,11 @@ import { servicesCards } from "../data.js";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Link } from 'react-router-dom';
 import InforMation from "./informations/informations.jsx";
-import ServicesCards from './ServicesCards.jsx';
+import ServicesCards from './cards/ServicesCards.jsx';
 import "../App.css";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import Help from "./Help.jsx";
+import Help from "./Help/Help.jsx";
 import Testcom from "./Testcom.jsx"
 
 

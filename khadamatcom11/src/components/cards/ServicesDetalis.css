@@ -78,14 +78,57 @@
 .btn:hover {
   background-color: #0056b3;
 }
+
+.CardWorker{
+ background: linear-gradient(to bottom right,  #5298ee, #cddef2);
+ border-radius: 20px !important;
+ box-shadow: 0px 2px 3px rgba(54, 53, 53, 0.5) !important;
+ border: 2px solid #ffffff !important;
+
+}
 .card img {
 border-radius: 300px;
 width: 150px;
 margin-left: 120px;
 margin-top: 10px;
+border: 2px solid #ffffff;
+
 }
 
-/* تحسين استجابة التصميم */
+h3{
+  /* fontFamily: 'roman', textAlign: 'center', color: 'white'  */
+  text-align: center ;
+  font-family: 'Times New Roman', Times, serif;
+  color: white !important;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  border: 1px solid;
+  border-radius: 9px;
+  max-width: 220px;
+ margin-left: 70px;
+}
+  .btn-CARDW {
+  background: linear-gradient(135deg,#bbd4f2);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  max-width: 100%;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-CARDW:hover {
+  background: linear-gradient(135deg, #1f5fb2, #b6d3f0);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
 @media (max-width: 600px) {
   .service-card {
     width: 90%;

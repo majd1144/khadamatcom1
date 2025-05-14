@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from "react-router-dom";
 import './WorkerProfile.css';
-import person from "../asset/person.png";
+import person from "../../asset/person.png";
 import axios from 'axios';
 
 const WorkerProfile = () => {
@@ -121,13 +121,13 @@ const WorkerProfile = () => {
 
   // Show loading if the user is a worker and the worker data hasn't been fetched yet
   if (user.role === "worker" && !worker) {
-    return <h2 className="text-center text-yellow-500 text-2xl">Loading Worker Data ...</h2>;
+    return <h1 className="text-center text-yellow-500 text-2xl">Loading Worker Data ...</h1>;
   }
 
   return (
   <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10 text-center">
-      <div className="row">
-        <div className="col-md-6 text-left containerForJob">
+      <div className="row ">
+        <div className="col-md-6 text-left containerForJob Profile">
           <div className="flex items-center gap-4">
             <img
               src={user.picture ? `/Storage/userpicture/${user.picture}` : person}
@@ -135,22 +135,23 @@ const WorkerProfile = () => {
               className="Img img-fluid rounded-circle"
             />
             <div>
-              <h2 className="text-xl font-bold mt-2">{user.name}</h2>
-              <button className="text-blue-500 mt-2" onClick={() => document.getElementById('profileImageUpload').click()}>
+              <h2 className="h2 text-xl font-bold mt-2 ">{user.name}</h2>
+              <button className="text-500 mt-2 btn-img" onClick={() => document.getElementById('profileImageUpload').click()}>
                 Change the picture
               </button>
               <input type="file" id="profileImageUpload" accept="image/*" style={{ display: 'none' }} onChange={handleProfileImageChange} />
             </div>
           </div>
-          <div className="mt-4 text-gray-700 text-sm">
-            <p><strong>Username:</strong> {user.name}</p>
-            <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>Phone:</strong> {user.phone || "N/A"}</p>
+          <div className="mt-4 text-gray-700 text-sm ">
+            <p className='info-WU'><strong >Username:</strong> {user.name}</p>
+            <p className='info-WU'><strong>Email:</strong> {user.email}</p>
+            <p className='info-WU'><strong>Phone:</strong> {user.phone || "N/A"}</p>
             {user.role === "worker" && worker && (
               <>
-                <p><strong>Service:</strong> {worker.servicecategory || "N/A"}</p>
-                <p><strong>Availability:</strong> 8:00 A.M- 3:00 P.M</p>
-                <p><strong>Rating:</strong> {worker.rating || 0} ⭐</p>
+                <p className='info-WU'><strong>Service:</strong> {worker.servicecategory || "N/A"}</p>
+                <p className='info-WU'><strong>Availability:</strong> 8:00 A.M- 3:00 P.M</p>
+                <p className='info-WU'><strong>Rating:</strong> {worker.rating || 0} ⭐</p>
+                <br/>
               </>
             )}
           </div>
@@ -160,9 +161,8 @@ const WorkerProfile = () => {
             {user.role === "worker" && (
         <>
         <div className="col-md-6 mt-6 WorkPictures">
-            <h3 className="text-lg font-semibold">Upload Work Photo:</h3>
+            <h2 className="text-lg font-semibold PforW">Upload Work Photo:</h2>
              <div className="relative mt-4">
-
               <input
               type="file"
               id="imageUploadInput"
@@ -185,7 +185,7 @@ const WorkerProfile = () => {
                   <img
                     src={gallery[currentIndex]}
                     alt="Gallery"
-                    className="gallery-image w-full h-48 object-cover rounded-md"
+                    className="gallery-image w-full h-48 object-cover rounded-md imgWJ"
                   />
                 </div>
 
@@ -215,7 +215,7 @@ const WorkerProfile = () => {
           </div>
           
 
-      <div className="container">
+      <div className="container info-commint">
           <hr/> 
         <div className="comment-section">
           <div className="mb-4">
@@ -228,7 +228,7 @@ const WorkerProfile = () => {
                   />
                   <h4>{user.name}</h4>
                   <div className="flex-grow-1">
-                    <p className="text-gray-500 italic">You can't comment or rate yourself.</p>
+                    <p className="text-gray-500 italic info-commint">You can't comment or rate yourself.</p>
                   </div>
                 </div>
               </form>

@@ -1,8 +1,9 @@
 
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 import './Footer.css'; 
-import logo_m from '../asset/MainLogoL.png';
-import logo_dark_for from '../asset/mainLogoD.png';
+import logo_m from '../../asset/MainLogoL.png';
+
+import logo_dark_for from '../../asset/mainLogoD.png';
 
 export default function FooteRr({theme}) {
     return (

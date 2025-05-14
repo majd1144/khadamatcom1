@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from "react-router-dom";
-import { servicesCards } from "../data";
+import { servicesCards } from "../../data";
 import ReactStars from "react-rating-stars-component";
 import './WorkerProfile.css';
-import person from "../asset/person.png";
+import person from "../../asset/person.png";
 import axios from 'axios';
 
 const WorkerProfile = () => {
@@ -99,19 +99,20 @@ const WorkerProfile = () => {
             alt={worker.title}
             className="Img img-fluid rounded-circle"
           />
-          <h2 className="text-xl font-bold mt-2">{worker.name}</h2>
+          <h2 className=" h2 text-xl font-bold mt-2">{worker.name}</h2>
+          <br/>
           <div className="mt-4 text-gray-700 text-sm">
-            <p><span className="font-semibold">Service:</span> {worker.servicecategory}</p>
-            <p><span className="font-semibold">Location:</span> {worker.location || "Not specified"}</p>
-            <p><span className="font-semibold">Rating:</span> {worker.rating || 0} ⭐</p>
-            <p><span className="font-semibold">Price:</span> {worker.fee} JD</p>
-            <p><span className="font-semibold">Availability:</span> {worker.availability || "8 a.m - 4 p.m"}</p>
+            <p className='info-WU'><span className="font-semibold">Service:</span> {worker.servicecategory}</p>
+            <p className='info-WU'><span className="font-semibold">Location:</span> {worker.location || "Not specified"}</p>
+            <p className='info-WU'><span className="font-semibold">Rating:</span> {worker.rating || 0} ⭐</p>
+            <p className='info-WU'><span className="font-semibold">Price:</span> {worker.fee} JD</p>
+            <p className='info-WU'><span className="font-semibold">Availability:</span> {worker.availability || "8 a.m - 4 p.m"}</p>
           </div>
         </div>
 
         {/* Work Gallery */}
         <div className="col-md-6 mt-6 WorkPictures">
-          <h3 className="text-lg font-semibold">Work Gallery:</h3>
+          <h2 className="text-lg font-semibold PforW">Work Gallery:</h2>
           <div className="grid grid-cols-2 gap-4 mt-2">
             {workers?.workImages && workers.workImages.length > 0 ? (
               workers.workImages.map((img, index) => (
@@ -119,7 +120,7 @@ const WorkerProfile = () => {
                   key={index}
                   src={img}
                   alt={`Work ${index}`}
-                  className="w-full h-32 object-cover rounded-md"
+                  className="w-full h-32 object-cover rounded-md imgWJ"
                 />
               ))
             ) : (
@@ -133,7 +134,7 @@ const WorkerProfile = () => {
       <hr />
 
       {/* Comments Section */}
-      <div className="container">
+      <div className="container info-commint">
         <div className="comment-section">
           <div className="mb-4">
             {user ? (

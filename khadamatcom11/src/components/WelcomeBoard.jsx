@@ -1,5 +1,5 @@
 export default function WelcomeBoard({ theme }) {
-    const isLight = theme === 'light'; // تحديد ما إذا كان الثيم فاتحًا
+    const isLight = theme === 'light';
   
     return (
       <div

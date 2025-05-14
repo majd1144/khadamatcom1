@@ -4,18 +4,18 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './Navbar.css';
-import "../ServBtn.jsx";
+import "../cards/ServBtn.jsx";
 import logo_m from '../../asset/MainLogoL.png';// main logo light
 import logo_light from '../../asset/dark.png';
 import logo_dark from '../../asset/light.png';
 import logo_dark_for_main from '../../asset/mainLogoD.png'; // main logo Dark
 import translateLogo from '../../asset/translate.png'
 import defaultphoto from '../../asset/person.png'
-import ProfileU from '../WorkerProfile.jsx'
-import "../ServicesCards.jsx";
+// import ProfileU from '../workerAndUser/WorkerProfile.jsx'
+import "../cards/ServicesCards.jsx";
 import { servicesCards } from "../../data.js";
-import '../ServicesDetalis.css'
-
+// import '../ServicesDetalis.css'
+import'../cards/ServicesDetalis.css'
 
 const Navbar = ({ theme, setTheme }) => {
 
