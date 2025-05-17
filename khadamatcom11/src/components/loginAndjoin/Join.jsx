@@ -92,13 +92,15 @@ function MultiStepForm() {
 
     try {
       const response = await fetch("http://localhost:4000/Join", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    method: "POST",
+    headers: {
+    "Content-Type": "application/json",
+    Accept: 'application/json',
+  },
+  credentials: "include", // 🔥 ADD THIS
+  body: JSON.stringify(formData),
+});
+
 
       const data = await response.json();
       if (response.ok) {

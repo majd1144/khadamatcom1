@@ -2,14 +2,20 @@ const { Client } = require('pg');
 require('dotenv').config();
 
 const db = new Client({
-    user: process.env.USER,
-    host: process.env.HOSTING, 
-    database: process.env.DB,
-    password: process.env.PASSWORD,
-    port: process.env.DB_PORT, 
-    ssl: {
-        rejectUnauthorized: false // Required if using self-signed SSL certificates
-    }
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+  ssl: {
+  require: true,
+  rejectUnauthorized: false,
+},
+
 });
+
+db.connect()
+  .then(() => console.log("✅ Connected to PostgreSQL database"))
+  .catch((err) => console.error("❌ Connection error:", err));
 
 module.exports = db;
