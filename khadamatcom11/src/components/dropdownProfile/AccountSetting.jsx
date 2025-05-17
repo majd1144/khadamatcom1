@@ -7,45 +7,46 @@ const AccountSettings = () => {
   const [worker, setWorker] = useState(null);
   const [isEditing, setIsEditing] = useState({});
   const [formValues, setFormValues] = useState({});
+  const [passwords, setPasswords] = useState({ oldPassword: '', newPassword: '' });
   const [showProviderForm, setShowProviderForm] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const services = [
-  { value: "Part Time Worker", label: "Part Time Worker" },
-  { value: "Babysitter", label: "Babysitter" },
-  { value: "Housemaid", label: "Housemaid" },
-  { value: "Painter", label: "Painter" },
-  { value: "Graphic Designer", label: "Graphic Designer" },
-  { value: "Photographer", label: "Photographer" },
-  { value: "Teacher", label: "Teacher" },
-  { value: "Blacksmith", label: "Blacksmith" },
-  { value: "Wall Painter", label: "Wall Painter" },
-  { value: "Carpenter", label: "Carpenter" },
-  { value: "Electrician Technician", label: "Electrician Technician" },
-];
+    { value: "Part Time Worker", label: "Part Time Worker" },
+    { value: "Babysitter", label: "Babysitter" },
+    { value: "Housemaid", label: "Housemaid" },
+    { value: "Painter", label: "Painter" },
+    { value: "Graphic Designer", label: "Graphic Designer" },
+    { value: "Photographer", label: "Photographer" },
+    { value: "Teacher", label: "Teacher" },
+    { value: "Blacksmith", label: "Blacksmith" },
+    { value: "Wall Painter", label: "Wall Painter" },
+    { value: "Carpenter", label: "Carpenter" },
+    { value: "Electrician Technician", label: "Electrician Technician" },
+  ];
+
+  const fetchUserData = async () => {
+    try {
+      const userResponse = await axios.get("http://localhost:4000/users/loggedin_user", { withCredentials: true });
+      const loggedUser = userResponse.data;
+      setUser(loggedUser);
+      setFormValues(loggedUser);
+
+      if (loggedUser.role === "worker") {
+        const workerResponse = await axios.get(`http://localhost:4000/workers/users/${loggedUser.id}`);
+        const workerData = workerResponse.data;
+        setWorker(workerData);
+        setFormValues(prev => ({ ...prev, ...workerData }));
+      }
+    } catch (err) {
+      console.error("Error fetching data:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const userResponse = await axios.get("http://localhost:4000/users/loggedin_user", { withCredentials: true });
-        const loggedUser = userResponse.data;
-        setUser(loggedUser);
-        setFormValues(loggedUser);
-
-        if (loggedUser.role === "worker") {
-          const workerResponse = await axios.get(`http://localhost:4000/workers/users/${loggedUser.id}`);
-          const workerData = workerResponse.data;
-          setWorker(workerData);
-          setFormValues(prev => ({ ...prev, ...workerData }));
-        }
-      } catch (err) {
-        console.error("Error fetching data:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+    fetchUserData();
   }, []);
 
   const handleEditClick = (field) => {
@@ -57,31 +58,56 @@ const AccountSettings = () => {
     setFormValues(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = async (field) => {
+const handleSave = async (field) => {
   try {
-    if (user.role === "worker" && ["jobType", "price"].includes(field)) {
-      await axios.patch(`http://localhost:4000/workers/${worker.id}`, { [field]: formValues[field] });
+    let updatePayload = {};
+
+    if (field === "name") {
+      const [first, ...rest] = formValues.name.trim().split(" ");
+      const last = rest.join(" ");
+      updatePayload = { firstname: first, lastname: last };
+    } else if (field === "location") {
+      updatePayload = { governorate: formValues.governorate };
     } else {
-      // Use fetch instead of axios for user update
+      updatePayload = { [field]: formValues[field] };
+    }
+
+    if (user.role === "worker" && ["jobType", "price"].includes(field)) {
+      await axios.patch(`http://localhost:4000/workers/${worker.id}`, updatePayload);
+    } else {
       await fetch(`http://localhost:4000/users/${user.id}`, {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ [field]: formValues[field] }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatePayload),
       });
     }
 
+    alert("Updated successfully.");
     setIsEditing(prev => ({ ...prev, [field]: false }));
+    await fetchUserData();
   } catch (error) {
     console.error("Failed to save:", error);
+    alert("Failed to update.");
   }
 };
 
+  const handlePasswordChange = async () => {
+    if (!passwords.oldPassword || !passwords.newPassword) {
+      alert("Please fill in both fields.");
+      return;
+    }
 
-  const handleBecomeProvider = async () => {
-    setShowProviderForm(true);
+    try {
+      await axios.patch(`http://localhost:4000/users/${user.id}/password`, passwords);
+      alert("Password updated successfully.");
+      setPasswords({ oldPassword: '', newPassword: '' });
+    } catch (err) {
+      console.error("Password update failed:", err);
+      alert("Password update failed.");
+    }
   };
+
+  const handleBecomeProvider = () => setShowProviderForm(true);
 
   const handleProviderSubmit = async () => {
     try {
@@ -108,7 +134,7 @@ const AccountSettings = () => {
       }
       await axios.delete(`http://localhost:4000/users/${user.id}`);
       alert("Your account has been deleted.");
-      window.location.href = "/"; // or "/login"
+      window.location.href = "/";
     } catch (error) {
       console.error("Failed to delete account:", error);
       alert("An error occurred while trying to delete your account.");
@@ -120,97 +146,54 @@ const AccountSettings = () => {
   return (
     <div className="account-settings">
       <h2>Account Settings</h2>
-<br/>
+      <br />
       <p style={{ fontSize: '25px' }}><strong>Account Type:</strong> {user.role}</p>
-<hr/>
-      <div className="field-row">
-        <strong>Name :</strong>
-        {isEditing.name ? (
-          <>
-            <input name="name" value={formValues.name} onChange={handleInputChange} />
-            <button onClick={() => handleSave("name")}>Save</button>
-          </>
-        ) : (
-          <>
-            <span>{formValues.name}</span>
-            <button onClick={() => handleEditClick("name")}>Edit</button>
-          </>
-        )}
-      </div>
+      <hr />
 
-      <div className="field-row">
-        <strong>Email :</strong>
-        {isEditing.email ? (
-          <>
-            <input name="email" value={formValues.email} onChange={handleInputChange} />
-            <button onClick={() => handleSave("email")}>Save</button>
-          </>
-        ) : (
-          <>
-            <span>{formValues.email}</span>
-            <button onClick={() => handleEditClick("email")}>Edit</button>
-          </>
-        )}
-      </div>
-
-      <div className="field-row">
-        <strong>Phone:</strong>
-        {isEditing.phone ? (
-          <>
-            <input name="phone" value={formValues.phone} onChange={handleInputChange} />
-            <button onClick={() => handleSave("phone")}>Save</button>
-          </>
-        ) : (
-          <>
-            <span>{formValues.phone}</span>
-            <button onClick={() => handleEditClick("phone")}>Edit</button>
-          </>
-        )}
-      </div>
-
-      <div className="field-row">
-        <strong>Location:</strong>
-        {isEditing.location ? (
-          <>
-            <input name="location" value={formValues.location} onChange={handleInputChange} />
-            <button onClick={() => handleSave("location")}>Save</button>
-          </>
-        ) : (
-          <>
-            <span>{formValues.governorate}</span>
-            <button onClick={() => handleEditClick("location")}>Edit</button>
-          </>
-        )}
-      </div>
+      {["name", "email", "phone", "location"].map((field) => (
+        <div className="field-row" key={field}>
+          <strong>{field.charAt(0).toUpperCase() + field.slice(1)}:</strong>
+          {isEditing[field] ? (
+            <>
+              <input
+                name={field}
+                value={field === "location" ? formValues.governorate : formValues[field]}
+                onChange={handleInputChange}
+              />
+              <button onClick={() => handleSave(field === "location" ? "location" : field)}>Save</button>
+            </>
+          ) : (
+            <>
+              <span>{field === "location" ? formValues.governorate : formValues[field]}</span>
+              <button onClick={() => handleEditClick(field)}>Edit</button>
+            </>
+          )}
+        </div>
+      ))}
 
       {user.role === "worker" ? (
-        <><div className="field-row">
-  <label>Job Type : {formValues.servicecategory || ""}</label>
-  <div className="field-content">
-    {isEditing.jobType ? (
-      <>
-        <select
-          name="jobType"
-          value={formValues.jobType}
-          onChange={handleInputChange}
-        >
-          <option value="">Select Job Type</option>
-          {services.map((service) => (
-            <option key={service.value} value={service.value}>
-              {service.label}
-            </option>
-          ))}
-        </select>
-        <button onClick={() => handleSave("jobType")}>Save</button>
-      </>
-    ) : (
-      <>
-        <span>{worker?.jobType}</span>
-        <button onClick={() => handleEditClick("jobType")}>Edit</button>
-      </>
-    )}
-  </div>
-</div>
+        <>
+          <div className="field-row">
+            <label>Job Type:</label>
+            <div className="field-content">
+              {isEditing.jobType ? (
+                <>
+                  <select name="jobType" value={formValues.jobType} onChange={handleInputChange}>
+                    <option value="">Select Job Type</option>
+                    {services.map((service) => (
+                      <option key={service.value} value={service.value}>{service.label}</option>
+                    ))}
+                  </select>
+                  <button onClick={() => handleSave("jobType")}>Save</button>
+                </>
+              ) : (
+                <>
+                  <span>{worker?.jobType}</span>
+                  <button onClick={() => handleEditClick("jobType")}>Edit</button>
+                </>
+              )}
+            </div>
+          </div>
 
           <div className="field-row">
             <strong>Price:</strong>
@@ -234,22 +217,16 @@ const AccountSettings = () => {
           <div>
             <h4>Became a Worker</h4>
             <div className="field-row">
-  <label>Job Type: </label>
-  <div className="field-content">
-    <select
-      name="jobType"
-      value={formValues.jobType || "KKnjnj"}
-      onChange={handleInputChange}
-    >
-      <option value="">Select Job Type</option>
-      {services.map((service) => (
-        <option key={service.value} value={service.value}>
-          {service.label}
-        </option>
-      ))}
-    </select>
-  </div>
-</div>
+              <label>Job Type:</label>
+              <div className="field-content">
+                <select name="jobType" value={formValues.jobType || ""} onChange={handleInputChange}>
+                  <option value="">Select Job Type</option>
+                  {services.map((service) => (
+                    <option key={service.value} value={service.value}>{service.label}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
 
             <input
               name="price"
@@ -263,7 +240,26 @@ const AccountSettings = () => {
         )
       )}
 
-      {/* Delete Account Section */}
+      <hr />
+      <div>
+        <h4>Change Password</h4>
+        <input
+          type="password"
+          name="oldPassword"
+          placeholder="Old Password"
+          value={passwords.oldPassword}
+          onChange={(e) => setPasswords({ ...passwords, oldPassword: e.target.value })}
+        />
+        <input
+          type="password"
+          name="newPassword"
+          placeholder="New Password"
+          value={passwords.newPassword}
+          onChange={(e) => setPasswords({ ...passwords, newPassword: e.target.value })}
+        />
+        <button onClick={handlePasswordChange}>Update Password</button>
+      </div>
+
       <div style={{ marginTop: '2rem' }}>
         <hr />
         <button onClick={handleDeleteAccount} style={{ color: 'white', backgroundColor: 'red', padding: '10px', borderRadius: '5px' }}>

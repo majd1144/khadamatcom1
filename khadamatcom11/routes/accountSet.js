@@ -1,7 +1,7 @@
 // routes/account.js
 const express = require('express');
 const router = express.Router();
-const db = require('../khadamatcom11/db-config');
+const db = require('../db-config');
 
 // PATCH /account/:id — Unified update for user + worker
 router.patch('/:id', async (req, res) => {
