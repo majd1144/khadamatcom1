@@ -230,7 +230,7 @@ function MultiStepForm() {
                             Select a governorate
                           </option>
                           {locations.map((location) => (
-                            <option key={location.id} value={location.id}>
+                            <option key={location.id} value={location.label}>
                               {location.label}
                             </option>   
                           ))}

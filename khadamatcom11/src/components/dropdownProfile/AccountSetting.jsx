@@ -25,25 +25,42 @@ const AccountSettings = () => {
     { value: "Electrician Technician", label: "Electrician Technician" },
   ];
 
-  const fetchUserData = async () => {
-    try {
-      const userResponse = await axios.get("http://localhost:4000/users/loggedin_user", { withCredentials: true });
-      const loggedUser = userResponse.data;
-      setUser(loggedUser);
-      setFormValues(loggedUser);
+const fetchUserData = async () => {
+  try {
+    const userResponse = await axios.get("http://localhost:4000/users/loggedin_user", {
+      withCredentials: true,
+    });
+    const loggedUser = userResponse.data;
+    setUser(loggedUser);
 
-      if (loggedUser.role === "worker") {
-        const workerResponse = await axios.get(`http://localhost:4000/workers/users/${loggedUser.id}`);
-        const workerData = workerResponse.data;
-        setWorker(workerData);
-        setFormValues(prev => ({ ...prev, ...workerData }));
-      }
-    } catch (err) {
-      console.error("Error fetching data:", err);
-    } finally {
-      setLoading(false);
+    let initialFormValues = {
+      name: `${loggedUser.firstname} ${loggedUser.lastname}`,
+      email: loggedUser.email || "",
+      phone: loggedUser.phone || "",
+      governorate: loggedUser.governorate || "",
+    };
+
+    if (loggedUser.role === "worker") {
+      const workerResponse = await axios.get(
+        `http://localhost:4000/workers/users/${loggedUser.id}`
+      );
+      const workerData = workerResponse.data;
+      setWorker(workerData);
+
+      initialFormValues = {
+        ...initialFormValues,
+        jobType: workerData.servicecategory || "",
+        price: workerData.fee || "",
+      };
     }
-  };
+
+    setFormValues(initialFormValues);
+  } catch (err) {
+    console.error("Error fetching data:", err);
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchUserData();
@@ -61,35 +78,47 @@ const AccountSettings = () => {
 const handleSave = async (field) => {
   try {
     let updatePayload = {};
+    let updatedFieldValues = {};
 
     if (field === "name") {
       const [first, ...rest] = formValues.name.trim().split(" ");
       const last = rest.join(" ");
       updatePayload = { firstname: first, lastname: last };
+      updatedFieldValues = { name: formValues.name };
     } else if (field === "location") {
       updatePayload = { governorate: formValues.governorate };
+      updatedFieldValues = { governorate: formValues.governorate };
+    } else if (user.role === "worker" && field === "jobType") {
+      updatePayload = { servicecategory: formValues.jobType };
+      updatedFieldValues = { jobType: formValues.jobType };
+    } else if (user.role === "worker" && field === "price") {
+      updatePayload = { fee: formValues.price };
+      updatedFieldValues = { price: formValues.price };
     } else {
       updatePayload = { [field]: formValues[field] };
+      updatedFieldValues = { [field]: formValues[field] };
     }
 
     if (user.role === "worker" && ["jobType", "price"].includes(field)) {
       await axios.patch(`http://localhost:4000/workers/${worker.id}`, updatePayload);
     } else {
-      await fetch(`http://localhost:4000/users/${user.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatePayload),
-      });
+      await axios.patch(`http://localhost:4000/users/${user.id}`, updatePayload);
     }
 
+    // ✅ Just update local formValues
+    setFormValues((prev) => ({
+      ...prev,
+      ...updatedFieldValues,
+    }));
+
+    setIsEditing((prev) => ({ ...prev, [field]: false }));
     alert("Updated successfully.");
-    setIsEditing(prev => ({ ...prev, [field]: false }));
-    await fetchUserData();
   } catch (error) {
     console.error("Failed to save:", error);
     alert("Failed to update.");
   }
 };
+
 
   const handlePasswordChange = async () => {
     if (!passwords.oldPassword || !passwords.newPassword) {
@@ -146,7 +175,6 @@ const handleSave = async (field) => {
   return (
     <div className="account-settings">
       <h2>Account Settings</h2>
-      <br />
       <p style={{ fontSize: '25px' }}><strong>Account Type:</strong> {user.role}</p>
       <hr />
 
@@ -156,11 +184,11 @@ const handleSave = async (field) => {
           {isEditing[field] ? (
             <>
               <input
-                name={field}
+                name={field === "location" ? "governorate" : field}
                 value={field === "location" ? formValues.governorate : formValues[field]}
                 onChange={handleInputChange}
               />
-              <button onClick={() => handleSave(field === "location" ? "location" : field)}>Save</button>
+              <button onClick={() => handleSave(field)}>Save</button>
             </>
           ) : (
             <>
@@ -178,9 +206,9 @@ const handleSave = async (field) => {
             <div className="field-content">
               {isEditing.jobType ? (
                 <>
-                  <select name="jobType" value={formValues.jobType} onChange={handleInputChange}>
+                  <select name="jobType" value={formValues.jobType || ""} onChange={handleInputChange}>
                     <option value="">Select Job Type</option>
-                    {services.map((service) => (
+                    {services.map(service => (
                       <option key={service.value} value={service.value}>{service.label}</option>
                     ))}
                   </select>
@@ -188,7 +216,7 @@ const handleSave = async (field) => {
                 </>
               ) : (
                 <>
-                  <span>{worker?.jobType}</span>
+                  <span>{formValues.jobType}</span>
                   <button onClick={() => handleEditClick("jobType")}>Edit</button>
                 </>
               )}
@@ -199,45 +227,43 @@ const handleSave = async (field) => {
             <strong>Price:</strong>
             {isEditing.price ? (
               <>
-                <input name="price" value={formValues.price} onChange={handleInputChange} />
+                <input name="price" value={formValues.price || ""} onChange={handleInputChange} />
                 <button onClick={() => handleSave("price")}>Save</button>
               </>
             ) : (
               <>
-                <span>{worker?.price}</span>
+                <span>{formValues.price}</span>
                 <button onClick={() => handleEditClick("price")}>Edit</button>
               </>
             )}
           </div>
         </>
+      ) : !showProviderForm ? (
+        <button onClick={handleBecomeProvider}>Become a Worker?</button>
       ) : (
-        !showProviderForm ? (
-          <button onClick={handleBecomeProvider}>Become a Worker?</button>
-        ) : (
-          <div>
-            <h4>Became a Worker</h4>
-            <div className="field-row">
-              <label>Job Type:</label>
-              <div className="field-content">
-                <select name="jobType" value={formValues.jobType || ""} onChange={handleInputChange}>
-                  <option value="">Select Job Type</option>
-                  {services.map((service) => (
-                    <option key={service.value} value={service.value}>{service.label}</option>
-                  ))}
-                </select>
-              </div>
+        <div>
+          <h4>Became a Worker</h4>
+          <div className="field-row">
+            <label>Job Type:</label>
+            <div className="field-content">
+              <select name="jobType" value={formValues.jobType || ""} onChange={handleInputChange}>
+                <option value="">Select Job Type</option>
+                {services.map((service) => (
+                  <option key={service.value} value={service.value}>{service.label}</option>
+                ))}
+              </select>
             </div>
-
-            <input
-              name="price"
-              type="number"
-              placeholder="Price"
-              value={formValues.price || ""}
-              onChange={handleInputChange}
-            />
-            <button onClick={handleProviderSubmit}>Submit</button>
           </div>
-        )
+
+          <input
+            name="price"
+            type="number"
+            placeholder="Price"
+            value={formValues.price || ""}
+            onChange={handleInputChange}
+          />
+          <button onClick={handleProviderSubmit}>Submit</button>
+        </div>
       )}
 
       <hr />

@@ -139,4 +139,52 @@ WHERE workers.servicecategory = $1 GROUP BY  workers.id, workers.userid, workers
 });
 
 
+// Update worker and user info
+router.patch("/:id", async (req, res) => {
+    const { id } = req.params; // worker.id
+    const {
+        firstname,
+        lastname,
+        email,
+        phone,
+        governorate,
+        bio,
+        experience,
+        fee,
+        servicecategory,
+    } = req.body;
+
+    try {
+        // Get the worker row to find the user id
+        const { rows } = await db.query(
+            "SELECT userid FROM workers WHERE id = $1",
+            [id]
+        );
+
+        if (rows.length === 0) {
+            return res.status(404).json({ error: "Worker not found" });
+        }
+
+        const userId = rows[0].userid;
+
+        // Update users table
+        await db.query(
+            `UPDATE users SET firstname = $1, lastname = $2, email = $3, phone = $4, governorate = $5 WHERE id = $6`,
+            [firstname, lastname, email, phone, governorate, userId]
+        );
+
+        // Update workers table
+        await db.query(
+            `UPDATE workers SET bio = $1, experience = $2, fee = $3, servicecategory = $4 WHERE id = $5`,
+            [bio, experience, fee, servicecategory, id]
+        );
+
+        res.status(200).json({ message: "Worker profile updated successfully" });
+    } catch (error) {
+        console.error("Error updating worker info:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+
 module.exports = router;
