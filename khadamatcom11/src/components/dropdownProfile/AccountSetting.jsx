@@ -34,7 +34,7 @@ const fetchUserData = async () => {
     setUser(loggedUser);
 
     let initialFormValues = {
-      name: `${loggedUser.firstname} ${loggedUser.lastname}`,
+      name: loggedUser.name || "",
       email: loggedUser.email || "",
       phone: loggedUser.phone || "",
       governorate: loggedUser.governorate || "",
@@ -80,20 +80,34 @@ const handleSave = async (field) => {
     let updatePayload = {};
     let updatedFieldValues = {};
 
+    // Use fallback for name if not editable or not available
+    const fullName = formValues.name || `${user.firstname} ${user.lastname}`;
+    const [firstname, ...rest] = fullName.trim().split(" ");
+    const lastname = rest.join(" ");
+
+    // Shared payload for worker update
+    const fullWorkerPayload = {
+      firstname: firstname,
+      lastname: lastname,
+      email: formValues.email || user.email,
+      phone: formValues.phone || user.phone,
+      governorate: formValues.governorate || user.governorate,
+      servicecategory: formValues.jobType,
+      fee: formValues.price || "",
+    };
+
     if (field === "name") {
-      const [first, ...rest] = formValues.name.trim().split(" ");
-      const last = rest.join(" ");
-      updatePayload = { firstname: first, lastname: last };
-      updatedFieldValues = { name: formValues.name };
+      updatePayload = { firstname: firstname, lastname: lastname };
+      updatedFieldValues = { name: fullName };
     } else if (field === "location") {
       updatePayload = { governorate: formValues.governorate };
       updatedFieldValues = { governorate: formValues.governorate };
-    } else if (user.role === "worker" && field === "jobType") {
-      updatePayload = { servicecategory: formValues.jobType };
-      updatedFieldValues = { jobType: formValues.jobType };
-    } else if (user.role === "worker" && field === "price") {
-      updatePayload = { fee: formValues.price };
-      updatedFieldValues = { price: formValues.price };
+    } else if (user.role === "worker" && (field === "jobType" || field === "price")) {
+      updatePayload = fullWorkerPayload;
+      updatedFieldValues = {
+        jobType: formValues.jobType,
+        price: formValues.price,
+      };
     } else {
       updatePayload = { [field]: formValues[field] };
       updatedFieldValues = { [field]: formValues[field] };
@@ -105,7 +119,6 @@ const handleSave = async (field) => {
       await axios.patch(`http://localhost:4000/users/${user.id}`, updatePayload);
     }
 
-    // ✅ Just update local formValues
     setFormValues((prev) => ({
       ...prev,
       ...updatedFieldValues,
