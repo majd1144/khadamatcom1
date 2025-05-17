@@ -18,7 +18,7 @@ router.get("/Join", (req, res) => {
 
 
 router.post("/Join", async (req, res) => {
-    const {firstname, lastName, nationalID, email, phone, location,  password, confirmPassword, birthDate, gender, userType }= req.body;
+    const {firstname, lastName, nationalID, email, phone, location,  password, confirmPassword, birthDate, gender, userType, services, bio, experience,fee, }= req.body;
 
     //Check whether user input is valid or not
     if (!email) {
@@ -77,49 +77,55 @@ router.post("/Join", async (req, res) => {
     //const normalizedUserType = userType ? userType.charAt(0).toUpperCase() + userType.slice(1).toLowerCase() : '';
 
     //Validate roles used
-    const validRoles = ["client", "worker", "admin"];
+    const validRoles = ["client", "worker"];
     const normalizedUserType = userType ? userType.toLowerCase() : '';
     
     if (!validRoles.includes(normalizedUserType)) {
-        return res.status(400).json({ error: "Invalid role. Allowed roles: client, worker, admin." });
+        return res.status(400).json({ error: "Invalid role. Allowed roles: client, worker." });
     }
 
-    //Main validation
-    if (!firstname || !lastName || !nationalID || !email || !phone || !location || !password || !confirmPassword || !birthDate || !gender || !userType) {
-        return res.status(400).json({ error: "All fields are required." });
+// Validation
+if (!firstname || !lastName || !nationalID || !email || !phone || !location || !password || !confirmPassword || !birthDate || !gender || !userType) {
+    return res.status(400).json({ error: "All fields are required." });
+}
+
+if (password !== confirmPassword) {
+    return res.status(400).json({ error: "Passwords do not match." });
+}
+
+try {
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const userInsertQuery = `
+        INSERT INTO users (firstname, lastname, nationalid, email, governorate, phone, password, birthdate, gender, role)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+        RETURNING id;
+    `;
+    
+    const userValues = [firstname, lastName, nationalID, email, location, phone, hashedPassword, birthDate, gender, userType];
+    
+    const userResult = await db.query(userInsertQuery, userValues);
+    const userId = userResult.rows[0].id;
+    
+    // If role is worker, insert into worker table
+    if (userType.toLowerCase() === 'worker') {
+        const workerInsertQuery = `
+            INSERT INTO workers (userid, servicecategory, bio, experience, fee)
+            VALUES ($1, $2, $3, $4, $5);`;
+        const workerValues = [userId, services, bio, experience, fee];
+        await db.query(workerInsertQuery, workerValues);
     }
 
-    if (password !== confirmPassword) {
-        return res.status(400).json({ error: "Passwords do not match." });
+    res.status(201).json({ message: "Registration successful!" });
+
+} catch (err) {
+    console.error("Error saving user:", err);
+    if (err.code === "23505") {
+        res.status(400).json({ error: "Email or National ID already exists." });
+    } else {
+        res.status(500).json({ error: "An error occurred. Please try again." });
     }
-
-    try {
-        const hashedPassword = await bcrypt.hash(password,saltRounds);
-        const query = ( "INSERT INTO users (firstname, lastname, nationalid, email, governorate, phone, password, birthdate, gender, role) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *; "  ) ;
-
-        const values = [ firstname, lastName, nationalID, email, location, phone, hashedPassword, birthDate, normalizedGender, normalizedUserType];
-
-
-        await db.query(query, values,(err)=>{
-            if(err){
-                console.log("error in query");
-            }
-        });
-
-        res.status(201).json({
-            message: "Registration successful!",
-        });
-
-    } catch (err) {
-        console.error("Error saving user:", err);
-        if (err.code === "23505") { // PostgreSQL unique constraint violation
-            res.status(400).json({ error: "Email or National ID already exists." });
-        } else {
-            res.status(500).json({ error: "An error occurred. Please try again." });
-        }
-    }
+}
 });
-
 
 //Login requests
 router.get("/Login", (req, res) => {

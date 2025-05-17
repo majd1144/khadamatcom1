@@ -19,6 +19,9 @@ function MultiStepForm() {
     gender: "",
     userType: "",
     services: "",
+    bio:null,
+    experience:null,
+    fee:null,
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -352,7 +355,7 @@ function MultiStepForm() {
                                 Select a service
                               </option>
                               {services.map((service) => (
-                                <option key={service.id} value={service.id}>
+                                <option key={service.id} value={service.label}>
                                   {service.label}
                                 </option>
                               ))}
