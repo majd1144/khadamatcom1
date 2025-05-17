@@ -58,17 +58,26 @@ const AccountSettings = () => {
   };
 
   const handleSave = async (field) => {
-    try {
-      if (user.role === "worker" && ["jobType", "price"].includes(field)) {
-        await axios.patch(`http://localhost:4000/workers/${worker.id}`, { [field]: formValues[field] });
-      } else {
-        await axios.patch(`http://localhost:4000/users/${user.id}`, { [field]: formValues[field] });
-      }
-      setIsEditing(prev => ({ ...prev, [field]: false }));
-    } catch (error) {
-      console.error("Failed to save:", error);
+  try {
+    if (user.role === "worker" && ["jobType", "price"].includes(field)) {
+      await axios.patch(`http://localhost:4000/workers/${worker.id}`, { [field]: formValues[field] });
+    } else {
+      // Use fetch instead of axios for user update
+      await fetch(`http://localhost:4000/users/${user.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ [field]: formValues[field] }),
+      });
     }
-  };
+
+    setIsEditing(prev => ({ ...prev, [field]: false }));
+  } catch (error) {
+    console.error("Failed to save:", error);
+  }
+};
+
 
   const handleBecomeProvider = async () => {
     setShowProviderForm(true);
@@ -106,7 +115,7 @@ const AccountSettings = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading || !user) return <p>Loading...</p>;
 
   return (
     <div className="account-settings">
@@ -123,7 +132,7 @@ const AccountSettings = () => {
           </>
         ) : (
           <>
-            <span>{user.name}</span>
+            <span>{formValues.name}</span>
             <button onClick={() => handleEditClick("name")}>Edit</button>
           </>
         )}
@@ -138,7 +147,7 @@ const AccountSettings = () => {
           </>
         ) : (
           <>
-            <span>{user.email}</span>
+            <span>{formValues.email}</span>
             <button onClick={() => handleEditClick("email")}>Edit</button>
           </>
         )}
@@ -153,7 +162,7 @@ const AccountSettings = () => {
           </>
         ) : (
           <>
-            <span>{user.phone}</span>
+            <span>{formValues.phone}</span>
             <button onClick={() => handleEditClick("phone")}>Edit</button>
           </>
         )}
@@ -168,7 +177,7 @@ const AccountSettings = () => {
           </>
         ) : (
           <>
-            <span>{user.governorate}</span>
+            <span>{formValues.governorate}</span>
             <button onClick={() => handleEditClick("location")}>Edit</button>
           </>
         )}

@@ -43,7 +43,7 @@ app.set('view engine','ejs')
 app.set('views',path.join(__dirname,'views'));
 
 // Connect to the database
-db.connect().catch(err => console.error("Connection error:", err,));
+//db.connect().catch(err => console.error("Connection error:", err,));
 
 //Any EJS paths must go here
 app.use("/test_db", testdbRt);  

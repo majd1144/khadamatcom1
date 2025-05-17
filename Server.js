@@ -6,6 +6,9 @@ const db = require('./db-config');
 const path = require('path');
 const passport = require("passport");
 const session = require("express-session");
+const accountRoutes = require("./routes/accountSet");
+const adminRt = require("./routes/adminRt");
+
 
 //Express APP
 const app = express();
@@ -37,6 +40,9 @@ const authRt = require("./routes/authRt");
 const usersRt = require("./routes/usersRt");
 const reviewsRt = require("./routes/reviewsRt");
 const workersRt = require("./routes/workersRt");
+const accountRoutes = require("./routes/adminRt");
+
+
 
 //EJS using as engine
 app.set('view engine','ejs')
@@ -63,10 +69,17 @@ app.use("/workers",workersRt);
 //reviews requests routes
 app.use("/reviews", reviewsRt);
 
+//changes users informations 
+app.use("/account", accountRoutes);
+
 app.use(express.static(path.join(__dirname, 'build')));
 /*app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });*/
+
+app.use("/account", accountRoutes);
+app.use("/admin", adminRt);
+
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
