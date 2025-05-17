@@ -1,68 +1,3 @@
-// // RequestedServices.jsx
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import "./RequestedServices.css";
-
-// const RequestedServices = () => {
-//   const [requests, setRequests] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     const fetchRequestedServices = async () => {
-//       try {
-//         const res = await axios.get("http://localhost:4000/requests/user", { withCredentials: true });
-//         setRequests(res.data);
-//       } catch (err) {
-//         console.error("Error fetching requested services:", err);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchRequestedServices();
-//   }, []);
-
-//   const handleCancel = async (requestId) => {
-//     const confirmCancel = window.confirm("Are you sure you want to cancel this request?");
-//     if (!confirmCancel) return;
-
-//     try {
-//       await axios.delete(`http://localhost:4000/requests/${requestId}`);
-//       setRequests(prev => prev.filter(req => req.id !== requestId));
-//     } catch (err) {
-//       console.error("Error cancelling request:", err);
-//     }
-//   };
-
-//   if (loading) return <p>Loading...</p>;
-
-//   return (
-//     <div className="requested-services">
-//       <h2>My Requested Services</h2>
-//       {requests.length === 0 ? (
-//         <p>No requested services found.</p>
-//       ) : (
-//         <div className="services-list">
-//           {requests.map((req) => (
-//             <div key={req.id} className={`service-card status-${req.status.toLowerCase()}`}>
-//               <h3>{req.worker?.user?.name} - {req.worker?.jobType}</h3>
-//               <p><strong>Price:</strong> {req.worker?.price} JD</p>
-//               <p><strong>Status:</strong> {req.status}</p>
-//               <p><strong>Requested at:</strong> {new Date(req.createdAt).toLocaleString()}</p>
-//               {req.status === "Pending" && (
-//                 <button className="cancel-button" onClick={() => handleCancel(req.id)}>Cancel Request</button>
-//               )}
-//             </div>
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default RequestedServices;
-
-// RequestedServices.jsx
 import React, { useEffect, useState } from "react";
 import "./RequestedServices.css";
 
@@ -166,3 +101,71 @@ const RequestedServices = () => {
 };
 
 export default RequestedServices;
+
+
+
+// // RequestedServices.jsx
+// import React, { useEffect, useState } from "react";
+// import axios from "axios";
+// import "./RequestedServices.css";
+
+// const RequestedServices = () => {
+//   const [requests, setRequests] = useState([]);
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     const fetchRequestedServices = async () => {
+//       try {
+//         const res = await axios.get("http://localhost:4000/requests/user", { withCredentials: true });
+//         setRequests(res.data);
+//       } catch (err) {
+//         console.error("Error fetching requested services:", err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchRequestedServices();
+//   }, []);
+
+//   const handleCancel = async (requestId) => {
+//     const confirmCancel = window.confirm("Are you sure you want to cancel this request?");
+//     if (!confirmCancel) return;
+
+//     try {
+//       await axios.delete(`http://localhost:4000/requests/${requestId}`);
+//       setRequests(prev => prev.filter(req => req.id !== requestId));
+//     } catch (err) {
+//       console.error("Error cancelling request:", err);
+//     }
+//   };
+
+//   if (loading) return <p>Loading...</p>;
+
+//   return (
+//     <div className="requested-services">
+//       <h2>My Requested Services</h2>
+//       {requests.length === 0 ? (
+//         <p>No requested services found.</p>
+//       ) : (
+//         <div className="services-list">
+//           {requests.map((req) => (
+//             <div key={req.id} className={`service-card status-${req.status.toLowerCase()}`}>
+//               <h3>{req.worker?.user?.name} - {req.worker?.jobType}</h3>
+//               <p><strong>Price:</strong> {req.worker?.price} JD</p>
+//               <p><strong>Status:</strong> {req.status}</p>
+//               <p><strong>Requested at:</strong> {new Date(req.createdAt).toLocaleString()}</p>
+//               {req.status === "Pending" && (
+//                 <button className="cancel-button" onClick={() => handleCancel(req.id)}>Cancel Request</button>
+//               )}
+//             </div>
+//           ))}
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default RequestedServices;
+
+// RequestedServices.jsx

@@ -38,12 +38,12 @@ link                                method                  Description
 For Requests:
 link                                method                  Description
 ------------------------------------------------------------------------
-/requests	                    GET	                    get all requests in db
-/requests/:id	                GET	                    get a specific request by ID
-/requests/:workerid	            GET	                    get a specific request by Worker ID
-/requests/:workerid/:status	    GET	                    get a specific request by Worker ID depening on the status of request
-/requests/:userid	            GET	                    get a specific request by USER ID
-/requests/:userid/:status	    GET	                    get a specific request by USER ID depening on the status of request
-/requests/              	    POST	                Add a new request
-/requests/:id	                PATCH	                update a request by ID 
-/requests/:id	                DELETE	                delete a review BY ID
+/requests	                                GET	                    get all requests in db
+/requests/:id	                            GET	                    get a specific request by ID
+/requests/workers/:workerid	                GET	                    get a specific request by Worker ID
+/requests/workers/:workerid/status/:status	GET	                    get a specific request by Worker ID depening on the status of request
+/requests/users/:userid	                    GET	                    get a specific request by USER ID
+/requests/users/:userid/status/:status	    GET	                    get a specific request by USER ID depening on the status of request
+/requests/              	                POST	                Add a new request
+/requests/:id	                            PATCH	                update a request by ID 
+/requests/:id	                            DELETE	                delete a review BY ID

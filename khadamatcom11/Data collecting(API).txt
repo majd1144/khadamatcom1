@@ -28,8 +28,22 @@ link                                method                  Description
 For review:
 link                                method                  Description
 ------------------------------------------------------------------------
-/review/:workerid	            GET	                    get all review
+/review/:workerid	            GET	                    get all review of some worker
 /review/:id	                    GET	                    get a specific review by ID
 /review/:workerid              	POST	                Add a new review
 /review/:id	                    PATCH	                update a review (if you allow editing)
 /review/:id	                    DELETE	                delete a review
+
+
+For Requests:
+link                                method                  Description
+------------------------------------------------------------------------
+/requests	                                GET	                    get all requests in db
+/requests/:id	                            GET	                    get a specific request by ID
+/requests/workers/:workerid	                GET	                    get a specific request by Worker ID
+/requests/workers/:workerid/status/:status	GET	                    get a specific request by Worker ID depening on the status of request
+/requests/users/:userid	                    GET	                    get a specific request by USER ID
+/requests/users/:userid/status/:status	    GET	                    get a specific request by USER ID depening on the status of request
+/requests/              	                POST	                Add a new request
+/requests/:id	                            PATCH	                update a request by ID 
+/requests/:id	                            DELETE	                delete a review BY ID

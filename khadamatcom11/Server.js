@@ -37,6 +37,7 @@ const authRt = require("./routes/authRt");
 const usersRt = require("./routes/usersRt");
 const reviewsRt = require("./routes/reviewsRt");
 const workersRt = require("./routes/workersRt");
+const requestRoutes = require('./routes/service_requestRt');
 
 //EJS using as engine
 app.set('view engine','ejs')
@@ -62,6 +63,10 @@ app.use("/workers",workersRt);
 
 //reviews requests routes
 app.use("/reviews", reviewsRt);
+
+//requests requests routes
+app.use("/requests", requestRoutes);
+
 
 app.use(express.static(path.join(__dirname, 'build')));
 /*app.get('*', (req, res) => {
