@@ -82,8 +82,11 @@ const RequestedServices = () => {
                 </p>
                 <p>
                   <strong>Worker Name:</strong>{" "}
-                  {req.firstname && req.lastname ? `${req.firstname} ${req.lastname}` : "N/A"}
+                  {req.worker_firstname && req.worker_lastname
+                    ? `${req.worker_firstname} ${req.worker_lastname}`
+                    : "N/A"}
                 </p>
+
               </div>
             ))}
           </section>

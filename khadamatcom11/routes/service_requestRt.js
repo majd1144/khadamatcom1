@@ -55,12 +55,28 @@ router.get("/workers/:workerid/status/:status", async (req, res) => {
   }
 });
 
-// GET requests by user ID
 router.get("/users/:userid", async (req, res) => {
   try {
-    const result = await db.query(`${baseQuery} WHERE r.userid = $1 ORDER BY r.createdat DESC`, [req.params.userid]);
+    const query = `
+      SELECT 
+        r.*,
+        w.servicecategory,
+        w.fee,
+        wu.firstname AS worker_firstname,
+        wu.lastname AS worker_lastname,
+        u.firstname AS requester_firstname,
+        u.lastname AS requester_lastname
+      FROM service_requests r
+      LEFT JOIN workers w ON r.workerid = w.id
+      LEFT JOIN users wu ON w.userid = wu.id
+      LEFT JOIN users u ON r.userid = u.id
+      WHERE r.userid = $1
+      ORDER BY r.createdat DESC
+    `;
+    const result = await db.query(query, [req.params.userid]);
     res.json(result.rows);
   } catch (err) {
+    console.error("Error fetching requests by user:", err);
     res.status(500).json({ message: "Error" });
   }
 });
@@ -68,12 +84,26 @@ router.get("/users/:userid", async (req, res) => {
 // GET requests by user ID + status
 router.get("/users/:userid/status/:status", async (req, res) => {
   try {
-    const result = await db.query(
-      `${baseQuery} WHERE r.userid = $1 AND r.status = $2 ORDER BY r.createdat DESC`,
-      [req.params.userid, req.params.status]
-    );
+    const query = `
+      SELECT 
+        r.*,
+        w.servicecategory,
+        w.fee,
+        wu.firstname AS worker_firstname,
+        wu.lastname AS worker_lastname,
+        u.firstname AS requester_firstname,
+        u.lastname AS requester_lastname
+      FROM service_requests r
+      LEFT JOIN workers w ON r.workerid = w.id
+      LEFT JOIN users wu ON w.userid = wu.id
+      LEFT JOIN users u ON r.userid = u.id
+      WHERE r.userid = $1 AND r.status = $2
+      ORDER BY r.createdat DESC
+    `;
+    const result = await db.query(query, [req.params.userid, req.params.status]);
     res.json(result.rows);
   } catch (err) {
+    console.error("Error fetching requests by user and status:", err);
     res.status(500).json({ message: "Error" });
   }
 });
