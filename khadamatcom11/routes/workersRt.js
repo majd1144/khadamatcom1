@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../db-config");
+const db = require("../../db-config");
 
 //Data fetching for all workers in react app
 router.get("/", (req, res) => {

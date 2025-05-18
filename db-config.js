@@ -8,14 +8,13 @@ const db = new Client({
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
   ssl: {
-  require: true,
-  rejectUnauthorized: false,
-},
-
+    require: true,
+    rejectUnauthorized: false,
+  },
 });
 
 db.connect()
-  .then(() => console.log("✅ Connected to PostgreSQL database"))
+  .then(() => console.log("✅ Connected to Neon PostgreSQL DB"))
   .catch((err) => console.error("❌ Connection error:", err));
 
 module.exports = db;

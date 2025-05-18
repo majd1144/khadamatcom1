@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const { Strategy } = require("passport-local");
-const db = require('../db-config');
+const db = require('../../db-config');
 require('dotenv').config();
 const saltRounds = 10;
 

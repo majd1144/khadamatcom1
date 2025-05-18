@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const db = require("../db-config");
+const db = require("../../db-config");
 
 //Data fetching for logged-in users in
 // Updated /loggedin_user route — fetches fresh data from DB
