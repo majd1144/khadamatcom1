@@ -1,3 +1,122 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+const MyServices = () => {
+  const [worker, setWorker] = useState(null);
+  const [requests, setRequests] = useState([]);
+  const [loadingWorker, setLoadingWorker] = useState(true);
+  const [loadingRequests, setLoadingRequests] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchWorkerInfo = async () => {
+      try {
+        setLoadingWorker(true);
+        const userRes = await axios.get("http://localhost:4000/users/loggedin_user", { withCredentials: true });
+        if (userRes.data.role !== "worker") {
+          setError("You are not authorized to view this page.");
+          return;
+        }
+        const workerRes = await axios.get(`http://localhost:4000/workers/users/${userRes.data.id}`, { withCredentials: true });
+        setWorker(workerRes.data);
+      } catch {
+        setError("Failed to load worker info.");
+      } finally {
+        setLoadingWorker(false);
+      }
+    };
+
+    fetchWorkerInfo();
+  }, []);
+
+  useEffect(() => {
+    if (!worker?.id && !worker?.worker_id) return;
+
+    const id = worker.id || worker.worker_id;
+    const fetchRequests = async () => {
+      try {
+        setLoadingRequests(true);
+        const res = await axios.get(`http://localhost:4000/requests/workers/${id}`, { withCredentials: true });
+        setRequests(res.data);
+      } catch {
+        setError("Failed to load worker's requests.");
+      } finally {
+        setLoadingRequests(false);
+      }
+    };
+
+    fetchRequests();
+  }, [worker]);
+
+  const handleStatusChange = async (requestId, newStatus) => {
+    try {
+      await axios.patch(
+        `http://localhost:4000/requests/${requestId}`,
+        { status: newStatus },
+        { withCredentials: true }
+      );
+      setRequests((prev) =>
+        prev.map((req) =>
+          req.id === requestId || req._id === requestId
+            ? { ...req, status: newStatus }
+            : req
+        )
+      );
+    } catch {
+      alert("Failed to update request status.");
+    }
+  };
+
+  if (loadingWorker) return <p>Loading worker info...</p>;
+  if (loadingRequests) return <p>Loading requests...</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
+
+  const statuses = ["pending", "accepted", "rejected", "completed"];
+
+  return (
+    <div>
+      <h2>Requests Assigned To You</h2>
+      {statuses.map((status) => {
+        const filtered = requests.filter((r) => r.status.toLowerCase() === status);
+        if (!filtered.length) return null;
+        return (
+          <section key={status}>
+            <h3 style={{ textTransform: "capitalize" }}>{status} requests</h3>
+            {filtered.map((req) => (
+              <div
+                key={req.id || req._id}
+                style={{ border: "1px solid #ccc", margin: "0.5rem", padding: "0.5rem" }}
+              >
+                <p><strong>Service:</strong> {req.servicecategory || "N/A"}</p>
+                <p><strong>Price:</strong> {req.fee ?? "N/A"} JD</p>
+                <p><strong>Status:</strong> {req.status}</p>
+                <p><strong>User Name:</strong> {req.firstname && req.lastname ? `${req.firstname} ${req.lastname}` : "N/A"}</p>
+
+                {status === "pending" && (
+                  <div>
+                    <button onClick={() => handleStatusChange(req.id || req._id, "accepted")}>Accept</button>
+                    <button onClick={() => handleStatusChange(req.id || req._id, "rejected")}>Reject</button>
+                  </div>
+                )}
+
+                {status === "accepted" && (
+                  <div>
+                    <button onClick={() => handleStatusChange(req.id || req._id, "completed")}>Mark as Completed</button>
+                  </div>
+                )}
+              </div>
+            ))}
+          </section>
+        );
+      })}
+    </div>
+  );
+};
+
+export default MyServices;
+
+/*
+
 // import React, { useEffect, useState } from "react";
 // import axios from "axios";
 // import { Card, Button, Spinner, Alert, Row, Col } from "react-bootstrap";
@@ -244,3 +363,5 @@ const MyServices = () => {
 };
 
 export default MyServices;
+
+*/

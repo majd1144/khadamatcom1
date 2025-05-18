@@ -1,4 +1,104 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./RequestedServices.css";
+
+const RequestedServices = () => {
+  const [user, setUser] = useState(null);
+  const [requests, setRequests] = useState([]);
+  const [loadingUser, setLoadingUser] = useState(true);
+  const [loadingRequests, setLoadingRequests] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchLoggedInUser = async () => {
+      try {
+        setLoadingUser(true);
+        const res = await axios.get("http://localhost:4000/users/loggedin_user", {
+          withCredentials: true,
+        });
+        setUser(res.data);
+      } catch (err) {
+        setError("Failed to load user info.");
+      } finally {
+        setLoadingUser(false);
+      }
+    };
+
+    fetchLoggedInUser();
+  }, []);
+
+  useEffect(() => {
+    if (!user?.id) return;
+
+    const fetchRequests = async () => {
+      try {
+        setLoadingRequests(true);
+        const res = await axios.get(`http://localhost:4000/requests/users/${user.id}`, {
+          withCredentials: true,
+        });
+        setRequests(res.data);
+      } catch {
+        setError("Failed to load your requests.");
+      } finally {
+        setLoadingRequests(false);
+      }
+    };
+
+    fetchRequests();
+  }, [user]);
+
+  if (loadingUser) return <p>Loading user information...</p>;
+  if (loadingRequests) return <p>Loading your requests...</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
+
+  const statuses = ["pending", "accepted", "rejected", "completed"];
+
+  return (
+    <div>
+      <h2>My Requested Services</h2>
+      {statuses.map((status) => {
+        const filtered = requests.filter((r) => r.status.toLowerCase() === status);
+        if (!filtered.length) return null;
+        return (
+          <section key={status}>
+            <h3 style={{ textTransform: "capitalize" }}>{status} requests</h3>
+            {filtered.map((req) => (
+              <div
+                key={req.id || req._id}
+                style={{ border: "1px solid #ccc", margin: "0.5rem", padding: "0.5rem" }}
+              >
+                <p>
+                  <strong>Service:</strong> {req.servicecategory || "N/A"}
+                </p>
+                <p>
+                  <strong>Price:</strong> {req.fee ?? "N/A"} JD
+                </p>
+                <p>
+                  <strong>Status:</strong> {req.status}
+                </p>
+                <p>
+                  <strong>Requested at:</strong>{" "}
+                  {new Date(req.createdat || req.createdAt).toLocaleString()}
+                </p>
+                <p>
+                  <strong>Worker Name:</strong>{" "}
+                  {req.firstname && req.lastname ? `${req.firstname} ${req.lastname}` : "N/A"}
+                </p>
+              </div>
+            ))}
+          </section>
+        );
+      })}
+    </div>
+  );
+};
+
+export default RequestedServices;
+
+
+/*
+
+import React, { useEffect, useState } from "react";
 import "./RequestedServices.css";
 
 const RequestedServices = () => {
@@ -169,3 +269,4 @@ export default RequestedServices;
 // export default RequestedServices;
 
 // RequestedServices.jsx
+*/
