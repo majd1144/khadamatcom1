@@ -2,10 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require('cors');
 require('dotenv').config();
-const db = require('./db-config');
+const db = require('../db-config');
 const path = require('path');
 const passport = require("passport");
 const session = require("express-session");
+const adminRoutes = require ("./routes/adminRt");
 
 //Express APP
 const app = express();
@@ -39,6 +40,7 @@ const reviewsRt = require("./routes/reviewsRt");
 const workersRt = require("./routes/workersRt");
 const requestRoutes = require('./routes/service_requestRt');
 
+
 //EJS using as engine
 app.set('view engine','ejs')
 app.set('views',path.join(__dirname,'views'));
@@ -66,6 +68,9 @@ app.use("/reviews", reviewsRt);
 
 //requests requests routes
 app.use("/requests", requestRoutes);
+//admin request routes 
+app.use("/admin", adminRoutes);
+
 
 
 app.use(express.static(path.join(__dirname, 'build')));

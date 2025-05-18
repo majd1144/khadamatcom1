@@ -47,3 +47,17 @@ link                                method                  Description
 /requests/              	                POST	                Add a new request
 /requests/:id	                            PATCH	                update a request by ID 
 /requests/:id	                            DELETE	                delete a review BY ID
+
+
+For Admins:
+Link	            Method	        Description
+------------------------------------------------------------------------
+/admin/users	    GET	        View all users
+/admin/users/:id	PATCH	    Update user info as admin
+/admin/users/:id	DELETE	    Delete any user
+/admin/workers	    GET	        View all workers
+/admin/workers/:id	PATCH	    Update any worker
+/admin/workers/:id	DELETE	    Delete any worker
+/admin/bookings	    GET	        See all service bookings (from service_requests table)
+/admin/reviews      GET         Get All Reviews
+/admin/reviews/:id  DELETE      Delete a Review
