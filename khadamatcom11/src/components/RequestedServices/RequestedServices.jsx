@@ -47,6 +47,21 @@ const RequestedServices = () => {
     fetchRequests();
   }, [user]);
 
+  const handleCancel = async (requestId) => {
+    const confirmCancel = window.confirm("Are you sure you want to cancel this request?");
+    if (!confirmCancel) return;
+
+    try {
+      await axios.delete(`http://localhost:4000/requests/${requestId}`, {
+        withCredentials: true,
+      });
+      setRequests((prev) => prev.filter((req) => req.id !== requestId && req._id !== requestId));
+    } catch (err) {
+      alert("Failed to cancel request. Please try again.");
+      console.error(err);
+    }
+  };
+
   if (loadingUser) return <p>Loading user information...</p>;
   if (loadingRequests) return <p>Loading your requests...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
@@ -86,7 +101,11 @@ const RequestedServices = () => {
                     ? `${req.worker_firstname} ${req.worker_lastname}`
                     : "N/A"}
                 </p>
-
+                {status === "pending" && (
+                  <button className="cancel-button" onClick={() => handleCancel(req.id || req._id)}>
+                    Cancel Request
+                  </button>
+                )}
               </div>
             ))}
           </section>
