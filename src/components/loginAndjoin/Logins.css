@@ -1,0 +1,214 @@
+.form-container {
+  width: 400px;
+  margin: 50px auto;
+  padding: 35px;
+  background: #fefefe;
+  border-radius: 40px;
+  box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.1);
+}
+.signin-container {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 40px;
+  box-shadow: 0 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  height: 420px;
+  margin-top: 30px;
+}
+
+.form-box input {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+h2 {
+  color: #333;
+}
+
+label {
+  display: flex;
+  align-items: center; 
+  font-weight: bold;
+  color: #444;
+  text-align: left;
+}
+
+input, select {
+
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+}
+.form-group{
+  font-size: 17px;
+
+}
+.form-group1{
+  display: flex ;
+  width: 100% !important;
+  padding-top: 10px;
+  font-size: 17px;
+  
+}
+.form-group2{
+  display: flex;
+   gap: 10px; 
+  font-size: 17px;
+  margin-bottom: 15px;
+  align-items: center; 
+  width:100%;
+  white-space: pre-wrap;
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+  align-items: center; 
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  
+}
+
+.radio-label input {
+  display: inline-block; 
+  margin-right: 5px;
+  width: 15px;
+}
+
+.form-group2 input[type="date"] {
+  width: 200px; 
+  height: 35px; 
+  font-size: 15px; 
+  padding: 0px; 
+  border-radius: 5px; 
+  border: 1px solid #ccc; 
+  text-align: center;
+  margin-top: 15px;
+}
+
+.radio-label span {
+  display: inline-block; 
+
+}
+
+.custom-phone-input .form-control {
+  font-size: 14px;
+  padding-left: 60px;
+  width: 100%;
+  size: 20px;
+  max-width: 214px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(109, 166, 234, 0.73);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+
+
+.signin-form h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 15px;
+  font-size:40px;
+}
+
+.signin-form label {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.signin-form input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.signin-form input:focus {
+  outline: none;
+  border-color: #6e7dff; 
+  box-shadow: 0 0 5px rgba(110, 125, 255, 0.5); 
+}
+
+.signin-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: rgba(109, 166, 234, 0.73);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signin-form button:hover {
+  background-color: #4f5bb5; 
+}
+
+.signup-link {
+  margin-left: 15px;
+  font-size: 12px;
+}
+
+.signup-link a {
+  color: #6e7dff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+.container{
+font-size: 25px;
+margin-top: 30px;
+}
+.h{
+  font-size: 70px;
+  margin-top: 30px;
+}

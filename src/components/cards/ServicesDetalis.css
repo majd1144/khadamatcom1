@@ -1,0 +1,139 @@
+.services-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+} 
+
+.services-cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:flex-start;
+  gap: 15px;
+}
+
+ .service-card {
+  width: 400px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding-bottom: 20px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.service-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.service-card img {
+  width: 100%;
+  height: 200px; /* ✅ تحديد الارتفاع ليغطي نصف البطاقة */
+  object-fit: cover; /* ✅ يجعل الصورة تغطي المساحة بالكامل بدون تشويه */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.service-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 10px;
+}
+
+.service-subtitle {
+  font-size: 18px;
+  color: #666;
+}
+
+.service-rating {
+  font-size: 16px;
+  color: #ff9800;
+  margin: 10px 0;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.btn-group a {
+  text-decoration: none;
+}
+
+.btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  /* border-radius: 5px; */
+  text-transform: uppercase;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.CardWorker{
+ background: linear-gradient(to bottom right,  #5298ee, #cddef2);
+ border-radius: 20px !important;
+ box-shadow: 0px 2px 3px rgba(54, 53, 53, 0.5) !important;
+ border: 2px solid #ffffff !important;
+
+}
+.card img {
+border-radius: 300px;
+width: 150px;
+margin-left: 120px;
+margin-top: 10px;
+border: 2px solid #ffffff;
+
+}
+
+h3{
+  /* fontFamily: 'roman', textAlign: 'center', color: 'white'  */
+  text-align: center ;
+  font-family: 'Times New Roman', Times, serif;
+  color: white !important;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  border: 1px solid;
+  border-radius: 9px;
+  max-width: 220px;
+ margin-left: 70px;
+}
+  .btn-CARDW {
+  background: linear-gradient(135deg,#bbd4f2);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  max-width: 100%;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-CARDW:hover {
+  background: linear-gradient(135deg, #1f5fb2, #b6d3f0);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .service-card {
+    width: 90%;
+  }
+  .service-card img {
+    height: 150px; /* ✅ تقليل الارتفاع للشاشات الصغيرة */
+  }
+}
