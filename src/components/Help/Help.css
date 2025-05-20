@@ -1,0 +1,45 @@
+.help-container {
+    background-color: #ffffff; /* لون أزرق فاتح */
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 50%;
+    position: relative;
+    left: 400px;
+  }
+  
+  .help-title {
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .accordion-item {
+    border: none;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  
+  .accordion-button {
+    background-color: #5c97d7;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .accordion-button:hover {
+    background-color: #72a5d8;
+  }
+  
+  /* .accordion-body {
+    background-color: white;
+    color: #333;
+    font-size: 16px;
+    padding: 15px;
+    border-radius: 0 0 10px 10px;
+    width: 100%;
+  }
+   */

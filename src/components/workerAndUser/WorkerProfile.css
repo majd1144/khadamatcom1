@@ -1,0 +1,226 @@
+.containerForJob{
+    max-width: 400px;
+    margin-top: 20px;
+    margin-left: 50px;
+    border-radius: 30px;
+    background: linear-gradient(to bottom right, #2673d0, #cddef2);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.Img{
+    margin-top: 50px;
+    max-width: 200px;
+    border-radius: 200px;
+    border: 3px solid #fefefe;
+}
+
+.WorkPictures{
+    margin-top: 20px;
+    border-radius: 10px ;
+    border: 1px solid rgba(109, 166, 234, 0.73);
+    box-shadow: 0px 1px 5px rgba(121, 115, 115, 0.8);
+    margin-left: 200px;
+    margin-top: 50px;
+    width: 800px;
+    height: 650px;
+}
+.PforW{
+margin-top: 20px;
+  font-family: sTahoma;
+  font-size: 35px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  background-color: rgba(109, 166, 234, 0.73);
+  color: white;
+  border-radius: 20px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.imgWJ{
+    border-radius: 20px;
+    border: 2px solid #000000;
+    max-width: 560px;
+    margin-left: 30px;
+}
+.con-comment{
+    width: 700px;
+    background-color: rgba(250, 245, 245, 0.507);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+.comment{
+    gap: 8px;
+}
+.ImgUser img{
+border-radius: 50%;
+height: 50px;
+width: 50px;
+margin-left: 0px;
+object-fit: cover;
+
+
+}
+
+.comment-section {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+.comment-box {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #807d7d;
+
+}
+
+.comment-input {
+    border-radius: 20px;
+    padding: 15px 20px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s;
+}
+
+.comment-input:focus {
+    box-shadow: none;
+    border-color: #86b7fe;
+}
+
+.btn-comment {
+    border-radius: 20px;
+    padding: 8px 25px;
+    background: #0d6efd;
+    border: none;
+    transition: all 0.3s;
+}
+
+.btn-comment:hover {
+    background: #0b5ed7;
+    transform: translateY(-1px);
+}
+
+.comment-actions {
+    font-size: 0.9rem;
+}
+
+.comment-actions a {
+    color: #6c757d;
+    text-decoration: none;
+    margin-right: 15px;
+    transition: color 0.2s;
+}
+
+.comment-actions a:hover {
+    color: #0d6efd;
+}
+
+.comment-time {
+    color: #adb5bd;
+    font-size: 0.85rem;
+}
+
+.reply-section {
+    margin-left: 60px;
+    border-left: 2px solid #e9ecef;
+    padding-left: 20px;
+}
+.gallery-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .gallery-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+  }
+  
+  .navigation-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+  }
+  
+  .nav-btn {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  .thumbnail-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .thumbnail-image:hover {
+    opacity: 0.7;
+  }
+   
+  .btn-img{
+    /* background-color: #3561c7d4; */
+     background: linear-gradient(to bottom right, #2673d0, #cddef2);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.6);
+    border: 1px solid #e9ecef;
+  }
+.h2{
+  font-family: sTahoma;
+  font-size: 40px;
+  color: #f8f9f9;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+ .info-WU {
+font-family: 'Open Sans', sans-serif; 
+  font-size: 18px;                      
+  line-height: 1.6;                     
+  color: #333;                         
+  margin-bottom: 1em;  
+  text-align: left;
+   display: grid;
+  grid-template-columns: 150px 1fr; 
+  margin-left: 8px;
+text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+
+}
+.info-commint{
+text-align: center;
+}
+ hr{
+  height: 2px;
+  color: black;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 2);
+ }
+
+  

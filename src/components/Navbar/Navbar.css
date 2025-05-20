@@ -1,0 +1,132 @@
+.navbarx{
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 7%;
+    transition: background-color 0.5s ease;
+    box-shadow: 0px 0px 10px gray;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+}
+.midnav a:hover,.midnav a:focus {
+background-color: none;
+border-radius:5px ;
+-webkit-border-radius:5px ;
+-moz-border-radius:5px ;
+-ms-border-radius:5px ;
+-o-border-radius:5px ;
+color:rgb(99, 98, 98);
+padding:15px 25px;
+}
+
+
+.searchlogo,.modelogo{
+    width:50px;
+    cursor: pointer;
+    margin-left: 40px;
+    background:none;
+    
+}
+
+.modelogo{
+    width:30px;
+     margin-right: -80px;
+     padding: 1px;
+    
+}
+
+.LoginAndJoin a:hover,.LoginAndJoin a:focus {
+    display: flex;
+    justify-content: flex-end;
+    border-radius:5px ;
+    -webkit-border-radius:5px ;
+    -moz-border-radius:5px ;
+    -ms-border-radius:5px ;
+   -o-border-radius:5px ;
+   color:rgb(99, 98, 98);
+   background-color: none;
+   outline: 3px solid lightblue; 
+   outline-offset: 10px;
+
+  }
+  
+  .LoginAndJoin ul {
+    display: flex;
+    padding: 10px; 
+    margin: 1px 30px; 
+  }
+  
+  .LoginAndJoin li {
+    margin-right: 5px; 
+  }
+  
+.logo1{
+    width:90px;
+    cursor: pointer;
+    margin-left: -80px;
+    
+}
+
+* {box-sizing: border-box;}
+
+body {
+margin: 0;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+.midnav ul {
+    display: flex;               /*To display items next to each other */
+    list-style-type: none;      
+    margin:0px;        
+    margin-left: 50px;         
+}
+
+.midnav li {
+    margin: 0 10px; 
+    margin-left: 50px;         
+
+}
+
+.midnav a {
+    text-decoration: none;     
+    color: black; 
+    padding: 15px 25px; 
+    margin-right: 20px;    
+    margin-bottom: 10px;       
+}
+
+
+@media(max-width:992px){
+.modelogo{
+    margin-top:50px;
+    
+}
+}
+
+/* 
+ */
+
+ /* تخصيص مظهر الـ dropdown */
+.nav-item .dropdown-menu {
+  display: none;  /* القائمة مخفية بشكل افتراضي */
+  background-color: white;
+}
+.nav-item:hover .dropdown-menu {
+  display: block; /* تظهر القائمة عند التمرير */
+}
+ .userButton{
+  background-color: white;
+  font-size: 15px ;
+  text-decoration:solid black !important;
+}
+
+.navbarRes{
+  margin-left: 1rem;
+  padding: 10px;
+  overflow: auto !important;
+}
+
+

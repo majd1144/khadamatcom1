@@ -1,0 +1,36 @@
+.footer {
+    background-color: rgba(109, 166, 234, 0.73);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+  
+.footer-logo{
+     width: 100px;
+    margin-bottom: 15px;
+}
+.footer p {
+    margin: 5px 0;
+}
+
+.social-icons .btn-circle {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 18px;
+    line-height: 20px;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.social-icons .btn-circle:hover {
+    background-color: #555;
+}
+
+.copyright {
+    font-size: 14px;
+    margin-top: 15px;
+}

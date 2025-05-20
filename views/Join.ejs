@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="/styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <h1 class="h">Welcome to Khadamatkom</h1>
+        <p class="para">
+          At Khidmatkom, we provide the solutions you need with reliability
+          and security, ensuring high-quality services that meet all your
+          needs. Our goal is to make it easy to access services that offer
+          peace of mind, affordable prices, and a swift, exceptional
+          experience.
+        </p>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="form-container">
+          <h2 class="form-title">Registration - Step <%= step %></h2>
+          <div class="form-box">
+            <form action="/submit" method="POST">
+              <% if (error) { %>
+                <div class="error-message"><%= error %></div>
+              <% } %>
+
+              <% if (step === 1) { %>
+                <div class="form-group">
+                  <input type="text" name="name" class="form-control" placeholder="First Name" value="<%= formData.name %>" required />
+                </div>
+                <div class="form-group">
+                  <input type="text" name="lastName" class="form-control" placeholder="Last Name" value="<%= formData.lastName %>" required />
+                </div>
+                <div class="form-group">
+                  <input type="text" name="nationalID" class="form-control" placeholder="National ID" value="<%= formData.nationalID %>" required />
+                </div>
+                <div class="form-group">
+                  <input type="email" name="email" class="form-control" placeholder="email@example.com" value="<%= formData.email %>" required />
+                </div>
+                <div class="form-group1">
+                  Location:
+                  <select name="location" class="form-select" required>
+                    <option value="" disabled>Select a governorate</option>
+                    <% locations.forEach(location => { %>
+                      <option value="<%= location.id %>" <%= formData.location === location.id ? 'selected' : '' %>>
+                        <%= location.label %>
+                      </option>
+                    <% }) %>
+                  </select>
+                </div>
+                <div class="form-group1">
+                  Phone Number:
+                  <input type="tel" name="phone" class="form-control" value="<%= formData.phone %>" required />
+                </div>
+                <div class="button-group">
+                  <button class="next-btn" type="button" onclick="nextStep()">Next</button>
+                </div>
+              <% } %>
+
+              <% if (step === 2) { %>
+                <div class="form-group">
+                  <input type="password" name="password" placeholder="Password" value="<%= formData.password %>" required />
+                </div>
+                <div class="form-group">
+                  <input type="password" name="confirmPassword" placeholder="Confirm Password" value="<%= formData.confirmPassword %>" required />
+                </div>
+                <div class="button-group">
+                  <button class="prev-btn" type="button" onclick="prevStep()">Previous</button>
+                  <button class="next-btn" type="button" onclick="nextStep()">Next</button>
+                </div>
+              <% } %>
+
+              <% if (step === 3) { %>
+                <div class="form-group2">
+                  <label>Birth Date:</label>
+                  <input type="date" name="birthDate" class="control-birth" value="<%= formData.birthDate %>" required />
+                </div>
+                <div class="form-group2">
+                  <label>Gender:</label>
+                  <div class="radio-group">
+                    <label class="radio-label">
+                      <input type="radio" name="gender" value="male" <%= formData.gender === 'male' ? 'checked' : '' %> required />
+                      <span>Male</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="gender" value="female" <%= formData.gender === 'female' ? 'checked' : '' %> required />
+                      <span>Female</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group2">
+                  <label>User Type:</label>
+                  <div class="radio-group">
+                    <label class="radio-label">
+                      <input type="radio" name="userType" value="User" <%= formData.userType === 'User' ? 'checked' : '' %> required />
+                      <span>User</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="userType" value="Service provider" <%= formData.userType === 'Service provider' ? 'checked' : '' %> required />
+                      <span>Service provider</span>
+                    </label>
+                  </div>
+                </div>
+                <% if (formData.userType === 'Service provider') { %>
+                  <div class="worker-info">
+                    <div class="form-group1">
+                      Services:
+                      <select name="services" class="form-select" required>
+                        <option value="" disabled>Select a service</option>
+                        <% services.forEach(service => { %>
+                          <option value="<%= service.id %>" <%= formData.services === service.id ? 'selected' : '' %>>
+                            <%= service.label %>
+                          </option>
+                        <% }) %>
+                      </select>
+                    </div>
+                  </div>
+                <% } %>
+                <div class="button-group">
+                  <button class="prev-btn" type="button" onclick="prevStep()">Previous</button>
+                  <button class="submit-btn" type="submit">Submit</button>
+                </div>
+              <% } %>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /*let step = <%= step %> ;
+    const formData = <% = JSON.stringify(formData) %>;*/ //comeback to it 
+
+    function nextStep() {
+      if (validateStep()) {
+        step++;
+        window.location.href = `/form?step=${step}`;
+      } else {
+        alert("Please fill in all fields correctly before proceeding.");
+      }
+    }
+
+    function prevStep() {
+      if (step === 1) {
+        window.history.back();
+      } else {
+        step--;
+        window.location.href = `/form?step=${step}`;
+      }
+    }
+
+    function validateStep() {
+      if (step === 1) {
+        return (
+          formData.name &&
+          formData.lastName &&
+          formData.nationalID &&
+          formData.email &&
+          formData.location &&
+          formData.phone
+        );
+      }
+      if (step === 2) {
+        return (
+          formData.password &&
+          formData.confirmPassword &&
+          formData.password === formData.confirmPassword
+        );
+      }
+      if (step === 3) {
+        return (
+          formData.birthDate &&
+          formData.gender &&
+          formData.userType
+        );
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>

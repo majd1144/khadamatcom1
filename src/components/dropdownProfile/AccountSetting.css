@@ -1,0 +1,116 @@
+/* الحاوية الرئيسية */
+.account-settings {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* العنوان الرئيسي */
+.account-settings h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+/* الأقسام الفردية */
+.account-settings > div {
+  margin-bottom: 1.2rem;
+}
+
+/* تسميات الحقول */
+.account-settings label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+/* الحقول النصية */
+.account-settings input[type="text"],
+.account-settings input[type="email"],
+.account-settings input[type="number"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.account-settings input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* الأزرار */
+.account-settings button {
+  margin-top: 0.5rem;
+  padding: 8px 16px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.3s;
+}
+
+.account-settings button:hover {
+  background-color: #2980b9;
+}
+
+/* زر الحذف */
+.account-settings .delete-button {
+  background-color: #e74c3c;
+  margin-top: 2rem;
+}
+
+.account-settings .delete-button:hover {
+  background-color: #c0392b;
+}
+
+/* قسم التحول إلى مزود خدمة */
+.provider-form {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+}
+
+.provider-form h4 {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+/* تنسيق النصوص */
+.account-settings span {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 15px;
+  color: #333;
+
+}
+
+/* تنسيق الخطأ أو التحذير */
+.account-settings .error {
+  color: #e74c3c;
+  font-size: 0.9rem;
+}
+/* تنسيق الحاوية التي تحتوي على النص والزر */
+.account-settings .field-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* تنسيق الزر */
+.account-settings .field-row button {
+  margin-left: auto;
+}
